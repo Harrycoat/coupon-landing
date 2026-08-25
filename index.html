@@ -319,11 +319,8 @@
 
     let couponCode = 'TW-' + Math.random().toString(36).substring(2, 6).toUpperCase();
     try {
-      const res = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ rating: selectedRating, feedback: feedback })
-      });
+      const params = new URLSearchParams({ rating: selectedRating, feedback: feedback });
+      const res = await fetch(`${SCRIPT_URL}?${params.toString()}`, { method: 'GET' });
       const data = await res.json();
       if (data && data.couponCode) couponCode = data.couponCode;
     } catch (err) {
