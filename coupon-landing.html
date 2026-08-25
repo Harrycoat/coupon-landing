@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>손맛식당 — 방문 후기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1c1815;
+    --bg-soft:#241f1a;
+    --card:#2a2420;
+    --ember:#e8622c;
+    --ember-dim:#a8471f;
+    --gold:#d4a954;
+    --cream:#f5efe6;
+    --muted:#a89a8c;
+    --line:#3a332c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Noto Sans KR',sans-serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  body{
+    display:flex;
+    justify-content:center;
+    padding:0;
+  }
+  .phone{
+    width:100%;
+    max-width:420px;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse 500px 300px at 50% -10%, rgba(232,98,44,0.12), transparent 60%),
+      var(--bg);
+    padding:40px 24px 56px;
+    display:flex;
+    flex-direction:column;
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.14em;
+    color:var(--gold);
+    text-align:center;
+    margin-bottom:10px;
+    font-weight:500;
+  }
+  h1{
+    font-family:'Gowun Batang',serif;
+    font-weight:700;
+    font-size:30px;
+    text-align:center;
+    margin-bottom:8px;
+    line-height:1.35;
+  }
+  .sub{
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:36px;
+    line-height:1.6;
+  }
+  .stage{display:none;flex-direction:column;flex:1;animation:rise .45s ease both;}
+  .stage.active{display:flex;}
+  @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+  .stars{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:28px;
+  }
+  .star{
+    font-size:40px;
+    color:var(--line);
+    cursor:pointer;
+    transition:color .15s, transform .15s;
+    line-height:1;
+  }
+  .star.filled{color:var(--gold);}
+  .star:active{transform:scale(0.9);}
+
+  .hint{
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:auto;
+  }
+
+  textarea{
+    width:100%;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    color:var(--cream);
+    font-family:inherit;
+    font-size:15px;
+    padding:14px;
+    min-height:120px;
+    resize:none;
+    margin-bottom:20px;
+  }
+  textarea:focus{outline:none;border-color:var(--ember);}
+  textarea::placeholder{color:var(--muted);}
+
+  .btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:16px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:500;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+    text-decoration:none;
+    transition:transform .12s, opacity .15s;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{
+    background:var(--ember);
+    color:#1c1815;
+    font-weight:700;
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--cream);
+    border:1px solid var(--line);
+    margin-top:12px;
+  }
+  .btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+  .stack{margin-top:auto;display:flex;flex-direction:column;}
+
+  .grill{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:120px;
+    margin-bottom:8px;
+  }
+  .ember-dot{
+    position:absolute;
+    bottom:20px;
+    width:4px;height:4px;
+    border-radius:50%;
+    background:var(--ember);
+    opacity:0;
+    animation:float 2.4s ease-in infinite;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .ember-dot{animation-play-state:running;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ember-dot{animation:none;opacity:.5;}
+  }
+  @keyframes float{
+    0%{opacity:0;transform:translateY(0) scale(1);}
+    15%{opacity:.9;}
+    100%{opacity:0;transform:translateY(-90px) scale(0.4);}
+  }
+  .flame-core{
+    width:64px;height:64px;
+    border-radius:50%;
+    background:radial-gradient(circle, var(--ember) 0%, var(--ember-dim) 55%, transparent 75%);
+    filter:blur(2px);
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .flame-core{animation:pulse 2.2s ease-in-out infinite;}
+  }
+  @keyframes pulse{
+    0%,100%{opacity:.7;transform:scale(1);}
+    50%{opacity:1;transform:scale(1.08);}
+  }
+
+  .coupon{
+    background:var(--card);
+    border:1px dashed var(--gold);
+    border-radius:14px;
+    padding:24px 20px;
+    text-align:center;
+    margin-bottom:20px;
+  }
+  .coupon-label{
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:.08em;
+    margin-bottom:10px;
+  }
+  .coupon-code{
+    font-family:'Gowun Batang',serif;
+    font-size:32px;
+    color:var(--gold);
+    letter-spacing:.06em;
+    margin-bottom:10px;
+  }
+  .coupon-desc{
+    font-size:14px;
+    color:var(--cream);
+    margin-bottom:4px;
+  }
+  .coupon-expiry{
+    font-size:12px;
+    color:var(--muted);
+  }
+  .copy-note{
+    text-align:center;
+    font-size:12px;
+    color:var(--muted);
+    margin-top:10px;
+    min-height:16px;
+  }
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <div class="eyebrow">손맛식당</div>
+  <h1 id="mainHeading">오늘 방문<br>어떠셨나요?</h1>
+  <p class="sub" id="subText">별점을 눌러 솔직한 후기를 남겨주세요.<br>후기와 상관없이 모든 분께 쿠폰을 드려요.</p>
+
+  <div class="stage active" id="stage-rate">
+    <div class="stars" id="stars">
+      <span class="star" data-v="1">★</span>
+      <span class="star" data-v="2">★</span>
+      <span class="star" data-v="3">★</span>
+      <span class="star" data-v="4">★</span>
+      <span class="star" data-v="5">★</span>
+    </div>
+    <p class="hint">별을 눌러 시작해주세요</p>
+  </div>
+
+  <div class="stage" id="stage-high">
+    <p class="sub" style="margin-bottom:24px;">좋게 봐주셔서 감사합니다!<br>Google에도 한 줄 남겨주시면 큰 힘이 돼요.</p>
+    <div class="stack">
+      <a class="btn btn-primary" href="#" onclick="return false;">Google에 리뷰 남기기</a>
+      <button class="btn btn-ghost" id="btnHighSubmit" onclick="submitAndShowCoupon()">괜찮아요, 쿠폰만 받을게요</button>
+    </div>
+  </div>
+
+  <div class="stage" id="stage-low">
+    <textarea id="feedbackText" placeholder="어떤 점이 아쉬우셨는지 편하게 남겨주세요. 사장님께 직접 전달됩니다."></textarea>
+    <div class="stack">
+      <button class="btn btn-primary" id="btnLowSubmit" onclick="submitAndShowCoupon()">의견 남기고 쿠폰 받기</button>
+    </div>
+  </div>
+
+  <div class="stage" id="stage-coupon">
+    <div class="grill">
+      <span class="ember-dot" style="left:38%;animation-delay:0s;"></span>
+      <span class="ember-dot" style="left:52%;animation-delay:.6s;"></span>
+      <span class="ember-dot" style="left:46%;animation-delay:1.2s;"></span>
+      <span class="ember-dot" style="left:60%;animation-delay:1.8s;"></span>
+      <div class="flame-core"></div>
+    </div>
+    <div class="coupon">
+      <div class="coupon-label">다음 방문 쿠폰</div>
+      <div class="coupon-code" id="couponCode">SM-7X4K</div>
+      <div class="coupon-desc">전 메뉴 15% 할인</div>
+      <div class="coupon-expiry">30일 이내 사용 · 매장 직원에게 보여주세요</div>
+    </div>
+    <button class="btn btn-ghost" onclick="copyCoupon()">코드 복사하기</button>
+    <p class="copy-note" id="copyNote"></p>
+  </div>
+
+</div>
+
+<script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvpa1vb34LooBTWDeFIQyjbMEt-aHMf5FTw10179A4n7Bj0qyxf1OxMjCfte_-uI99DA/exec';
+  let selectedRating = 0;
+
+  const stars = document.querySelectorAll('.star');
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      const v = parseInt(star.dataset.v, 10);
+      selectedRating = v;
+      stars.forEach(s => s.classList.toggle('filled', parseInt(s.dataset.v,10) <= v));
+      setTimeout(() => {
+        document.getElementById('stage-rate').classList.remove('active');
+        if (v >= 4) {
+          document.getElementById('subText').style.display = 'none';
+          document.getElementById('stage-high').classList.add('active');
+        } else {
+          document.getElementById('subText').style.display = 'none';
+          document.getElementById('stage-low').classList.add('active');
+        }
+      }, 280);
+    });
+  });
+
+  async function submitAndShowCoupon(){
+    const btn = document.activeElement;
+    const originalLabel = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = '처리 중...'; }
+
+    const feedbackEl = document.getElementById('feedbackText');
+    const feedback = feedbackEl ? feedbackEl.value : '';
+
+    let couponCode = 'SM-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+    try {
+      const res = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ rating: selectedRating, feedback: feedback })
+      });
+      const data = await res.json();
+      if (data && data.couponCode) couponCode = data.couponCode;
+    } catch (err) {
+      console.error('시트 저장 실패, 임시 코드로 진행합니다', err);
+    }
+
+    document.getElementById('couponCode').textContent = couponCode;
+    document.getElementById('stage-high').classList.remove('active');
+    document.getElementById('stage-low').classList.remove('active');
+    document.getElementById('mainHeading').innerHTML = '쿠폰이 도착했어요';
+    document.getElementById('stage-coupon').classList.add('active');
+
+    if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
+  }
+
+  function copyCoupon(){
+    const code = document.getElementById('couponCode').textContent;
+    const note = document.getElementById('copyNote');
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(code).then(() => {
+        note.textContent = '복사되었습니다';
+      }).catch(() => {
+        note.textContent = code;
+      });
+    } else {
+      note.textContent = code;
+    }
+  }
+</script>
+</body>
+</html>
