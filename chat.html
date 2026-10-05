@@ -596,7 +596,10 @@ var Remind = (function () {
       var pp = pendingPost;
       if (pp.need === 'type') { var ty = pType(t); if (!ty) { pendingPost = null; return null; } pp = { type: ty }; fillPost(pp, t); return postNext(pp); }
       var before = JSON.stringify([pp.pct, pp.period, pp.date]); fillPost(pp, t);
-      if (JSON.stringify([pp.pct, pp.period, pp.date]) === before) { pp.tries = (pp.tries || 0) + 1; if (pp.tries >= 2) { pendingPost = null; return null; } }
+      if (JSON.stringify([pp.pct, pp.period, pp.date]) === before) {
+        if (t.length <= 12 && !/\?|얼마|뭐|어떻게/.test(t) && !pp.tries) { pp.tries = 1; return postNext(pp); }
+        pendingPost = null; return null;
+      }
       return postNext(pp);
     }
     if (!/게시물|포스트|구글\s*소식|가게\s*소식/.test(t)) return null;
@@ -637,6 +640,13 @@ var Remind = (function () {
   box.addEventListener('click', function (e) {
     var b = e.target.closest('[data-demo]'); if (!b) return;
     var k = b.getAttribute('data-demo');
+    if (k === 'copy') {
+      var card = b.closest('.lbub'), el = card && card.querySelector('.lsms'), txt = el ? (el.innerText || el.textContent) : '';
+      var ok = function () { addBot({ text: '복사했어요. 문자 앱이나 구글에 붙여넣어 사용하세요.' }); draw(); };
+      var fail = function () { addBot({ text: '복사하지 못했어요. 글자를 길게 눌러서 직접 복사해주세요.' }); draw(); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, fail); else fail();
+      return;
+    }
     addBot({ text: k === 'approve' ? '체험 화면이라 실제로 발송되지는 않아요. 서비스를 쓰시면 이 버튼으로 동의한 고객에게만 문자가 나가요.' : '실제로는 "30%로 바꿔줘", "더 정중하게"처럼 말로 고칠 수 있어요. 한번 입력해보세요.' });
     draw();
   });
