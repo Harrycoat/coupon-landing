@@ -64,6 +64,11 @@
   .live-bar button { width: 48px; min-height: 48px; border: none; border-radius: 50%; background: var(--gold); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
   .foot { background: var(--cream); padding: 0 14px calc(8px + env(safe-area-inset-bottom)); font-size: 11.5px; color: var(--muted); line-height: 1.45; flex-shrink: 0; }
   .foot a { color: var(--muted); }
+  .live-bar .mic { background: #fff; border: 1.5px solid #bdb99f; }
+  .live-bar .mic.on { background: #d92d20; border-color: #d92d20; animation: micpulse 1.2s infinite; }
+  .live-bar .mic.on svg { stroke: #fff; }
+  @keyframes micpulse { 0% { box-shadow: 0 0 0 0 rgba(217,45,32,0.5); } 100% { box-shadow: 0 0 0 12px rgba(217,45,32,0); } }
+  @media (prefers-reduced-motion: reduce) { .live-bar .mic.on { animation: none; } }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid #1b6ef3; outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
@@ -113,6 +118,7 @@
   <form class="live-bar" id="lform" autocomplete="off">
     <label class="sr" for="linput">비서에게 보낼 말</label>
     <input type="text" id="linput" maxlength="300" placeholder="비서에게 말해보세요" autocomplete="off" enterkeyhint="send">
+    <button type="button" id="lmic" class="mic" aria-label="말로 입력" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></svg></button>
     <button type="submit" aria-label="보내기"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   </form>
   <div class="foot">
@@ -161,7 +167,7 @@
         '<div class="lline">' + (m.html ? '<div class="lbub bot card' + (first ? ' first' : '') + '">' + m.html + '</div>' : '<div class="lbub bot' + (first ? ' first' : '') + '">' + esc(m.text) + '</div>') + '<span class="lts">' + fmt(m.t) + '</span></div></div></div>';
       prev = 'bot';
     });
-    if (typing) h += '<div class="lrow">' + (prev !== 'bot' ? '<div class="av">' + FACE + '</div>' : '<div class="lspacer"></div>') + '<div class="lcol"><div class="lline"><div class="lbub bot first ltyping"><i></i><i></i><i></i></div></div></div></div>';
+    if (typing) h += '<div class="lrow">' + (prev !== 'bot' ? '<div class="av">' + FACE + '</div>' : '<div class="lspacer"></div>') + '<div class="lcol"><div class="lline"><div class="lbub bot first ltyping"><span class="sr">도우미가 입력하고 있어요</span><i></i><i></i><i></i></div></div></div></div>';
     box.innerHTML = h; box.scrollTop = box.scrollHeight;
   }
   function addMe(t) { msgs.push({ role: 'me', text: t, t: Date.now() }); }
@@ -238,6 +244,14 @@
   }
   function aiAvailable() { return !!(CHAT_ENDPOINT || sampleFn) && aiFails < 3; }
 
+  async function typeOut(reply) {
+    if (!reply.text || reply.html || reduce) { addBot(reply); draw(); return; }
+    var full = reply.text, m = { role: 'bot', text: '', html: '', plain: full, t: Date.now() };
+    msgs.push(m);
+    var step = Math.max(1, Math.ceil(full.length / 90));
+    for (var i = 0; i < full.length; i += step) { m.text = full.slice(0, i + step); draw(); await wait(22); }
+    m.text = full; draw();
+  }
   async function handle(text) {
     text = String(text || '').trim(); if (!text || busy) return;
     if (userCount >= 20) { addMe(text); addBot({ text: '체험 대화를 충분히 해보셨어요. 더 보고 싶으시면 아래에서 상담을 신청해주세요. 매장에서 직접 보여드릴게요.' }); draw(); return; }
@@ -250,7 +264,7 @@
       else { aiFails++; reply = null; }
     }
     if (!reply) { await wait(700); reply = scripted(text); }
-    addBot(reply); busy = false; draw();
+    await typeOut(reply); busy = false;
     if (reply.go) setTimeout(function () { location.href = 'index.html#apply'; }, 1100);
   }
 
@@ -264,6 +278,41 @@
     addBot({ text: k === 'approve' ? '체험 화면이라 실제로 발송되지는 않아요. 서비스를 쓰시면 이 버튼으로 동의한 고객에게만 문자가 나가요.' : '실제로는 "30%로 바꿔줘", "더 정중하게"처럼 말로 고칠 수 있어요. 한번 입력해보세요.' });
     draw();
   });
+
+  /* 말로 입력하기 (브라우저의 음성 인식 기능을 써요. 지원하지 않으면 버튼이 숨겨져요) */
+  (function () {
+    var micBtn = $('lmic'), SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!micBtn) return;
+    if (!SR) { micBtn.hidden = true; return; }
+    var rec = null, listening = false, finalText = '', startedAt = 0;
+    function setMic(on) { listening = on; micBtn.classList.toggle('on', on); micBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); input.placeholder = on ? '듣고 있어요… 말씀하세요' : '비서에게 말해보세요'; }
+    function tell(msg) { addBot({ text: msg }); draw(); }
+    micBtn.addEventListener('click', function () {
+      if (listening && rec) { rec.stop(); return; }
+      if (busy) return;
+      try {
+        rec = new SR(); rec.lang = 'ko-KR'; rec.interimResults = true; rec.continuous = false; rec.maxAlternatives = 1;
+        finalText = ''; startedAt = Date.now();
+        rec.onstart = function () { setMic(true); };
+        rec.onresult = function (e) {
+          var interim = '';
+          for (var i = e.resultIndex; i < e.results.length; i++) {
+            var tr = e.results[i][0].transcript;
+            if (e.results[i].isFinal) finalText = (finalText + ' ' + tr).trim(); else interim += tr;
+          }
+          input.value = (finalText + ' ' + interim).trim();
+        };
+        rec.onerror = function (e) {
+          setMic(false);
+          if (e.error === 'not-allowed' || e.error === 'service-not-allowed') tell('마이크 사용이 허용되지 않았어요. 주소창 왼쪽 자물쇠에서 마이크를 허용하거나, 글자로 입력해주세요.');
+          else if (e.error === 'no-speech') tell('소리가 잘 안 들렸어요. 마이크 버튼을 다시 눌러서 말씀해주세요.');
+          else if (e.error !== 'aborted') tell('음성 입력을 쓸 수 없어요. 글자로 입력해주세요.');
+        };
+        rec.onend = function () { setMic(false); var v = (input.value || '').trim(); if (v) handle(v); };
+        rec.start();
+      } catch (err) { setMic(false); tell('음성 입력을 시작하지 못했어요. 글자로 입력해주세요.'); }
+    });
+  })();
 
   /* 구글 Claude 화면에서 열었을 때만 쓰이는 미리보기용 AI (공개 사이트에서는 없어요) */
   try {
