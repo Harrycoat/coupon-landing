@@ -201,6 +201,7 @@
   select option { background: #12172f; color: #f4f1e6; }
   input::placeholder, textarea::placeholder { color: #8a90ad; }
   .agree { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: var(--on-navy-muted); }
+  .agree a { color: var(--gold-soft); }
   .agree input { width: 24px; height: 24px; flex-shrink: 0; margin-top: 3px; accent-color: var(--gold); }
   .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .err { color: #ffb4a0; font-size: 15px; min-height: 1.4em; }
@@ -415,7 +416,8 @@
           <div><label for="google">구글 비즈니스 프로필</label>
             <select id="google" name="google"><option>있고 인증도 했어요</option><option>있는데 인증은 안 했어요</option><option>없어요</option><option>잘 모르겠어요</option></select></div>
           <div><label for="message">문의 내용 <span class="opt">(선택)</span></label><textarea id="message" name="message"></textarea></div>
-          <label class="agree" for="consent"><input type="checkbox" id="consent" name="consent"><span>상담을 위해 전화, 문자, 이메일로 연락받는 데 동의합니다. 상담 목적으로만 쓰이고, 언제든 철회할 수 있어요.</span></label>
+          <label class="agree" for="consent"><input type="checkbox" id="consent" name="consent"><span>상담을 위해 전화, 이메일로 연락받는 데 동의합니다. 상담 목적으로만 쓰이고, 언제든 철회할 수 있어요.</span></label>
+          <label class="agree" for="sms"><input type="checkbox" id="sms" name="sms"><span><span lang="en">(Optional) I agree to receive text messages from Encore Marketing System about my consultation request and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help. Consent is not a condition of any purchase or of receiving a consultation. See our <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.</span><br><span lang="ko">(선택) 상담 요청과 서비스 안내 문자를 받겠습니다. 문자 수신은 상담이나 구매의 조건이 아니에요. 언제든 STOP을 보내면 거부할 수 있어요.</span></span></label>
           <p class="err" id="err" role="alert"></p>
           <button class="btn btn-gold" type="submit" id="submit">상담 신청하기</button>
           <p class="testmode" id="testmode" hidden>테스트 모드예요. 아직 신청 내용을 저장할 주소가 연결되지 않아서, 보낸 내용은 이 화면에서만 확인돼요.</p>
@@ -436,7 +438,8 @@
       <p>tmartbakersfield@gmail.com · 661-373-7950</p>
     </div>
     <div>
-      <p><a href="privacy-policy.html">개인정보 처리방침</a> · <a href="terms.html">이용약관</a></p>
+      <p><a href="privacy-policy.html">개인정보 처리방침 (Privacy Policy)</a> · <a href="terms.html">이용약관 (Terms)</a> · <a href="opt-in.html">문자 수신 동의 안내 (SMS Opt-In)</a></p>
+      <p lang="en">Text messages: message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help.</p>
       <p>문자 발송, 구글 연동 같은 일부 기능은 파일럿 매장에서 순서대로 열립니다.</p>
     </div>
   </div>
@@ -447,7 +450,8 @@
   /* 상담 신청을 받을 주소: Google Apps Script 웹 앱 주소를 여기에 붙여넣으세요. 비워두면 테스트 모드예요. */
   var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyf1VgvEG1i5B1dd9gMMd89mSKyxJXwSMf0hMmeRsJenujeMUSCM1LCrMgNpDPpxP8M/exec';
 
-  var CONSENT_TEXT = '상담을 위해 전화, 문자, 이메일로 연락받는 데 동의합니다. 상담 목적으로만 쓰이고, 언제든 철회할 수 있어요.';
+  var CONSENT_TEXT = '상담을 위해 전화, 이메일로 연락받는 데 동의합니다. 상담 목적으로만 쓰이고, 언제든 철회할 수 있어요.';
+  var SMS_TEXT = 'I agree to receive text messages from Encore Marketing System about my consultation request and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help. Consent is not a condition of any purchase or of receiving a consultation.';
   var form = document.getElementById('apply-form'), err = document.getElementById('err'), btn = document.getElementById('submit');
   if (!FORM_ENDPOINT) document.getElementById('testmode').hidden = false;
 
@@ -463,7 +467,7 @@
     if (val('email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'))) { err.textContent = '이메일 형식을 확인해주세요.'; document.getElementById('email').focus(); return; }
     if (!document.getElementById('consent').checked) { err.textContent = '연락 동의에 체크해주세요.'; document.getElementById('consent').focus(); return; }
 
-    var payload = { store: val('store'), owner: val('owner'), phone: val('phone'), email: val('email'), type: val('type'), plan: val('plan'), google: val('google'), message: val('message'), consent: true, consentText: CONSENT_TEXT, page: location.href, website: '' };
+    var payload = { store: val('store'), owner: val('owner'), phone: val('phone'), email: val('email'), type: val('type'), plan: val('plan'), google: val('google'), message: val('message'), consent: true, sms: document.getElementById('sms').checked, consentText: CONSENT_TEXT + ' | SMS consent: ' + (document.getElementById('sms').checked ? 'YES - ' + SMS_TEXT : 'NO'), page: location.href, website: '' };
     function finish() {
       form.hidden = true; var d = document.getElementById('done'); d.hidden = false; d.focus();
     }
