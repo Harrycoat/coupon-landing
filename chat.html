@@ -72,6 +72,26 @@
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid #1b6ef3; outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+/* ===== Encore chat visual refresh — design only ===== */
+:root{--navy:#071a3d;--navy2:#0b2f68;--gold:#ffc83d;--cream:#fff;--muted:#64748b;}
+body{background:radial-gradient(circle at 50% -10%,#dfeeff,transparent 42%),linear-gradient(135deg,#eef5ff,#f9fbff);padding:22px;}
+.app{max-width:520px;margin:auto;border-radius:28px;overflow:hidden;background:#eef5ff;box-shadow:0 30px 80px rgba(7,26,61,.22),0 0 0 1px rgba(34,104,215,.12);}
+header{background:linear-gradient(135deg,#1677ff,#0753d6)!important;color:#fff!important;padding:15px 18px!important;border-bottom:0!important}
+header .who-wrap b,header .who-wrap small{color:#fff!important}header .who-wrap small{opacity:.8}
+header .av{background:#fff3cf!important;border:2px solid rgba(255,255,255,.8)!important}
+header .cta{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;color:#102347!important;border-radius:12px!important;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.aitag{background:#ffd34e!important;color:#102347!important}
+.live-msgs{background:linear-gradient(180deg,#eef5ff,#f8fbff)!important;padding:18px 14px 8px!important}
+.lbub{box-shadow:0 5px 15px rgba(28,66,116,.08)}.lbub.bot{background:#fff!important;border:0!important}.lbub.me{background:#dcecff!important;color:#102347!important}
+.lday{background:#dce5f2!important;color:#70809a!important}.lwho,.lts{color:#718096!important}
+.live-chips{background:#f8fbff!important;padding:9px 12px!important}.live-chips button{border:1px solid #d9e5f3!important;box-shadow:0 3px 10px rgba(28,66,116,.05)}
+.live-bar{background:#fff!important;border-top:1px solid #e0e9f5!important;padding:10px 12px 7px!important}.live-bar input{background:#f8fbff!important;border-color:#d9e5f3!important}
+.live-bar button{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;box-shadow:0 5px 14px rgba(245,185,31,.28)}
+.foot{background:#fff!important;color:#718096!important;padding-bottom:14px!important}
+.lsms{background:#f2f6fb!important}.lrv{background:#f3f7fc!important}.lbtns button:first-child{background:#0b55c9!important;border-color:#0b55c9!important}
+@media(max-width:600px){body{padding:0}.app{max-width:none;border-radius:0;min-height:100dvh;box-shadow:none}}
+
 </style>
 </head>
 <body>
