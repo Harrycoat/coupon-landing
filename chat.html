@@ -30,7 +30,7 @@
   .aitag { font-size: 11px; font-weight: 700; background: var(--gold); color: var(--navy); padding: 2px 8px; border-radius: 99px; margin-left: 6px; vertical-align: 2px; }
   .who-wrap small { display: block; font-size: 12px; color: var(--muted); line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .cta { flex-shrink: 0; min-height: 44px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 12px; background: var(--gold); color: var(--navy); font-weight: 700; font-size: 14px; text-decoration: none; }
-  .live-msgs { flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 12px 12px 6px; display: flex; flex-direction: column; gap: 6px; }
+  .live-msgs { flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 12px 12px 6px; display: flex; flex-direction: column; gap: 3px; }
   .lday { align-self: center; background: rgba(27,35,64,0.14); color: var(--muted); font-size: 12px; padding: 3px 14px; border-radius: 999px; margin: 4px 0 8px; }
   .lrow { display: flex; gap: 8px; align-items: flex-start; }
   .lrow.me { justify-content: flex-end; align-items: flex-end; gap: 6px; }
@@ -69,29 +69,28 @@
   .live-bar .mic.on svg { stroke: #fff; }
   @keyframes micpulse { 0% { box-shadow: 0 0 0 0 rgba(217,45,32,0.5); } 100% { box-shadow: 0 0 0 12px rgba(217,45,32,0); } }
   @media (prefers-reduced-motion: reduce) { .live-bar .mic.on { animation: none; } }
+  .lrow.grp { margin-top: 8px; }
+  .lmeta { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+  .lread { font-size: 11px; color: #4a5068; white-space: nowrap; }
+  .pop { animation: lpop 0.18s ease-out; }
+  @keyframes lpop { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .pop { animation: none; } }
+  .msgwrap { position: relative; flex: 1; min-height: 0; display: flex; }
+  .msgwrap .live-msgs { flex: 1; min-width: 0; }
+  .down { position: absolute; right: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #bdc2d4; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.18); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; z-index: 3; }
+  .down[hidden] { display: none; }
+  .live-bar .send.off { position: absolute; width: 1px; height: 1px; min-height: 0; opacity: 0; pointer-events: none; overflow: hidden; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #2fa84f; margin-right: 6px; vertical-align: 1px; }
+  .back { flex-shrink: 0; width: 36px; height: 44px; display: inline-flex; align-items: center; justify-content: center; margin-left: -8px; color: #1b2340; font-size: 30px; line-height: 1; text-decoration: none; }
+  .lrem { display: flex; gap: 10px; align-items: center; justify-content: space-between; margin: 6px 0; }
+  .lrem small { color: #5a6590; }
+  .lrem button { flex-shrink: 0; min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #bdb99f; background: transparent; color: #1b2340; font: 700 13px var(--sans); cursor: pointer; }
+  .postimg { display: block; width: 100%; height: auto; border-radius: 12px; margin: 6px 0 10px; }
+  .lbtns a.dl { flex: 1 1 auto; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #bdb99f; color: #1b2340; background: transparent; font: 700 14px var(--sans); text-decoration: none; text-align: center; }
+  .hero2 .lbtns a.dl { border-color: #bcd0f7; color: #1c46c9; background: #fff; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid #1b6ef3; outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
-
-/* ===== Encore chat visual refresh — design only ===== */
-:root{--navy:#071a3d;--navy2:#0b2f68;--gold:#ffc83d;--cream:#fff;--muted:#64748b;}
-body{background:radial-gradient(circle at 50% -10%,#dfeeff,transparent 42%),linear-gradient(135deg,#eef5ff,#f9fbff);padding:22px;}
-.app{max-width:520px;margin:auto;border-radius:28px;overflow:hidden;background:#eef5ff;box-shadow:0 30px 80px rgba(7,26,61,.22),0 0 0 1px rgba(34,104,215,.12);}
-header{background:linear-gradient(135deg,#1677ff,#0753d6)!important;color:#fff!important;padding:15px 18px!important;border-bottom:0!important}
-header .who-wrap b,header .who-wrap small{color:#fff!important}header .who-wrap small{opacity:.8}
-header .av{background:#fff3cf!important;border:2px solid rgba(255,255,255,.8)!important}
-header .cta{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;color:#102347!important;border-radius:12px!important;box-shadow:0 6px 16px rgba(0,0,0,.12)}
-.aitag{background:#ffd34e!important;color:#102347!important}
-.live-msgs{background:linear-gradient(180deg,#eef5ff,#f8fbff)!important;padding:18px 14px 8px!important}
-.lbub{box-shadow:0 5px 15px rgba(28,66,116,.08)}.lbub.bot{background:#fff!important;border:0!important}.lbub.me{background:#dcecff!important;color:#102347!important}
-.lday{background:#dce5f2!important;color:#70809a!important}.lwho,.lts{color:#718096!important}
-.live-chips{background:#f8fbff!important;padding:9px 12px!important}.live-chips button{border:1px solid #d9e5f3!important;box-shadow:0 3px 10px rgba(28,66,116,.05)}
-.live-bar{background:#fff!important;border-top:1px solid #e0e9f5!important;padding:10px 12px 7px!important}.live-bar input{background:#f8fbff!important;border-color:#d9e5f3!important}
-.live-bar button{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;box-shadow:0 5px 14px rgba(245,185,31,.28)}
-.foot{background:#fff!important;color:#718096!important;padding-bottom:14px!important}
-.lsms{background:#f2f6fb!important}.lrv{background:#f3f7fc!important}.lbtns button:first-child{background:#0b55c9!important;border-color:#0b55c9!important}
-@media(max-width:600px){body{padding:0}.app{max-width:none;border-radius:0;min-height:100dvh;box-shadow:none}}
-
 </style>
 </head>
 <body>
@@ -129,17 +128,18 @@ header .cta{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;color:#
 
 <div class="app" id="app">
   <header>
+    <a class="back" href="index.html" aria-label="메인 화면으로">‹</a>
     <div class="av"><svg viewBox="92 80 136 150" aria-hidden="true"><use href="#aide-art"/></svg></div>
-    <div class="who-wrap"><b>도우미</b><span class="aitag">AI 비서</span><small>Encore Marketing System · 체험</small></div>
+    <div class="who-wrap"><b>도우미</b><span class="aitag">AI 비서</span><small><span class="dot"></span>지금 대화할 수 있어요 · 체험</small></div>
     <a class="cta" href="index.html#apply">상담 신청</a>
   </header>
-  <div class="live-msgs" id="lmsgs" role="log" aria-live="polite"></div>
+  <div class="msgwrap"><div class="live-msgs" id="lmsgs" role="log" aria-live="polite"></div><button type="button" id="ldown" class="down" aria-label="맨 아래로 이동" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button></div>
   <div class="live-chips" id="lchips"></div>
   <form class="live-bar" id="lform" autocomplete="off">
     <label class="sr" for="linput">비서에게 보낼 말</label>
     <input type="text" id="linput" maxlength="300" placeholder="비서에게 말해보세요" autocomplete="off" enterkeyhint="send">
     <button type="button" id="lmic" class="mic" aria-label="말로 입력" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></svg></button>
-    <button type="submit" aria-label="보내기"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+    <button type="submit" class="send" aria-label="보내기"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   </form>
   <div class="foot">
     <span id="lnote">체험용 화면이에요. 문자는 실제로 발송되지 않아요. 개인정보나 고객 전화번호는 입력하지 마세요.</span><br>
@@ -162,6 +162,8 @@ header .cta{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;color:#
     '개인정보나 고객 전화번호를 입력하지 말라고 안내하세요. 세금, 법률, 의료 조언은 하지 마세요. 서비스와 무관한 긴 작업(코딩, 에세이 등)은 정중히 사양하고 매장 마케팅 이야기로 돌아오세요.',
     '기능 상태: 지금 가능한 것은 한국어로 시키면 영어 문자 초안, 구글 리뷰 영어 답글 초안, 리뷰 분석 요약, 구글 게시물 문구 초안, 구글 리뷰 부탁 문구, 매출과 지출 기록, 마케팅 아이디어예요. 구글 프로필 자동 게시와 자동 답글은 구글 승인이 필요해 준비 중이에요. 온라인 예약 접수는 준비 중이에요. 문자 발송은 통신사 등록 승인 후에 열려요.',
     '리뷰 원칙: 리뷰 부탁은 모든 손님께 똑같이 보내요. 별점을 보고 거르지 않고, 리뷰 대가로 쿠폰이나 선물을 주지 않아요. 좋은 리뷰만 받게 해달라는 요청은 정중히 사양하고 위 방법을 안내하세요. 별점이나 순위가 오른다는 결과는 절대 약속하지 마세요.',
+    '일정 알림: 사장님이 "매달 1일에 월세 알려줘"처럼 말하면 날짜와 시간은 코드가 계산해서 알림 카드를 만들어요. 알림 만들기는 직접 답하지 말고 그 방식으로 안내하세요. 지금 체험 화면에서는 이 화면이 열려 있는 동안만 알려드리고, 폰 푸시 알림은 다음 단계예요.',
+    '구글 게시물: 사장님이 직접 올려요. 글과 이미지는 코드가 사장님이 말한 할인율과 날짜만으로 정확하게 만들어요. 숫자나 날짜를 지어내지 마세요. 구글 연결이 열리면 바로 올리기 버튼이 생겨요. 없는 상품이나 가게를 AI로 그린 사진을 올리라고 권하지 마세요.',
     '관심을 보이면 아래 "무료 상담 신청"에서 매장 이름과 연락처를 남겨달라고 안내하세요.'
   ].join('\n');
 
@@ -176,22 +178,36 @@ header .cta{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;color:#
   function fmt(ms) { var d = new Date(ms), h = d.getHours(), m = d.getMinutes(), ap = h < 12 ? '오전' : '오후'; h = h % 12; if (h === 0) h = 12; return ap + ' ' + h + ':' + (m < 10 ? '0' : '') + m; }
   function dayLabel(ms) { var d = new Date(ms); return d.getFullYear() + '년 ' + (d.getMonth() + 1) + '월 ' + d.getDate() + '일 ' + ['일', '월', '화', '수', '목', '금', '토'][d.getDay()] + '요일'; }
 
+  var downBtn = $('ldown');
+  function updateDown() { if (!downBtn) return; downBtn.hidden = (box.scrollHeight - box.scrollTop - box.clientHeight) <= 160; }
+  function scrollDown() { if (box.scrollTo) box.scrollTo({ top: box.scrollHeight, behavior: reduce ? 'auto' : 'smooth' }); else box.scrollTop = box.scrollHeight; }
   function draw(typing) {
-    var h = '', prev = null, prevDay = '';
-    msgs.forEach(function (m) {
+    var nearBottom = (box.scrollHeight - box.scrollTop - box.clientHeight) < 160;
+    var h = '', prev = null, prevDay = '', lastMe = -1;
+    msgs.forEach(function (m, i) { if (m.role === 'me') lastMe = i; });
+    msgs.forEach(function (m, i) {
       var day = dayLabel(m.t);
       if (day !== prevDay) { h += '<div class="lday">' + esc(day) + '</div>'; prevDay = day; prev = null; }
-      if (m.role === 'me') { h += '<div class="lrow me"><span class="lts">' + fmt(m.t) + '</span><div class="lbub me">' + esc(m.text) + '</div></div>'; prev = 'me'; return; }
+      var nx = msgs[i + 1], showTs = !(nx && nx.role === m.role && fmt(nx.t) === fmt(m.t)), pop = m.fresh ? ' pop' : '';
+      m.fresh = false;
+      if (m.role === 'me') {
+        var read = (i === lastMe && (typing || (nx && nx.role !== 'me'))) ? '<span class="lread">읽음</span>' : '';
+        h += '<div class="lrow me' + (prev !== 'me' ? ' grp' : '') + pop + '"><span class="lmeta">' + read + (showTs ? '<span class="lts">' + fmt(m.t) + '</span>' : '') + '</span><div class="lbub me">' + esc(m.text) + '</div></div>';
+        prev = 'me'; return;
+      }
       var first = prev !== 'bot';
-      h += '<div class="lrow">' + (first ? '<div class="av">' + FACE + '</div>' : '<div class="lspacer"></div>') + '<div class="lcol">' + (first ? '<div class="lwho">도우미</div>' : '') +
-        '<div class="lline">' + (m.html ? '<div class="lbub bot card' + (first ? ' first' : '') + '">' + m.html + '</div>' : '<div class="lbub bot' + (first ? ' first' : '') + '">' + esc(m.text) + '</div>') + '<span class="lts">' + fmt(m.t) + '</span></div></div></div>';
+      h += '<div class="lrow' + (first ? ' grp' : '') + pop + '">' + (first ? '<div class="av">' + FACE + '</div>' : '<div class="lspacer"></div>') + '<div class="lcol">' + (first ? '<div class="lwho">도우미</div>' : '') +
+        '<div class="lline">' + (m.html ? '<div class="lbub bot card' + (first ? ' first' : '') + '">' + m.html + '</div>' : '<div class="lbub bot' + (first ? ' first' : '') + '">' + esc(m.text) + '</div>') + (showTs ? '<span class="lts">' + fmt(m.t) + '</span>' : '') + '</div></div></div>';
       prev = 'bot';
     });
-    if (typing) h += '<div class="lrow">' + (prev !== 'bot' ? '<div class="av">' + FACE + '</div>' : '<div class="lspacer"></div>') + '<div class="lcol"><div class="lline"><div class="lbub bot first ltyping"><span class="sr">도우미가 입력하고 있어요</span><i></i><i></i><i></i></div></div></div></div>';
-    box.innerHTML = h; box.scrollTop = box.scrollHeight;
+    if (typing) h += '<div class="lrow' + (prev !== 'bot' ? ' grp' : '') + '">' + (prev !== 'bot' ? '<div class="av">' + FACE + '</div>' : '<div class="lspacer"></div>') + '<div class="lcol"><div class="lline"><div class="lbub bot first ltyping"><span class="sr">도우미가 입력하고 있어요</span><i></i><i></i><i></i></div></div></div></div>';
+    box.innerHTML = h;
+    var last = msgs[msgs.length - 1];
+    if (nearBottom || typing || (last && last.role === 'me')) box.scrollTop = box.scrollHeight;
+    updateDown();
   }
-  function addMe(t) { msgs.push({ role: 'me', text: t, t: Date.now() }); }
-  function addBot(o) { msgs.push({ role: 'bot', text: o.text || '', html: o.html || '', plain: o.plain || o.text || '', t: Date.now() }); }
+  function addMe(t) { msgs.push({ role: 'me', text: t, t: Date.now(), fresh: true }); }
+  function addBot(o) { msgs.push({ role: 'bot', text: o.text || '', html: o.html || '', plain: o.plain || o.text || '', t: Date.now(), fresh: true }); }
   function wait(ms) { return new Promise(function (r) { setTimeout(r, reduce ? 0 : ms); }); }
 
   /* ----- 체험 모드 답변 ----- */
@@ -266,16 +282,342 @@ header .cta{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;color:#
 
   async function typeOut(reply) {
     if (!reply.text || reply.html || reduce) { addBot(reply); draw(); return; }
-    var full = reply.text, m = { role: 'bot', text: '', html: '', plain: full, t: Date.now() };
+    var full = reply.text, m = { role: 'bot', text: '', html: '', plain: full, t: Date.now(), fresh: true };
     msgs.push(m);
     var step = Math.max(1, Math.ceil(full.length / 90));
     for (var i = 0; i < full.length; i += step) { m.text = full.slice(0, i + step); draw(); await wait(22); }
     m.text = full; draw();
   }
+  /* ===== 일정 알림 만들기 (체험: 이 화면이 열려 있는 동안만 알려드려요) ===== */
+/* 한국어 알림 해석기: 말을 받아서 {제목, 시각, 반복}을 계산해요. AI가 아니라 코드가 날짜를 계산해요. */
+var Remind = (function () {
+  var DOW = { '일': 0, '월': 1, '화': 2, '수': 3, '목': 4, '금': 5, '토': 6 };
+  var DOWN = ['일', '월', '화', '수', '목', '금', '토'];
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function atTime(d, h, mi) { var x = new Date(d.getTime()); x.setHours(h, mi, 0, 0); return x; }
+  function daysInMonth(y, m) { return new Date(y, m + 1, 0).getDate(); }
+  function clampDay(y, m, d) { return Math.min(d, daysInMonth(y, m)); }
+  function fmtTime(h, mi) { var ap = h < 12 ? '오전' : '오후', hh = h % 12; if (hh === 0) hh = 12; return ap + ' ' + hh + ':' + pad(mi); }
+  function fmtDate(d) { return (d.getMonth() + 1) + '월 ' + d.getDate() + '일 ' + DOWN[d.getDay()] + '요일'; }
+  function fmtWhen(d) { return fmtDate(d) + ' ' + fmtTime(d.getHours(), d.getMinutes()); }
+
+  function parse(text, now) {
+    now = now || new Date();
+    var t = String(text || ''), rest = t, m, out = { ok: false, title: '', repeat: 'none', rep: {}, hasTime: false, hasDate: false, rel: null };
+    function take(re) { var r = rest.match(re); if (r) rest = rest.replace(r[0], ' '); return r; }
+
+    // 1) 몇 초/분/시간/일 뒤
+    if ((m = take(/(\d+)\s*(초|분|시간|일|주)\s*(뒤|후)/))) {
+      var n = parseInt(m[1], 10), ms = { '초': 1e3, '분': 6e4, '시간': 36e5, '일': 864e5, '주': 6048e5 }[m[2]];
+      out.rel = new Date(now.getTime() + n * ms); out.relText = n + m[2] + ' 뒤'; out.hasDate = out.hasTime = true;
+    }
+    // 2) 시각 (아침/오전/오후/저녁/밤/새벽/점심 + N시 M분 / 반)
+    var period = null, hour = null, minute = 0;
+    if ((m = take(/(새벽|아침|오전|점심|낮|오후|저녁|밤)?\s*(\d{1,2})\s*시\s*(?:(\d{1,2})\s*분|(반))?/))) {
+      period = m[1] || null; hour = parseInt(m[2], 10); minute = m[4] ? 30 : (m[3] ? parseInt(m[3], 10) : 0);
+      if (hour <= 12) {
+        if (period === '오후' || period === '저녁' || period === '밤' || period === '낮') { if (hour < 12) hour += 12; if (period === '밤' && hour === 12) hour = 0; }
+        else if (period === '점심') { if (hour < 11) hour += 12; }
+        else if ((period === '오전' || period === '아침' || period === '새벽') && hour === 12) hour = 0;
+      }
+      if (hour > 23 || minute > 59) { out.error = '시간이 올바르지 않아요.'; return out; }
+      out.hasTime = true;
+    } else if ((m = take(/(새벽|아침|점심|저녁|밤)(?!\s*\d)/))) {
+      period = m[1]; hour = { '새벽': 6, '아침': 9, '점심': 12, '저녁': 19, '밤': 21 }[period]; minute = 0; out.hasTime = true;
+    } else if ((m = take(/(\d{1,2}):(\d{2})/))) { hour = parseInt(m[1], 10); minute = parseInt(m[2], 10); out.hasTime = true; }
+
+    // 3) 반복
+    var base = null;
+    if (take(/매일|날마다|하루\s*한\s*번/)) out.repeat = 'daily';
+    else if ((m = take(/(?:매주|주마다)\s*([일월화수목금토])요일?/)) || (m = take(/([일월화수목금토])요일마다/))) { out.repeat = 'weekly'; out.rep.dow = DOW[m[1]]; }
+    else if ((m = take(/(?:매달|매월|달마다)\s*(\d{1,2})\s*일/))) { out.repeat = 'monthly'; out.rep.dom = parseInt(m[1], 10); }
+    else if (take(/(?:매달|매월)\s*말일|매월\s*마지막\s*날/)) { out.repeat = 'monthly'; out.rep.dom = 31; }
+    else if ((m = take(/매년\s*(\d{1,2})\s*월\s*(\d{1,2})\s*일/))) { out.repeat = 'yearly'; out.rep.month = parseInt(m[1], 10) - 1; out.rep.dom = parseInt(m[2], 10); }
+
+    // 4) 날짜 (반복이 아닐 때)
+    if (out.repeat === 'none' && !out.rel) {
+      if ((m = take(/(다음\s*주|이번\s*주|담주)\s*([일월화수목금토])요일/))) {
+        var target = DOW[m[2]], d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate()), cur = d0.getDay();
+        var mondayOffset = (cur + 6) % 7; // 이번 주 월요일까지의 거리
+        var weekStart = new Date(d0.getTime() - mondayOffset * 864e5);
+        if (/다음|담주/.test(m[1])) weekStart = new Date(weekStart.getTime() + 7 * 864e5);
+        var tOff = (target + 6) % 7; base = new Date(weekStart.getTime() + tOff * 864e5); out.hasDate = true;
+      } else if ((m = take(/(다음\s*달|내달)\s*(\d{1,2})\s*일/))) {
+        var y = now.getFullYear(), mo = now.getMonth() + 1; if (mo > 11) { mo = 0; y++; }
+        base = new Date(y, mo, clampDay(y, mo, parseInt(m[2], 10))); out.hasDate = true;
+      } else if ((m = take(/(\d{1,2})\s*월\s*(\d{1,2})\s*일/))) {
+        var mo2 = parseInt(m[1], 10) - 1, dd = parseInt(m[2], 10), y2 = now.getFullYear();
+        base = new Date(y2, mo2, clampDay(y2, mo2, dd)); out.hasDate = true; out.yearGuess = true;
+      } else if (take(/모레|이틀\s*뒤/)) { base = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2); out.hasDate = true; }
+      else if (take(/내일/)) { base = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); out.hasDate = true; }
+      else if (take(/오늘/)) { base = new Date(now.getFullYear(), now.getMonth(), now.getDate()); out.hasDate = true; }
+      else if ((m = take(/([일월화수목금토])요일/))) {
+        var tg = DOW[m[1]], add = (tg - now.getDay() + 7) % 7; base = new Date(now.getFullYear(), now.getMonth(), now.getDate() + add); out.hasDate = true; out.weekdayOnly = true;
+      } else if ((m = take(/(\d{1,2})\s*일(?!\s*(뒤|후))/))) {
+        var dm = parseInt(m[1], 10), y3 = now.getFullYear(), mo3 = now.getMonth();
+        base = new Date(y3, mo3, clampDay(y3, mo3, dm)); out.hasDate = true; out.dayOnly = true; out.dom = dm;
+      }
+    }
+
+    // 5) 제목
+    var title = rest.replace(/알려\s*주세요|알려\s*줘요?|알려\s*드려|알림(?:\s*(?:만들어|추가|등록))?\s*(?:줘요?|해\s*줘요?|해주세요|주세요)?|알림|리마인드(?:\s*해?\s*줘)?|기억해\s*줘?|잊지\s*않게\s*해?\s*줘?|해\s*줘요?|바꿔\s*줘요?|변경\s*해\s*줘요?|수정\s*해\s*줘요?|말고|좀|까지|마다|에는|에서|으로|에게|한테|이랑|랑/g, ' ')
+      .replace(/[,.!?~]/g, ' ')
+      .replace(/(^|\s)(에서|에게|에는|에|으로|로|까지|부터)(?=\s|$)/g, ' ').replace(/\s+/g, ' ').trim()
+      .replace(/(을|를|이|가|은|는|에|도|만|랑)$/, '').trim();
+    out.title = title || '일정';
+
+    // 6) 시각 계산
+    if (out.rel) { out.when = out.rel; out.ok = true; out.hasTime = true; out.hasDate = true; return finish(out, now); }
+    if (hour === null) { hour = 9; minute = 0; out.defaultTime = true; }
+    out.hour = hour; out.minute = minute;
+    var when = null;
+    if (out.repeat !== 'none') {
+      when = nextRepeat(out, now, true); out.hasDate = true;
+    } else if (base) {
+      when = atTime(base, hour, minute);
+    } else if (out.hasTime) {
+      when = atTime(now, hour, minute); if (when.getTime() <= now.getTime()) when = new Date(when.getTime() + 864e5); out.rolled = true;
+    }
+    if (when && out.dayOnly && when.getTime() <= now.getTime()) { var y4 = now.getFullYear(), mo4 = now.getMonth() + 1; if (mo4 > 11) { mo4 = 0; y4++; } when = atTime(new Date(y4, mo4, clampDay(y4, mo4, out.dom)), hour, minute); }
+    if (when && out.weekdayOnly && when.getTime() <= now.getTime()) when = new Date(when.getTime() + 7 * 864e5);
+    if (when && out.yearGuess && when.getTime() <= now.getTime()) when = atTime(new Date(base.getFullYear() + 1, base.getMonth(), clampDay(base.getFullYear() + 1, base.getMonth(), base.getDate())), hour, minute);
+    if (!when) { return out; }
+    out.when = when; out.ok = true;
+    if (out.repeat === 'none' && when.getTime() <= now.getTime()) { out.ok = false; out.error = '이미 지난 시간이에요. 다시 말씀해주세요.'; }
+    return finish(out, now);
+  }
+
+  function nextRepeat(r, now, inclusiveToday) {
+    var h = r.hour, mi = r.minute, d = new Date(now.getTime()), cand;
+    if (r.repeat === 'daily') { cand = atTime(d, h, mi); if (cand.getTime() <= now.getTime()) cand = new Date(cand.getTime() + 864e5); return cand; }
+    if (r.repeat === 'weekly') { var add = (r.rep.dow - d.getDay() + 7) % 7; cand = atTime(new Date(d.getFullYear(), d.getMonth(), d.getDate() + add), h, mi); if (cand.getTime() <= now.getTime()) cand = new Date(cand.getTime() + 7 * 864e5); return cand; }
+    if (r.repeat === 'monthly') {
+      var y = d.getFullYear(), mo = d.getMonth(); cand = atTime(new Date(y, mo, clampDay(y, mo, r.rep.dom)), h, mi);
+      if (cand.getTime() <= now.getTime()) { mo++; if (mo > 11) { mo = 0; y++; } cand = atTime(new Date(y, mo, clampDay(y, mo, r.rep.dom)), h, mi); }
+      return cand;
+    }
+    if (r.repeat === 'yearly') {
+      var y1 = d.getFullYear(); cand = atTime(new Date(y1, r.rep.month, clampDay(y1, r.rep.month, r.rep.dom)), h, mi);
+      if (cand.getTime() <= now.getTime()) cand = atTime(new Date(y1 + 1, r.rep.month, clampDay(y1 + 1, r.rep.month, r.rep.dom)), h, mi);
+      return cand;
+    }
+    return null;
+  }
+
+  function describe(r) {
+    var tm = r.rel ? '' : fmtTime(r.hour, r.minute);
+    if (r.repeat === 'daily') return '매일 ' + tm;
+    if (r.repeat === 'weekly') return '매주 ' + DOWN[r.rep.dow] + '요일 ' + tm;
+    if (r.repeat === 'monthly') return (r.rep.dom >= 31 ? '매달 말일 ' : '매달 ' + r.rep.dom + '일 ') + tm;
+    if (r.repeat === 'yearly') return '매년 ' + (r.rep.month + 1) + '월 ' + r.rep.dom + '일 ' + tm;
+    return '한 번';
+  }
+  function finish(out, now) { out.desc = describe(out); out.whenText = fmtWhen(out.when); return out; }
+
+  // 알림이 울린 뒤 다음 시각 계산 (반복이면 다음, 아니면 null)
+  function after(rem, now) { if (rem.repeat === 'none') return null; return nextRepeat({ repeat: rem.repeat, rep: rem.rep, hour: rem.hour, minute: rem.minute }, now || new Date()); }
+  // 알림 만들기 말인지 판단: '내일 날씨 알려줘' 같은 정보 요청과 구분해요
+  function intent(t, p) {
+    if (!p) return false;
+    var sched = p.hasTime || p.repeat !== 'none';
+    if (/알림|리마인드|기억해/.test(t) && (p.hasTime || p.hasDate || p.repeat !== 'none')) return true;
+    if (/알려\s*(줘|주세요|줘요|드)/.test(t) && sched) return true;
+    return false;
+  }
+  function wantsCreate(t) { return /알림\s*(만들|추가|등록|설정)|리마인드/.test(t); }
+  return { parse: parse, after: after, intent: intent, wantsCreate: wantsCreate, fmtWhen: fmtWhen, fmtTime: fmtTime, describe: describe };
+})();
+
+  var REM = [], remSeq = 1, pendingRem = null, remTimer = null;
+  function remFrom(title, p) { return { title: title, when: p.when.getTime(), repeat: p.repeat, rep: p.rep, hour: p.hour, minute: p.minute, desc: p.desc, relText: p.relText || '' }; }
+  function remConfirm(r) {
+    var when = Remind.fmtWhen(new Date(r.when));
+    return { plain: '(알림 확인 카드: ' + r.title + ', ' + r.desc + ', 다음 ' + when + ')', html:
+      '<p>알림을 만들까요?</p><div class="lsms"><b>' + esc(r.title) + '</b><br>' + esc(r.relText || r.desc) + '<br>다음 알림: ' + esc(r.relText ? r.relText + ' (' + when + ')' : when) + '</div>' +
+      '<p class="lgloss">체험 화면이에요. 이 화면을 열어둔 동안만 알려드려요. 실제 서비스에서는 폰 알림으로 와요. 새로고침하면 사라져요.</p><div class="lbtns"><button type="button" data-rem="add">알림 추가</button><button type="button" data-rem="edit">수정</button></div>' };
+  }
+  function remList() {
+    if (!REM.length) return { text: '아직 만든 알림이 없어요. "매달 1일에 월세 알려줘"처럼 말씀해보세요.' };
+    var rows = REM.map(function (r) { return '<div class="lrem"><span><b>' + esc(r.title) + '</b> · ' + esc(r.desc) + '<br><small>다음: ' + esc(Remind.fmtWhen(new Date(r.when))) + '</small></span><button type="button" data-rem-del="' + r.id + '">삭제</button></div>'; }).join('');
+    return { plain: '(내 알림 목록 카드: ' + REM.length + '개)', html: '<p>만들어둔 알림이에요.</p><div class="lsms">' + rows + '</div>' };
+  }
+  function remindReply(t) {
+    var now = new Date();
+    if (/내\s*알림|알림\s*(목록|보기|리스트)|일정\s*(목록|보기)/.test(t)) return remList();
+    if (pendingRem && !pendingRem.needWhen && /바꿔|변경|수정|말고/.test(t)) {
+      var pe = Remind.parse(t, now);
+      if (pe.error) return { text: pe.error };
+      if (pe.hasTime && pe.repeat === 'none' && !pe.hasDate) {
+        if (pendingRem.repeat === 'none') {
+          var d = new Date(pendingRem.when); d.setHours(pe.hour, pe.minute, 0, 0);
+          if (d.getTime() <= now.getTime()) return { text: '이미 지난 시간이에요. 다시 말씀해주세요.' };
+          pendingRem.when = d.getTime(); pendingRem.relText = '';
+        } else {
+          pendingRem.hour = pe.hour; pendingRem.minute = pe.minute;
+          pendingRem.when = Remind.after(pendingRem, now).getTime(); pendingRem.desc = Remind.describe(pendingRem);
+        }
+        pendingRem.hour = pe.hour; pendingRem.minute = pe.minute;
+        return remConfirm(pendingRem);
+      }
+      if (pe.ok) { pendingRem = remFrom(pe.title === '일정' ? pendingRem.title : pe.title, pe); return remConfirm(pendingRem); }
+      return { text: '바꿀 시간이나 날짜를 말씀해주세요. 예) 오후 3시로 바꿔줘, 매주 금요일로 바꿔줘' };
+    }
+    var p = Remind.parse(t, now);
+    if (pendingRem && pendingRem.needWhen) {
+      if (p.error) return { text: p.error };
+      if (p.ok) { pendingRem = remFrom(p.title !== '일정' ? p.title : (pendingRem.title || '일정'), p); return remConfirm(pendingRem); }
+      pendingRem = null;
+    }
+    if (Remind.intent(t, p)) {
+      if (p.error) return { text: p.error };
+      if (p.ok) { pendingRem = remFrom(p.title, p); return remConfirm(pendingRem); }
+    }
+    if (Remind.wantsCreate(t)) {
+      pendingRem = { needWhen: true, title: p.title === '일정' ? '' : p.title };
+      return { text: '알림을 만들어 드릴게요. 무엇을, 언제 알려드릴까요?\n예) 매달 1일 오전 9시에 월세 알려줘\n예) 다음 주 화요일 아침에 거래처 주문 알려줘' };
+    }
+    return null;
+  }
+  function remCheck() {
+    var now = Date.now(), fired = false;
+    REM.slice().forEach(function (r) {
+      if (r.when <= now) {
+        fired = true;
+        addBot({ text: '⏰ 알림이에요: ' + r.title + (r.desc && r.desc !== '한 번' ? ' (' + r.desc + ')' : '') });
+        try { if (typeof Notification !== 'undefined' && Notification.permission === 'granted') new Notification('도우미 알림', { body: r.title }); } catch (e) {}
+        var nx = Remind.after(r, new Date());
+        if (nx) r.when = nx.getTime(); else REM.splice(REM.indexOf(r), 1);
+      }
+    });
+    if (fired) draw();
+  }
+  box.addEventListener('click', function (e) {
+    var del = e.target.closest('[data-rem-del]');
+    if (del) { var id = parseInt(del.getAttribute('data-rem-del'), 10); REM = REM.filter(function (r) { return r.id !== id; }); addBot({ text: '삭제했어요.' }); draw(); return; }
+    var b = e.target.closest('[data-rem]'); if (!b) return;
+    var k = b.getAttribute('data-rem');
+    if (k === 'add') {
+      if (!pendingRem || pendingRem.needWhen) { addBot({ text: '만들던 알림이 없어요. 다시 말씀해주세요.' }); draw(); return; }
+      var r = pendingRem; r.id = remSeq++; REM.push(r); pendingRem = null;
+      if (!remTimer) remTimer = setInterval(remCheck, 4000);
+      var when = Remind.fmtWhen(new Date(r.when)), can = typeof Notification !== 'undefined' && Notification.permission === 'default';
+      var msg = '추가했어요. ' + (r.relText ? r.relText : when) + '에 알려드릴게요.' + (r.desc !== '한 번' ? ' (' + r.desc + ')' : '');
+      addBot(can ? { plain: msg, html: '<p>' + esc(msg) + '</p><div class="lbtns"><button type="button" data-rem="perm">폰 알림도 받기</button></div>' } : { text: msg });
+      draw(); return;
+    }
+    if (k === 'edit') { addBot({ text: '바꿀 내용을 말씀해주세요. 예) 오후 3시로 바꿔줘, 매주 금요일로 바꿔줘' }); draw(); return; }
+    if (k === 'perm') {
+      if (typeof Notification === 'undefined') { addBot({ text: '이 브라우저에서는 폰 알림을 쓸 수 없어요. 화면 안에서만 알려드릴게요.' }); draw(); return; }
+      Notification.requestPermission().then(function (pm) { addBot({ text: pm === 'granted' ? '좋아요. 이 화면이 열려 있는 동안 폰 알림도 띄울게요.' : '알림이 허용되지 않았어요. 화면 안에서만 알려드릴게요.' }); draw(); });
+    }
+  });
+
+  /* ===== 구글 게시물 만들기 (사장님이 직접 올리는 방식: 글 + 템플릿 이미지) ===== */
+  var pendingPost = null, postCount = 0;
+  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var STORE_NAME = 'Sample Store';
+  function pType(t) {
+    if (/세일|할인|행사|프로모션|특가/.test(t)) return 'sale';
+    if (/신상|신제품|새\s*상품|입고|신규\s*상품/.test(t)) return 'new';
+    if (/휴무|쉬는|쉽니다|문\s*닫|임시\s*휴업|휴업/.test(t)) return 'closed';
+    if (/감사|고마/.test(t)) return 'thanks';
+    return null;
+  }
+  function pPct(t, loose) { var m = t.match(/(\d{1,2})\s*(%|퍼센트|프로)/); if (m) return parseInt(m[1], 10); if (loose) { var n = t.match(/^\s*(\d{1,2})\s*$/); if (n) return parseInt(n[1], 10); } return null; }
+  function pPeriod(t) {
+    var m;
+    if ((m = t.match(/(\d{1,2})\s*월\s*(\d{1,2})\s*일\s*(?:부터|~|-)\s*(\d{1,2})\s*월\s*(\d{1,2})\s*일/))) { var a = MON[parseInt(m[1], 10) - 1] + ' ' + parseInt(m[2], 10), b = MON[parseInt(m[3], 10) - 1] + ' ' + parseInt(m[4], 10); return { text: 'from ' + a + ' to ' + b, big: (a + ' – ' + b).toUpperCase() }; }
+    if ((m = t.match(/(\d{1,2})\s*월\s*(\d{1,2})\s*일\s*(?:부터|~|-)\s*(\d{1,2})\s*일/))) { var mo = MON[parseInt(m[1], 10) - 1]; return { text: 'from ' + mo + ' ' + parseInt(m[2], 10) + ' to ' + parseInt(m[3], 10), big: (mo + ' ' + parseInt(m[2], 10) + '–' + parseInt(m[3], 10)).toUpperCase() }; }
+    if ((m = t.match(/(\d{1,2})\s*월\s*(\d{1,2})\s*일/))) { var d1 = MON[parseInt(m[1], 10) - 1] + ' ' + parseInt(m[2], 10); return { text: 'on ' + d1, big: ('ON ' + d1).toUpperCase() }; }
+    if (/이번\s*주말/.test(t)) return { text: 'this weekend', big: 'THIS WEEKEND' };
+    if (/오늘/.test(t)) return { text: 'today only', big: 'TODAY ONLY' };
+    if (/이번\s*주/.test(t)) return { text: 'this week', big: 'THIS WEEK' };
+    return null;
+  }
+  function pDate(t) {
+    var p = Remind.parse(t, new Date());
+    if (!p || !p.when || !(p.hasDate || p.weekdayOnly)) return null;
+    var d = p.when; return { text: WD[d.getDay()] + ', ' + MON[d.getMonth()] + ' ' + d.getDate(), ko: (d.getMonth() + 1) + '월 ' + d.getDate() + '일' };
+  }
+  function drawPostImage(type, o) {
+    try {
+      var c = document.createElement('canvas'); c.width = 1200; c.height = 900;
+      var g = c.getContext && c.getContext('2d'); if (!g) return '';
+      var pal = { sale: ['#ffc72c', '#ff9f1c', '#0f1d44'], 'new': ['#2f6bf0', '#1c46c9', '#ffffff'], closed: ['#2b3563', '#0f1d44', '#ffffff'], thanks: ['#ff8a5b', '#e8505b', '#ffffff'] }[type];
+      var grad = g.createLinearGradient(0, 0, 1200, 900); grad.addColorStop(0, pal[0]); grad.addColorStop(1, pal[1]); g.fillStyle = grad; g.fillRect(0, 0, 1200, 900);
+      g.globalAlpha = 0.12; g.fillStyle = '#ffffff'; g.beginPath(); g.arc(1050, 150, 260, 0, Math.PI * 2); g.fill(); g.beginPath(); g.arc(120, 800, 200, 0, Math.PI * 2); g.fill(); g.globalAlpha = 1;
+      g.fillStyle = pal[2]; g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+      var FONT = '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+      function put(text, y, size, weight, maxW) { var s = size; g.font = weight + ' ' + s + 'px ' + FONT; while (g.measureText(text).width > maxW && s > 24) { s -= 4; g.font = weight + ' ' + s + 'px ' + FONT; } g.fillText(text, 600, y); }
+      put(String(o.store || '').toUpperCase(), 130, 54, '700', 1000);
+      put(o.big, 470, 230, '800', 1040);
+      put(o.sub, 600, 84, '700', 1000);
+      put(o.foot, 780, 48, '600', 1000);
+      return c.toDataURL('image/png');
+    } catch (e) { return ''; }
+  }
+  function buildPost(pp) {
+    var s = STORE_NAME, textEn, gloss, big, sub, foot, file;
+    if (pp.type === 'sale') {
+      textEn = s + ': ' + pp.pct + '% off everything ' + pp.period.text + '! Stop by and save.';
+      gloss = pp.pct + '% 전 품목 할인 소식이에요. (기간은 사장님이 말씀하신 대로 넣었어요)'; big = pp.pct + '% OFF'; sub = pp.period.big; foot = 'Stop by and save!'; file = 'sale-post.png';
+    } else if (pp.type === 'new') {
+      textEn = 'New arrivals just landed at ' + s + '! Stop by and take a look.'; gloss = '신상품이 들어왔다는 소식이에요.'; big = 'NEW ARRIVALS'; sub = 'JUST LANDED'; foot = 'Stop by and take a look!'; file = 'new-arrivals-post.png';
+    } else if (pp.type === 'closed') {
+      textEn = s + ' will be closed on ' + pp.date.text + '. Thank you for your understanding.'; gloss = pp.date.ko + ' 휴무 안내예요. (다시 여는 날짜가 있으면 글을 복사해서 직접 덧붙이세요)'; big = 'CLOSED'; sub = pp.date.text.toUpperCase(); foot = 'Thank you for your understanding'; file = 'closed-post.png';
+    } else {
+      textEn = 'Thank you for supporting ' + s + '! We appreciate every one of you.'; gloss = '손님께 드리는 감사 인사예요.'; big = 'THANK YOU'; sub = 'WE APPRECIATE YOU'; foot = 'See you soon!'; file = 'thank-you-post.png';
+    }
+    var img = drawPostImage(pp.type, { store: s, big: big, sub: sub, foot: foot });
+    var dl = img ? '<a class="dl" href="' + img + '" download="' + file + '">이미지 저장</a>' : '';
+    return { plain: '(구글 게시물 초안 카드: ' + textEn + ')', html:
+      '<p>게시물 초안이에요. 확인하고 구글에 올려주세요.</p>' + (img ? '<img class="postimg" src="' + img + '" alt="게시물 이미지 미리보기">' : '') +
+      '<div class="lsms">' + esc(textEn) + '</div><p class="lgloss">한국어 뜻: ' + esc(gloss) + '</p>' +
+      '<div class="lbtns"><button type="button" data-demo="copy">글 복사</button>' + dl + '<a class="dl" href="https://business.google.com/" target="_blank" rel="noopener">구글에서 올리기</a><button type="button" data-post="done">올렸어요</button></div>' +
+      '<p class="lgloss">할인율과 날짜는 말씀하신 대로만 넣었어요. 사진은 사장님이 직접 찍은 걸 써도 돼요. 구글 연결이 열리면 여기에 [구글에 바로 올리기]가 생겨요.</p>' };
+  }
+  function askPostType() {
+    return { plain: '(게시물 종류를 묻는 카드)', html: '<p>어떤 게시물을 만들까요?</p><div class="lbtns"><button type="button" data-post-type="세일 게시물 만들어줘">세일</button><button type="button" data-post-type="신상품 게시물 만들어줘">신상품</button><button type="button" data-post-type="휴무 안내 게시물 만들어줘">휴무 안내</button><button type="button" data-post-type="감사 인사 게시물 만들어줘">감사 인사</button></div>' };
+  }
+  function postNext(pp) {
+    if (pp.type === 'sale') {
+      if (pp.pct == null) { pp.asked = 'pct'; pendingPost = pp; return { text: '몇 % 할인인가요? 숫자는 사장님이 알려주신 대로만 넣어요.\n예) 20%' }; }
+      if (!pp.period) { pp.asked = 'period'; pendingPost = pp; return { text: '언제 하나요?\n예) 이번 주말, 오늘, 10월 10일부터 12일까지' }; }
+    }
+    if (pp.type === 'closed' && !pp.date) { pp.asked = 'date'; pendingPost = pp; return { text: '언제 쉬시나요?\n예) 내일, 10월 10일, 다음 주 월요일' }; }
+    pendingPost = null; return buildPost(pp);
+  }
+  function fillPost(pp, t) {
+    if (pp.type === 'sale') { if (pp.pct == null) pp.pct = pPct(t, pp.asked === 'pct'); if (!pp.period) pp.period = pPeriod(t); }
+    if (pp.type === 'closed' && !pp.date) pp.date = pDate(t);
+  }
+  function postReply(t) {
+    if (pendingPost) {
+      var pp = pendingPost;
+      if (pp.need === 'type') { var ty = pType(t); if (!ty) { pendingPost = null; return null; } pp = { type: ty }; fillPost(pp, t); return postNext(pp); }
+      var before = JSON.stringify([pp.pct, pp.period, pp.date]); fillPost(pp, t);
+      if (JSON.stringify([pp.pct, pp.period, pp.date]) === before) { pp.tries = (pp.tries || 0) + 1; if (pp.tries >= 2) { pendingPost = null; return null; } }
+      return postNext(pp);
+    }
+    if (!/게시물|포스트|구글\s*소식|가게\s*소식/.test(t)) return null;
+    if (/올리는\s*(법|방법)|어떻게\s*올/.test(t)) return { text: '구글 지도 앱이나 business.google.com에서 내 가게를 열고 "업데이트 추가"를 눌러 사진과 글을 붙여넣으세요. [글 복사], [이미지 저장] 버튼으로 준비한 걸 쓰시면 돼요.' };
+    var type = pType(t);
+    if (!type) { pendingPost = { need: 'type' }; return askPostType(); }
+    var q = { type: type }; fillPost(q, t); return postNext(q);
+  }
+  document.getElementById('lmsgs').addEventListener('click', function (e) {
+    var tb = e.target.closest('[data-post-type]');
+    if (tb) { handle(tb.getAttribute('data-post-type')); return; }
+    var d = e.target.closest('[data-post="done"]');
+    if (d) { postCount++; addBot({ text: '기록했어요. 이번에 올린 게시물이 ' + postCount + '개예요. (체험 화면이라 새로고침하면 사라져요)' }); draw(); }
+  });
+
   async function handle(text) {
     text = String(text || '').trim(); if (!text || busy) return;
     if (userCount >= 20) { addMe(text); addBot({ text: '체험 대화를 충분히 해보셨어요. 더 보고 싶으시면 아래에서 상담을 신청해주세요. 매장에서 직접 보여드릴게요.' }); draw(); return; }
-    busy = true; userCount++; addMe(text); input.value = ''; draw(true);
+    busy = true; userCount++; addMe(text); input.value = ''; syncBar(); draw(true);
+    var rr = pendingPost ? postReply(text) : (remindReply(text) || postReply(text));
+    if (rr) { await wait(700); await typeOut(rr); busy = false; return; }
     var reply = null;
     try {
       if (aiAvailable()) { var tx = await askAI(); reply = { text: tx }; }
@@ -288,9 +630,9 @@ header .cta{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;color:#
     if (reply.go) setTimeout(function () { location.href = 'index.html#apply'; }, 1100);
   }
 
-  var CHIPS = ['리뷰 분석해줘', '구글 게시물 써줘', '리뷰 부탁 문자', '영어 리뷰에 답글 써줘', '요금이 얼마예요?', '상담 신청할래요'];
+  var CHIPS = ['세일 문자 써줘', '알림 만들기', '구글 게시물 써줘', '영어 리뷰에 답글 써줘', '리뷰 분석해줘', '리뷰 부탁 문자', '매출 요약', '내 알림 보기', '요금이 얼마예요?', '상담 신청할래요'];
   chipsEl.innerHTML = CHIPS.map(function (c) { return '<button type="button" data-q="' + esc(c) + '">' + esc(c) + '</button>'; }).join('');
-  chipsEl.addEventListener('click', function (e) { var b = e.target.closest('[data-q]'); if (b) handle(b.getAttribute('data-q')); });
+  chipsEl.addEventListener('click', function (e) { var b = e.target.closest('[data-q]'); if (!b) return; var q = b.getAttribute('data-q'); if (q === '알림 만들기') q = '내일 아침 9시에 거래처 주문 알려줘'; handle(q); });
   form.addEventListener('submit', function (e) { e.preventDefault(); handle(input.value); });
   box.addEventListener('click', function (e) {
     var b = e.target.closest('[data-demo]'); if (!b) return;
@@ -299,13 +641,26 @@ header .cta{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;color:#
     draw();
   });
 
+  var sendBtn = form.querySelector('button[type="submit"]'), micEl0 = $('lmic');
+  function syncBar() {
+    var has = input.value.trim().length > 0, micOff = !micEl0 || micEl0.getAttribute('data-off') === '1', listening = !!(micEl0 && micEl0.classList.contains('on'));
+    if (micEl0) micEl0.hidden = micOff || (has && !listening);
+    var showSend = micOff || (has && !listening);
+    sendBtn.classList.toggle('off', !showSend);
+    sendBtn.tabIndex = showSend ? 0 : -1;
+  }
+  input.addEventListener('input', syncBar);
+  box.addEventListener('scroll', updateDown);
+  if (downBtn) downBtn.addEventListener('click', scrollDown);
+  syncBar();
+
   /* 말로 입력하기 (브라우저의 음성 인식 기능을 써요. 지원하지 않으면 버튼이 숨겨져요) */
   (function () {
     var micBtn = $('lmic'), SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!micBtn) return;
-    if (!SR) { micBtn.hidden = true; return; }
+    if (!SR) { micBtn.setAttribute('data-off', '1'); micBtn.hidden = true; syncBar(); return; }
     var rec = null, listening = false, finalText = '', startedAt = 0;
-    function setMic(on) { listening = on; micBtn.classList.toggle('on', on); micBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); input.placeholder = on ? '듣고 있어요… 말씀하세요' : '비서에게 말해보세요'; }
+    function setMic(on) { listening = on; micBtn.classList.toggle('on', on); micBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); input.placeholder = on ? '듣고 있어요… 말씀하세요' : '비서에게 말해보세요'; syncBar(); }
     function tell(msg) { addBot({ text: msg }); draw(); }
     micBtn.addEventListener('click', function () {
       if (listening && rec) { rec.stop(); return; }
@@ -320,7 +675,7 @@ header .cta{background:linear-gradient(135deg,#ffd75a,#f5b91f)!important;color:#
             var tr = e.results[i][0].transcript;
             if (e.results[i].isFinal) finalText = (finalText + ' ' + tr).trim(); else interim += tr;
           }
-          input.value = (finalText + ' ' + interim).trim();
+          input.value = (finalText + ' ' + interim).trim(); syncBar();
         };
         rec.onerror = function (e) {
           setMic(false);
