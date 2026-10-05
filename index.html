@@ -8,6 +8,12 @@
 <meta property="og:title" content="Encore Marketing System | 사장님 대신 단골을 챙기는 AI 비서">
 <meta property="og:description" content="한국어로 말하면 영어 문자와 구글 리뷰 답글은 AI 비서가 씁니다.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Encore Marketing System">
+<meta property="og:url" content="https://encoremarketingsystem.com/">
+<meta property="og:image" content="https://encoremarketingsystem.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
@@ -90,7 +96,7 @@
   .stage { display: flex; align-items: flex-end; justify-content: center; }
   .char { position: relative; width: 250px; flex: 0 0 250px; margin-right: -30px; z-index: 1; }
   .char svg { display: block; width: 100%; height: auto; }
-  .hello { position: relative; margin: 0 0 14px 28px; max-width: 210px; background: #f4f1e6; color: #1b2340; border-radius: 16px 16px 16px 4px; padding: 12px 16px; font-size: 15px; line-height: 1.5; }
+  .hello { position: relative; margin: 0 0 14px 10px; max-width: 190px; background: #f4f1e6; color: #1b2340; border-radius: 16px 16px 16px 4px; padding: 12px 16px; font-size: 15px; line-height: 1.5; }
   .hello::after { content: ''; position: absolute; left: 22px; bottom: -10px; border-style: solid; border-width: 10px 8px 0 8px; border-color: #f4f1e6 transparent transparent transparent; }
   .tag { position: absolute; left: 18px; bottom: 14px; background: var(--gold); color: #1b2340; font: 700 14px/1 var(--sans); padding: 8px 14px; border-radius: 999px; }
   .stage .phone { flex: 0 0 350px; max-width: 350px; width: 350px; z-index: 2; }
@@ -135,7 +141,8 @@
   .ltyping i { width: 7px; height: 7px; border-radius: 50%; background: #6b7189; opacity: 0.4; animation: lblink 1.1s infinite; }
   .ltyping i:nth-child(2) { animation-delay: 0.18s; } .ltyping i:nth-child(3) { animation-delay: 0.36s; }
   @keyframes lblink { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
-  .live-chips { display: flex; gap: 8px; overflow-x: auto; padding: 6px 12px 8px; }
+  .live-chips { display: flex; gap: 8px; overflow-x: auto; padding: 6px 12px 8px; scrollbar-width: none; }
+  .live-chips::-webkit-scrollbar { display: none; }
   .live-chips button { flex: 0 0 auto; white-space: nowrap; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1.5px solid #bdc2d4; background: #fff; color: #1b2340; font: 500 14px var(--sans); cursor: pointer; }
   .live-bar { display: flex; gap: 8px; padding: 8px 12px 10px; background: #f4f1e6; border-top: 1px solid #cfcbb8; }
   .live-bar input { flex: 1; min-width: 0; min-height: 48px; border-radius: 24px; border: 1.5px solid #bdb99f; background: #fff; color: #1b2340; padding: 0 18px; font: 400 16px var(--sans); }
@@ -284,7 +291,7 @@
           <svg viewBox="0 0 320 360" role="img" aria-label="AI 비서 도우미 일러스트"><use href="#aide-art"/></svg>
           <span class="tag">AI 비서 도우미</span>
         </div>
-        <section class="live" aria-label="AI 비서와 직접 대화해보기">
+        <div class="live" role="region" aria-label="AI 비서와 직접 대화해보기">
           <div class="live-top"><div class="av"><svg viewBox="92 80 136 150" aria-hidden="true"><use href="#aide-art"/></svg></div><div><b>도우미</b><span class="aitag">AI 비서</span><small>Sample Store 사장님 전용 체험</small></div></div>
           <div class="live-msgs" id="lmsgs" role="log" aria-live="polite"></div>
           <div class="live-chips" id="lchips"></div>
@@ -294,7 +301,7 @@
             <button type="submit" aria-label="보내기"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
           </form>
           <p class="live-note" id="lnote">체험용 화면이에요. 문자는 실제로 발송되지 않아요. 개인정보나 고객 전화번호는 입력하지 마세요.</p>
-        </section>
+        </div>
         </div>
         <p class="caption">AI와 나누는 대화예요. 중요한 내용은 직접 확인하세요.</p>
       </div>
