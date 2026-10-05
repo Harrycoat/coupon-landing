@@ -296,6 +296,38 @@ footer{background:#061633!important}
 @media(max-width:880px){.hero .wrap{grid-template-columns:1fr}.hero{text-align:left;padding-top:48px}.stage{margin-top:6px}.live{width:100%;max-width:430px}.char{width:190px}.hero h1{font-size:clamp(36px,10vw,50px)}}
 @media(max-width:700px){.wrap{width:min(100% - 28px,1180px)}section{padding:68px 0}.trio>div,.trio>div+div,.feat>div,.case,.plan,.plan+.plan{padding:22px}.hero .cta .btn{width:100%}}
 
+
+/* ===== Encore AI Business Assistant — full visual redesign v2 ===== */
+:root{--navy:#071a3d;--navy-2:#0d2b63;--gold:#ffca3a;--gold-soft:#ffe38a;--paper:#f4f7fb;--ink:#0b1f44;--muted:#61708a;--line:#dbe5f2;--field:#fff;--on-navy:#fff;--on-navy-muted:#c6d6ee;--sans:'Noto Sans KR',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:var(--sans)}
+body{background:#f6f9fd;color:var(--ink);font-size:16px}
+.wrap{width:min(1220px,100% - 48px)}
+h1,h2,h3{font-family:var(--sans)}
+.top{background:rgba(7,26,61,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08)}
+.top .wrap{min-height:76px}.brand{font-family:var(--sans);font-size:21px;font-weight:800}.nav{gap:30px}.nav a{font-weight:600}
+.btn{border-radius:14px;min-height:52px;padding:0 25px;box-shadow:none}.btn-gold{background:var(--gold);color:#102347}.btn-gold:hover{background:#ffda68;transform:translateY(-1px)}.btn-line{border-color:rgba(255,255,255,.35)}
+.hero{min-height:760px;display:flex;align-items:center;padding:70px 0 86px;background:radial-gradient(circle at 78% 28%,rgba(28,119,255,.34),transparent 30%),radial-gradient(circle at 15% 80%,rgba(255,202,58,.12),transparent 24%),linear-gradient(135deg,#061733 0%,#0a2758 55%,#061733 100%);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 88%)}
+.hero .wrap{position:relative;z-index:1;grid-template-columns:.88fr 1.12fr;gap:72px}
+.hero h1{font-size:clamp(44px,5vw,68px);line-height:1.13;letter-spacing:-.055em;font-weight:800}.hero-accent{color:var(--gold)}
+.hero .lede{font-size:19px;line-height:1.8;max-width:34em;margin-top:26px;color:#cfddf1}
+.channel-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}.channel-row span{padding:7px 12px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.07);color:#e8f1ff;font-size:13px;font-weight:700}
+.hero .cta{margin-top:26px}.hero .note{font-size:13px;opacity:.82}
+.stage{display:block;position:relative}.char{display:none!important}.caption{margin-top:14px!important;color:#b8cae4!important}
+.live{width:min(100%,520px)!important;max-width:520px!important;height:620px!important;flex:none!important;margin:0 auto;border-radius:30px!important;border:1px solid rgba(255,255,255,.5)!important;background:#eef5ff!important;box-shadow:0 35px 90px rgba(0,0,0,.34),0 0 0 7px rgba(255,255,255,.06)!important}
+.live-top{min-height:76px;padding:13px 18px!important;background:linear-gradient(135deg,#1677ff,#0753d6)!important;border:0!important;color:#fff!important}.live-top b{font-size:16px!important;color:#fff!important}.live-top small{color:#dceaff!important;margin-top:2px}.live .av{width:44px;height:44px;background:#fff3ce!important;border:2px solid rgba(255,255,255,.75)!important}.aitag{background:var(--gold)!important;color:#102347!important;padding:3px 9px!important}
+.live-msgs{background:linear-gradient(180deg,#edf5ff,#f8fbff)!important;padding:18px 16px 10px!important}.lbub{font-size:14px!important;box-shadow:0 6px 18px rgba(20,55,100,.08)}.lbub.bot{border:0!important;background:#fff!important}.lbub.me{background:#d8eaff!important;color:#102347!important}.lday{background:#dbe6f4!important}.lwho,.lts{color:#6d7f99!important}
+.live-chips{padding:10px 14px!important;background:#f8fbff!important}.live-chips button{background:#fff!important;border:1px solid #d8e4f2!important;box-shadow:0 3px 10px rgba(20,55,100,.05)}
+.live-bar{padding:10px 14px!important;background:#fff!important;border-top:1px solid #e0e9f4!important}.live-bar input{background:#f7faff!important;border:1px solid #d7e3f1!important}.live-bar button{background:var(--gold)!important}.live-note{background:#fff!important;padding:0 16px 14px!important;color:#718096!important}
+section{padding:104px 0}section h2{font-size:clamp(32px,4vw,48px);letter-spacing:-.04em;font-weight:800}.lede-2{font-size:18px;line-height:1.75}
+#service{background:#fff}.trio{gap:18px;border:0}.trio>div,.trio>div+div{padding:28px;border:1px solid #e1eaf5;border-radius:22px;background:#f9fbfe;box-shadow:0 12px 32px rgba(24,61,105,.06)}.trio>div+div{border-left:1px solid #e1eaf5}.trio h3{font-size:20px}
+.how{background:linear-gradient(135deg,#071a3d,#0b2f68)}.steps{grid-template-columns:repeat(3,1fr);gap:18px}.steps li{display:block;border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:28px;background:rgba(255,255,255,.055)}.steps li::before{display:block;margin-bottom:22px;font-size:18px;width:38px;height:38px;border-radius:12px;background:var(--gold);color:#102347;text-align:center;line-height:38px}.steps h3{font-size:20px}.say span{background:rgba(255,255,255,.08)}
+#features{background:#f5f8fc}.cases{grid-template-columns:repeat(2,1fr);gap:18px}.case{border:1px solid #e0e9f4;border-radius:24px;padding:26px;background:#fff;box-shadow:0 12px 34px rgba(24,61,105,.065);transition:.2s ease}.case:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(24,61,105,.1)}.case-n{background:#e8f1ff;color:#0b55c9}.case .ask{background:#edf4ff;color:#0b55c9;border-radius:14px 14px 14px 4px;font-weight:700}.st{border:0;background:#f2f5f9}.promise{background:#fff8df;border:1px solid #f2cf62}
+.price-wrap{gap:18px;border:0}.plan,.plan+.plan{padding:30px;border:1px solid #e0e9f4!important;border-radius:24px;background:#fff;box-shadow:0 12px 32px rgba(24,61,105,.06)}.plan .amt{font-family:var(--sans);color:#0b55c9}
+details{background:#fff;border:1px solid #e0e9f4!important;border-radius:16px;margin:10px 0;padding:0 18px}.faq{border:0}
+.apply{background:linear-gradient(135deg,#061733,#0b2f68)}footer{background:#04122b!important}
+@media(max-width:900px){.hero{min-height:auto}.hero .wrap{grid-template-columns:1fr;gap:46px}.hero h1{font-size:clamp(40px,10vw,58px)}.live{height:570px!important}.steps{grid-template-columns:1fr}.cases{grid-template-columns:1fr}.wrap{width:min(100% - 30px,1220px)}}
+@media(max-width:600px){.top .wrap{min-height:66px}.brand{font-size:18px}.nav .btn{min-height:40px;padding:0 14px}.hero{padding:46px 0 62px}.hero h1{font-size:39px}.hero .lede{font-size:17px}.channel-row{gap:6px}.channel-row span{font-size:12px}.hero .cta .btn{width:100%}.live{height:540px!important;border-radius:22px!important}section{padding:72px 0}.trio>div,.trio>div+div,.case{padding:22px}}
+
 </style>
 </head>
 <body>
@@ -351,8 +383,9 @@ footer{background:#061633!important}
   <section class="hero" aria-labelledby="h-hero">
     <div class="wrap">
       <div>
-        <h1 id="h-hero">한국어로 말하면, 영어 문자와 구글 답글은 AI 비서가 씁니다</h1>
-        <p class="lede">사장님 대신 단골을 챙기는 AI 비서예요. 고객에게 나가는 문자와 구글 리뷰 답글은 사장님이 확인하고 승인해야만 나갑니다.</p>
+        <h1 id="h-hero">사장님은 말만 하세요.<br><span class="hero-accent">AI 비서가 가게 일을 준비합니다.</span></h1>
+        <p class="lede">세일 홍보부터 고객 문자, 리뷰 답글, SNS 문구, 포인트와 매출 정리까지. 카톡처럼 한국어로 말하면 도우미가 필요한 일을 준비해요.</p>
+        <div class="channel-row" aria-label="Encore가 도와주는 업무"><span>문자</span><span>Google</span><span>Instagram</span><span>Facebook</span><span>홍보 이미지</span></div>
         <div class="cta">
           <a class="btn btn-gold" href="#apply">무료 상담 신청</a>
           <a class="btn btn-line" href="#how">어떻게 쓰는지 보기</a>
@@ -420,8 +453,8 @@ footer{background:#061633!important}
 
   <section id="features" aria-labelledby="h-feat">
     <div class="wrap">
-      <h2 id="h-feat">구글 하나만 연결해도, 비서가 이만큼 해요</h2>
-      <p class="lede-2">사장님은 한국어로 말하고, 확인하고 [승인]만 누르세요. 나머지는 비서가 준비해요.</p>
+      <h2 id="h-feat">사장님이 말하면, 비서가 이렇게 일해요</h2>
+      <p class="lede-2">복잡한 메뉴를 찾을 필요 없이 채팅으로 시키세요. 연결된 채널은 승인 후 실행하고, 아직 연결 전인 채널은 바로 쓸 수 있는 초안을 만들어드려요.</p>
       <div class="cases">
         <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">1</span><span class="st ok">지금 가능</span><span class="st soon">자동 게시는 준비 중</span></div><h3>구글 리뷰를 읽고, 답까지</h3><div class="ask">“새 리뷰 분석해줘”</div><p>칭찬과 불만을 모아서 이번 주에 고칠 일을 알려드려요. 좋은 리뷰도 나쁜 리뷰도 모두 정중한 영어 답글 초안과 한국어 뜻을 만들어요. 사장님이 읽고 올리세요.</p></article>
         <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">2</span><span class="st ok">문구 지금 가능</span><span class="st soon">자동 게시는 준비 중</span></div><h3>구글 게시물, 문구는 비서가</h3><div class="ask">“이번 주말 20% 세일 게시물 써줘”</div><p>영어 문구와 한국어 뜻을 만들어요. 사진은 사장님이 폰에서 고르세요. 가게 소식이 꾸준히 올라가게 도와드려요.</p></article>
