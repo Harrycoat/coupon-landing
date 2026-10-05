@@ -151,6 +151,26 @@
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   @media (max-width: 880px) { .live { flex: 0 0 auto; width: 100%; max-width: 400px; height: 520px; } }
 
+
+  :root { --st-ok: #1d6b34; --st-soon: #5c6178; --st-after: #8a6a00; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --st-ok: #7fd196; --st-soon: #b6bbd0; --st-after: #e4c65a; } }
+  :root[data-theme="dark"] { --st-ok: #7fd196; --st-soon: #b6bbd0; --st-after: #e4c65a; }
+  .cases { margin-top: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .case { background: var(--field); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+  .case-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .case-n { width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: var(--on-navy); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+  .st { font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 99px; border: 1.5px solid currentColor; line-height: 1.3; }
+  .st.ok { color: var(--st-ok); } .st.soon { color: var(--st-soon); } .st.after { color: var(--st-after); }
+  .case h3 { font-size: 19px; line-height: 1.35; }
+  .case .ask { align-self: flex-start; background: var(--navy); color: var(--on-navy); border-radius: 14px 14px 14px 4px; padding: 8px 14px; font-size: 15px; }
+  .case p { color: var(--muted); font-size: 16px; }
+  .promise { margin-top: 28px; padding: 22px 24px; border-radius: 16px; border: 1.5px solid var(--gold); }
+  .promise h3 { font-size: 19px; }
+  .promise ul { margin: 10px 0 0; padding-left: 20px; color: var(--muted); }
+  .promise li { margin-top: 6px; }
+  .fine { margin-top: 18px; font-size: 14px; color: var(--muted); }
+  @media (max-width: 800px) { .cases { grid-template-columns: 1fr; } }
+
   /* sections */
   section { padding: 88px 0; }
   .lede-2 { margin-top: 16px; color: var(--muted); max-width: 36em; }
@@ -344,15 +364,27 @@
 
   <section id="features" aria-labelledby="h-feat">
     <div class="wrap">
-      <h2 id="h-feat">비서가 하는 일</h2>
-      <div class="feat">
-        <div><h3>단골 포인트와 쿠폰</h3><p>방문마다 포인트가 쌓이고, 목표에 닿으면 쿠폰 문자가 가요. 회원코드는 문자로 보내서 앱 설치가 필요 없어요.</p></div>
-        <div><h3>세일 문자</h3><p>한국어로 시키면 영어 문자를 써요. 수신거부 안내는 자동으로 붙고, 동의한 고객에게만 나가요.</p></div>
-        <div><h3>구글 리뷰 답글</h3><p>새 리뷰가 달리면 비서가 먼저 알려주고 답글 초안을 써요. 승인하면 올라가요.</p></div>
-        <div><h3>수익과 지출 기록</h3><p>하루 두 숫자만 말하면 돼요. 이번 달이 지난달보다 적은 이유 후보도 같이 정리해줘요. 세금 신고용이 아니라 마케팅 판단용이에요.</p></div>
-        <div><h3>일반 대화</h3><p>마케팅 아이디어, 영어 번역, 손님 문자 해석도 물어보세요. 세금, 법률, 의료 판단은 전문가에게 확인하도록 안내해요.</p></div>
-        <div><h3>우리 가게에 맞게</h3><p>영업시간, 반품 정책, 말투, 하지 말아야 할 말을 적어두면 비서가 그대로 지켜요. 승인한 답글의 말투도 따라가요.</p></div>
+      <h2 id="h-feat">구글 하나만 연결해도, 비서가 이만큼 해요</h2>
+      <p class="lede-2">사장님은 한국어로 말하고, 확인하고 [승인]만 누르세요. 나머지는 비서가 준비해요.</p>
+      <div class="cases">
+        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">1</span><span class="st ok">지금 가능</span><span class="st soon">자동 게시는 준비 중</span></div><h3>구글 리뷰를 읽고, 답까지</h3><div class="ask">“새 리뷰 분석해줘”</div><p>칭찬과 불만을 모아서 이번 주에 고칠 일을 알려드려요. 좋은 리뷰도 나쁜 리뷰도 모두 정중한 영어 답글 초안과 한국어 뜻을 만들어요. 사장님이 읽고 올리세요.</p></article>
+        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">2</span><span class="st ok">문구 지금 가능</span><span class="st soon">자동 게시는 준비 중</span></div><h3>구글 게시물, 문구는 비서가</h3><div class="ask">“이번 주말 20% 세일 게시물 써줘”</div><p>영어 문구와 한국어 뜻을 만들어요. 사진은 사장님이 폰에서 고르세요. 가게 소식이 꾸준히 올라가게 도와드려요.</p></article>
+        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">3</span><span class="st ok">문구 지금 가능</span><span class="st after">문자는 승인 후</span></div><h3>구글 리뷰 부탁, 모든 손님께 똑같이</h3><div class="ask">“단골들께 리뷰 부탁해줘”</div><p>계산대 QR 문구, 영수증 문구, 문자 초안을 만들어요. 문자는 동의한 모든 손님께 같은 링크로 가요. 별점을 보고 거르지 않고, 리뷰 대가로 쿠폰을 주지 않아요.</p></article>
+        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">4</span><span class="st soon">준비 중</span></div><h3>온라인 예약 접수</h3><div class="ask">“예약 링크 만들어줘”</div><p>예약 링크를 구글 프로필과 문자에 달아두고, 예약이 들어오면 한국어로 알려드려요. 미용실, 서비스업 매장에 특히 잘 맞아요.</p></article>
+        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">5</span><span class="st after">승인 후</span></div><h3>문자 보내기</h3><div class="ask">“20% 세일 문자 보내”</div><p>영어 문자와 한국어 뜻, 몇 명에게 나가는지 보여드려요. 사장님이 [승인]해야 나가고, 수신에 동의한 고객에게만 가요. 수신거부 안내는 자동으로 붙어요.</p></article>
+        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">6</span><span class="st ok">지금 가능</span></div><h3>매출·지출 정리</h3><div class="ask">“오늘 수익 1240 지출 380”</div><p>숫자를 기록하고, 이번 달이 지난달보다 적은 이유 후보를 정리해요. 세금 신고용이 아니라 마케팅 판단용이에요.</p></article>
+        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">7</span><span class="st ok">지금 가능</span></div><h3>마케팅 상담</h3><div class="ask">“비 오는 주말에 손님 부르는 방법?”</div><p>우리 가게의 업종, 영업시간, 말투를 반영한 아이디어를 드려요. 해보고 결과를 말씀해주시면 다음 제안에 반영해요. 세금, 법률, 의료는 전문가에게 확인하도록 안내해요.</p></article>
+        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">8</span><span class="st ok">포인트 지금 가능</span><span class="st after">문자는 승인 후</span></div><h3>단골 포인트와 쿠폰</h3><div class="ask">계산대에서 번호만 입력</div><p>방문마다 포인트가 쌓이고, 목표에 닿으면 쿠폰이 나가요. 회원코드는 문자로 가서 손님이 앱을 설치할 필요가 없어요.</p></article>
       </div>
+      <div class="promise">
+        <h3>리뷰는 정직하게 쌓여야 오래 가요</h3>
+        <ul>
+          <li>리뷰 부탁은 모든 손님께 똑같이 보내요. 별점을 보고 거르지 않아요.</li>
+          <li>리뷰를 쓰면 쿠폰을 주는 일은 없어요. (구글이 허용하지 않아요)</li>
+          <li>별점이나 순위가 오른다고 약속하지 않아요. 리뷰 수와 답글 속도를 챙겨드려요.</li>
+        </ul>
+      </div>
+      <p class="fine">화면과 예시는 이해를 돕기 위한 거예요. 구글 자동 게시, 예약 접수, 문자 발송은 승인과 준비가 끝나는 대로 파일럿 매장부터 순서대로 열려요.</p>
     </div>
   </section>
 
@@ -499,6 +531,8 @@
     '서비스 사실: 요금은 매장 한 곳 기준 월 Starter $49(포인트와 쿠폰 자동화, 이메일 알림, QR코드 제작), Growth $89(Starter 전체, 문자 알림, 브랜드 맞춤, 월간 리포트, AI 비서 대화). 설치비 $149(1회). 3곳 이상이면 2번째 매장부터 15% 할인. 문자는 월 기본 발송량 포함, 초과분은 건당 요금. POS를 바꿀 필요가 없고 적립은 직원이 확인하고 눌러요. 문자와 구글 게시는 사장님이 승인해야만 나가요. 문자는 수신에 동의한 고객에게만 나가요. 일부 기능(문자 발송, 구글 연동)은 파일럿 매장에서 순서대로 열려요.',
     '위 사실에 없는 내용(계약 조건, 할인, 출시일, 기능)은 지어내지 말고 "상담에서 안내드릴게요"라고 하세요.',
     '개인정보나 고객 전화번호를 입력하지 말라고 안내하세요. 세금, 법률, 의료 조언은 하지 마세요. 서비스와 무관한 긴 작업(코딩, 에세이 등)은 정중히 사양하고 매장 마케팅 이야기로 돌아오세요.',
+    '기능 상태: 지금 가능한 것은 한국어로 시키면 영어 문자 초안, 구글 리뷰 영어 답글 초안, 리뷰 분석 요약, 구글 게시물 문구 초안, 구글 리뷰 부탁 문구, 매출과 지출 기록, 마케팅 아이디어예요. 구글 프로필 자동 게시와 자동 답글은 구글 승인이 필요해 준비 중이에요. 온라인 예약 접수는 준비 중이에요. 문자 발송은 통신사 등록 승인 후에 열려요.',
+    '리뷰 원칙: 리뷰 부탁은 모든 손님께 똑같이 보내요. 별점을 보고 거르지 않고, 리뷰 대가로 쿠폰이나 선물을 주지 않아요. 좋은 리뷰만 받게 해달라는 요청은 정중히 사양하고 위 방법을 안내하세요. 별점이나 순위가 오른다는 결과는 절대 약속하지 마세요.',
     '관심을 보이면 아래 "무료 상담 신청"에서 매장 이름과 연락처를 남겨달라고 안내하세요.'
   ].join('\n');
 
@@ -543,8 +577,23 @@
       '<div class="lsms">We are sorry about the wasted trip. Please call us before you visit and we will check your size for you. Thank you for the feedback. - Sample Store</div>' +
       '<p class="lgloss">한국어 뜻: 헛걸음을 사과하고, 방문 전 전화하면 사이즈를 확인해준다는 안내예요. 낮은 별점 답글은 읽어보고 승인하세요.</p><div class="lbtns"><button type="button" data-demo="approve">승인하고 게시</button><button type="button" data-demo="edit">수정</button></div>' };
   }
+  function postCard() {
+    return { plain: '(구글 게시물 영어 초안 카드를 보여줌: Weekend sale at Sample Store! 20% off everything this Saturday and Sunday.)', html:
+      '<p>구글 게시물 초안을 영어로 써봤어요. 사진은 사장님이 골라서 올려주세요.</p><div class="lsms">Weekend sale at Sample Store! 20% off everything this Saturday and Sunday. Stop by and say hello.</div>' +
+      '<p class="lgloss">한국어 뜻: 이번 주말 토요일, 일요일 전 품목 20% 할인. 편하게 들러주세요. (사진은 직접 선택)</p><div class="lbtns"><button type="button" data-demo="approve">승인하고 게시</button><button type="button" data-demo="edit">수정</button></div>' };
+  }
+  function askCard() {
+    return { plain: '(구글 리뷰 부탁 문자 영어 초안 카드를 보여줌: 동의한 모든 손님께 같은 문자)', html:
+      '<p>리뷰 부탁 문자 초안이에요. 수신에 동의한 모든 손님께 똑같이 나가요.</p><div class="lsms">[Sample Store] Thank you for visiting! If you have a minute, we would appreciate a Google review: [review link]<br>Reply STOP to opt out.</div>' +
+      '<p class="lgloss">한국어 뜻: 방문 감사 인사와 구글 리뷰 부탁이에요. 별점을 보고 고르지 않고, 리뷰 대가로 쿠폰을 주지 않아요. (링크는 가게 설정의 구글 리뷰 주소가 들어가요)</p><div class="lbtns"><button type="button" data-demo="approve">승인하고 발송</button><button type="button" data-demo="edit">수정</button></div>' };
+  }
   function scripted(t) {
     if (/요금|가격|얼마|비용|플랜|월/.test(t)) return { text: '요금은 매장 한 곳 기준 월 요금이에요.\n· Starter $49: 포인트와 쿠폰 자동화, 이메일 알림\n· Growth $89: Starter 전체와 문자 알림, 월간 리포트, AI 비서 대화\n설치비는 $149(1회)이고, 매장이 3곳 이상이면 2번째 매장부터 15% 할인돼요. 자세한 조건은 상담에서 안내해드려요.' };
+    if (/(리뷰|후기).*(부탁|요청)|(부탁|요청).*(리뷰|후기)/.test(t)) return askCard();
+    if (/분석/.test(t) && /(리뷰|후기|평)/.test(t)) return { text: '(예시) 최근 리뷰 20건을 읽어봤어요.\n칭찬: 가격, 친절, 다양한 상품\n불만: 사이즈 부족, 계산 대기, 일부 제품 품질\n이번 주 할 일: ① 인기 사이즈 재고 확인 ② 낮은 별점 리뷰에 정중한 답글 ③ 계산대 대기 줄이기\n답글 초안을 만들어 드릴까요?' };
+    if (/게시물|포스트|사진/.test(t)) return postCard();
+    if (/예약/.test(t)) return { text: '예약 접수는 준비 중이에요. 예약 링크를 구글 프로필과 문자에 달아두고, 예약이 들어오면 한국어로 알려드리는 방식으로 만들고 있어요. 미용실이나 서비스업 매장에 특히 잘 맞아요. 관심 있으시면 아래에서 상담을 신청해주세요.' };
+    if (/마케팅|아이디어|조언|손님.*(부르|늘)/.test(t)) return { text: '가게 업종과 영업시간을 알려주시면 맞춰서 드려요. 예를 들면 비 오는 주말에는 "영업 중입니다" 게시물과 실내 상품 소식을 올리거나, 한 달 안 온 단골께 안부 문자를 보내는 방법이 있어요. 해보시고 결과를 말씀해주시면 다음 제안에 반영해요.' };
     if (/리뷰|후기|답글/.test(t)) return reviewCard();
     if (/세일|할인|프로모션|문자/.test(t)) return smsCard();
     if (/단골|고객|안 온|휴면/.test(t)) return { text: '(예시) 60일 넘게 안 온 단골이 31명이에요. 그중 문자 수신에 동의한 분은 24명이라 이분들께만 재방문 문자를 보낼 수 있어요. 문자 초안을 만들어 드릴까요?' };
@@ -602,7 +651,7 @@
     if (reply.go) setTimeout(function () { var a = $('apply'); if (a) { a.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); var f = $('store'); if (f) setTimeout(function () { f.focus({ preventScroll: true }); }, 500); } }, 900);
   }
 
-  var CHIPS = ['영어 리뷰에 답글 써줘', '요금이 얼마예요?', '안 온 단골 찾기', '상담 신청할래요'];
+  var CHIPS = ['리뷰 분석해줘', '구글 게시물 써줘', '리뷰 부탁 문자', '영어 리뷰에 답글 써줘', '요금이 얼마예요?', '상담 신청할래요'];
   chipsEl.innerHTML = CHIPS.map(function (c) { return '<button type="button" data-q="' + esc(c) + '">' + esc(c) + '</button>'; }).join('');
   chipsEl.addEventListener('click', function (e) { var b = e.target.closest('[data-q]'); if (b) handle(b.getAttribute('data-q')); });
   form.addEventListener('submit', function (e) { e.preventDefault(); handle(input.value); });

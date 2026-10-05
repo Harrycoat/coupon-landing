@@ -134,6 +134,8 @@
     '서비스 사실: 요금은 매장 한 곳 기준 월 Starter $49(포인트와 쿠폰 자동화, 이메일 알림, QR코드 제작), Growth $89(Starter 전체, 문자 알림, 브랜드 맞춤, 월간 리포트, AI 비서 대화). 설치비 $149(1회). 3곳 이상이면 2번째 매장부터 15% 할인. 문자는 월 기본 발송량 포함, 초과분은 건당 요금. POS를 바꿀 필요가 없고 적립은 직원이 확인하고 눌러요. 문자와 구글 게시는 사장님이 승인해야만 나가요. 문자는 수신에 동의한 고객에게만 나가요. 일부 기능(문자 발송, 구글 연동)은 파일럿 매장에서 순서대로 열려요.',
     '위 사실에 없는 내용(계약 조건, 할인, 출시일, 기능)은 지어내지 말고 "상담에서 안내드릴게요"라고 하세요.',
     '개인정보나 고객 전화번호를 입력하지 말라고 안내하세요. 세금, 법률, 의료 조언은 하지 마세요. 서비스와 무관한 긴 작업(코딩, 에세이 등)은 정중히 사양하고 매장 마케팅 이야기로 돌아오세요.',
+    '기능 상태: 지금 가능한 것은 한국어로 시키면 영어 문자 초안, 구글 리뷰 영어 답글 초안, 리뷰 분석 요약, 구글 게시물 문구 초안, 구글 리뷰 부탁 문구, 매출과 지출 기록, 마케팅 아이디어예요. 구글 프로필 자동 게시와 자동 답글은 구글 승인이 필요해 준비 중이에요. 온라인 예약 접수는 준비 중이에요. 문자 발송은 통신사 등록 승인 후에 열려요.',
+    '리뷰 원칙: 리뷰 부탁은 모든 손님께 똑같이 보내요. 별점을 보고 거르지 않고, 리뷰 대가로 쿠폰이나 선물을 주지 않아요. 좋은 리뷰만 받게 해달라는 요청은 정중히 사양하고 위 방법을 안내하세요. 별점이나 순위가 오른다는 결과는 절대 약속하지 마세요.',
     '관심을 보이면 아래 "무료 상담 신청"에서 매장 이름과 연락처를 남겨달라고 안내하세요.'
   ].join('\n');
 
@@ -178,8 +180,23 @@
       '<div class="lsms">We are sorry about the wasted trip. Please call us before you visit and we will check your size for you. Thank you for the feedback. - Sample Store</div>' +
       '<p class="lgloss">한국어 뜻: 헛걸음을 사과하고, 방문 전 전화하면 사이즈를 확인해준다는 안내예요. 낮은 별점 답글은 읽어보고 승인하세요.</p><div class="lbtns"><button type="button" data-demo="approve">승인하고 게시</button><button type="button" data-demo="edit">수정</button></div>' };
   }
+  function postCard() {
+    return { plain: '(구글 게시물 영어 초안 카드를 보여줌: Weekend sale at Sample Store! 20% off everything this Saturday and Sunday.)', html:
+      '<p>구글 게시물 초안을 영어로 써봤어요. 사진은 사장님이 골라서 올려주세요.</p><div class="lsms">Weekend sale at Sample Store! 20% off everything this Saturday and Sunday. Stop by and say hello.</div>' +
+      '<p class="lgloss">한국어 뜻: 이번 주말 토요일, 일요일 전 품목 20% 할인. 편하게 들러주세요. (사진은 직접 선택)</p><div class="lbtns"><button type="button" data-demo="approve">승인하고 게시</button><button type="button" data-demo="edit">수정</button></div>' };
+  }
+  function askCard() {
+    return { plain: '(구글 리뷰 부탁 문자 영어 초안 카드를 보여줌: 동의한 모든 손님께 같은 문자)', html:
+      '<p>리뷰 부탁 문자 초안이에요. 수신에 동의한 모든 손님께 똑같이 나가요.</p><div class="lsms">[Sample Store] Thank you for visiting! If you have a minute, we would appreciate a Google review: [review link]<br>Reply STOP to opt out.</div>' +
+      '<p class="lgloss">한국어 뜻: 방문 감사 인사와 구글 리뷰 부탁이에요. 별점을 보고 고르지 않고, 리뷰 대가로 쿠폰을 주지 않아요. (링크는 가게 설정의 구글 리뷰 주소가 들어가요)</p><div class="lbtns"><button type="button" data-demo="approve">승인하고 발송</button><button type="button" data-demo="edit">수정</button></div>' };
+  }
   function scripted(t) {
     if (/요금|가격|얼마|비용|플랜|월/.test(t)) return { text: '요금은 매장 한 곳 기준 월 요금이에요.\n· Starter $49: 포인트와 쿠폰 자동화, 이메일 알림\n· Growth $89: Starter 전체와 문자 알림, 월간 리포트, AI 비서 대화\n설치비는 $149(1회)이고, 매장이 3곳 이상이면 2번째 매장부터 15% 할인돼요. 자세한 조건은 상담에서 안내해드려요.' };
+    if (/(리뷰|후기).*(부탁|요청)|(부탁|요청).*(리뷰|후기)/.test(t)) return askCard();
+    if (/분석/.test(t) && /(리뷰|후기|평)/.test(t)) return { text: '(예시) 최근 리뷰 20건을 읽어봤어요.\n칭찬: 가격, 친절, 다양한 상품\n불만: 사이즈 부족, 계산 대기, 일부 제품 품질\n이번 주 할 일: ① 인기 사이즈 재고 확인 ② 낮은 별점 리뷰에 정중한 답글 ③ 계산대 대기 줄이기\n답글 초안을 만들어 드릴까요?' };
+    if (/게시물|포스트|사진/.test(t)) return postCard();
+    if (/예약/.test(t)) return { text: '예약 접수는 준비 중이에요. 예약 링크를 구글 프로필과 문자에 달아두고, 예약이 들어오면 한국어로 알려드리는 방식으로 만들고 있어요. 미용실이나 서비스업 매장에 특히 잘 맞아요. 관심 있으시면 아래에서 상담을 신청해주세요.' };
+    if (/마케팅|아이디어|조언|손님.*(부르|늘)/.test(t)) return { text: '가게 업종과 영업시간을 알려주시면 맞춰서 드려요. 예를 들면 비 오는 주말에는 "영업 중입니다" 게시물과 실내 상품 소식을 올리거나, 한 달 안 온 단골께 안부 문자를 보내는 방법이 있어요. 해보시고 결과를 말씀해주시면 다음 제안에 반영해요.' };
     if (/리뷰|후기|답글/.test(t)) return reviewCard();
     if (/세일|할인|프로모션|문자/.test(t)) return smsCard();
     if (/단골|고객|안 온|휴면/.test(t)) return { text: '(예시) 60일 넘게 안 온 단골이 31명이에요. 그중 문자 수신에 동의한 분은 24명이라 이분들께만 재방문 문자를 보낼 수 있어요. 문자 초안을 만들어 드릴까요?' };
@@ -237,7 +254,7 @@
     if (reply.go) setTimeout(function () { location.href = 'index.html#apply'; }, 1100);
   }
 
-  var CHIPS = ['영어 리뷰에 답글 써줘', '요금이 얼마예요?', '안 온 단골 찾기', '상담 신청할래요'];
+  var CHIPS = ['리뷰 분석해줘', '구글 게시물 써줘', '리뷰 부탁 문자', '영어 리뷰에 답글 써줘', '요금이 얼마예요?', '상담 신청할래요'];
   chipsEl.innerHTML = CHIPS.map(function (c) { return '<button type="button" data-q="' + esc(c) + '">' + esc(c) + '</button>'; }).join('');
   chipsEl.addEventListener('click', function (e) { var b = e.target.closest('[data-q]'); if (b) handle(b.getAttribute('data-q')); });
   form.addEventListener('submit', function (e) { e.preventDefault(); handle(input.value); });
