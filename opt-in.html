@@ -9,13 +9,13 @@ body { font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-widt
 h1 { font-size: 1.6em; }
 h2 { font-size: 1.2em; margin-top: 1.9em; }
 nav a { margin-right: 14px; }
-.screen { border: 1.5px solid #1b2340; border-radius: 14px; padding: 18px; background: #f7f6f1; max-width: 460px; }
-.screen h3 { margin: 0 0 8px; font-size: 1.05em; }
-.field { border: 1px solid #aaa; border-radius: 8px; padding: 10px 12px; background: #fff; color: #555; margin-bottom: 12px; }
+.screen { border: 1.5px solid #0f1d44; border-radius: 14px; padding: 18px; background: #f7f6f1; max-width: 480px; }
+.screen h3 { margin: 0 0 10px; font-size: 1.05em; }
+.field { border: 1px solid #aaa; border-radius: 8px; padding: 10px 12px; background: #fff; color: #555; margin-bottom: 10px; }
 .chk { display: flex; gap: 10px; align-items: flex-start; font-size: 0.88em; margin: 10px 0; }
-.box { width: 18px; height: 18px; border: 1.5px solid #1b2340; border-radius: 3px; flex-shrink: 0; margin-top: 2px; background: #fff; }
-.btn { display: inline-block; margin-top: 10px; background: #1b2340; color: #fff; padding: 10px 18px; border-radius: 8px; font-weight: 600; }
-.msg { background: #eceae0; border-radius: 12px; padding: 10px 14px; margin: 8px 0; max-width: 520px; font-size: 0.93em; }
+.box { width: 18px; height: 18px; border: 1.5px solid #0f1d44; border-radius: 3px; flex-shrink: 0; margin-top: 2px; background: #fff; }
+.btn { display: inline-block; margin-top: 10px; background: #0f1d44; color: #fff; padding: 10px 18px; border-radius: 8px; font-weight: 600; }
+.msg { background: #eceae0; border-radius: 12px; padding: 10px 14px; margin: 8px 0; max-width: 560px; font-size: 0.93em; }
 footer { margin-top: 3em; font-size: 0.85em; color: #666; }
 </style>
 </head>
@@ -23,35 +23,38 @@ footer { margin-top: 3em; font-size: 0.85em; color: #666; }
 <nav><a href="index.html">Home</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms</a></nav>
 
 <h1>How Text Message Opt-In Works</h1>
-<p><em>Encore Marketing System, last updated October 4, 2026</em></p>
-<p>Encore Marketing System provides loyalty, review-reply, and text message tools for small retail stores. This page shows exactly how a person opts in to receive text messages. Opting in is voluntary and is never required to buy anything.</p>
+<p><em>Encore Marketing System, last updated October 5, 2026</em></p>
+<p>Encore Marketing System provides loyalty, review-reply, and messaging tools for small retail stores. This page shows exactly how a person opts in to receive text messages from Encore. Opting in is voluntary and is never required to get a consultation or to buy anything.</p>
 
-<h2>Opt-in method 1: In-store sign-up tablet (QR or counter tablet)</h2>
-<p>At a participating store, the customer enters their own mobile number on a tablet at the counter. Before the number is saved, the customer sees the consent statements below and must check the box to join. The store records the date, time, and exact wording of each consent.</p>
+<h2>Who receives our text messages</h2>
+<p>Our text messages go to <strong>business owners</strong> (our merchant customers) who asked about our services or became customers. They are service messages: consultation confirmations and follow-ups, onboarding and account notices, and reminders the owner asks us to set. <strong>We do not send promotional messages to consumers under this program.</strong></p>
 
-<div class="screen" role="img" aria-label="Example of the in-store sign-up screen with two unchecked consent boxes">
-  <h3>Join T mart Rewards</h3>
-  <div class="field">Mobile number: (___) ___-____</div>
-  <div class="chk"><span class="box"></span><span>(Required to join the rewards program) I agree to receive recurring automated text messages from T mart (sent via Encore Marketing System) about my membership code, points, and reward coupons at the number provided. Message frequency varies. Message and data rates may apply. Reply STOP to cancel, HELP for help. Consent is not a condition of any purchase.</span></div>
-  <div class="chk"><span class="box"></span><span>(Optional) I also agree to receive recurring automated promotional text messages (sales and special offers) from T mart (sent via Encore Marketing System). Message frequency varies. Message and data rates may apply. Reply STOP to cancel, HELP for help. Consent is not a condition of any purchase.</span></div>
-  <div style="font-size:0.85em"><a href="privacy-policy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms and Conditions</a></div>
-  <span class="btn">Join</span>
+<h2>How a business owner opts in</h2>
+<p>On <a href="https://encoremarketingsystem.com/#apply">encoremarketingsystem.com</a>, the owner fills in the free consultation request form: store name, name, mobile number, and a message. The form has a <strong>separate, optional, unchecked</strong> text message box, shown below with its exact wording. The box links to our Privacy Policy and Terms. The date, time, and wording of each consent are stored with the request.</p>
+
+<div class="screen" role="img" aria-label="Example of the consultation form with the optional text message checkbox, unchecked">
+  <h3>Request a free consultation</h3>
+  <div class="field">Store name</div>
+  <div class="field">Your name</div>
+  <div class="field">Mobile number</div>
+  <div class="chk"><span class="box"></span><span>(Optional) I agree to receive text messages from Encore Marketing System about my consultation request and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help. Consent is not a condition of any purchase or of receiving a consultation. <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.</span></div>
+  <span class="btn">Submit request</span>
 </div>
-<p>Both boxes start unchecked. The promotional box is optional; a person can join the rewards program without agreeing to promotional messages. A person can still shop without joining.</p>
-
-<h2>Opt-in method 2: Website form (merchants)</h2>
-<p>On <a href="index.html">our website</a>, merchants can request a consultation. The form has a separate, optional, unchecked box: "I agree to receive text messages from Encore Marketing System about my consultation request and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help. Consent is not a condition of any purchase or of receiving a consultation." The page links to the Privacy Policy and Terms.</p>
+<p>The box starts unchecked. An owner can request a consultation without agreeing to text messages.</p>
 
 <h2>Confirmation, Help, and Opt-Out</h2>
-<div class="msg"><strong>Opt-in confirmation:</strong> T mart: Thanks for joining! Your member code is TW-1234. Msg frequency varies. Msg and data rates may apply. Reply HELP for help, STOP to cancel.</div>
+<div class="msg"><strong>Opt-in confirmation:</strong> Encore Marketing System: You're subscribed to consultation and service text updates. Msg freq varies. Msg and data rates may apply. Reply HELP for help, STOP to cancel.</div>
 <div class="msg"><strong>HELP reply:</strong> Encore Marketing System: For help email tmartbakersfield@gmail.com or call 661-373-7950. Msg and data rates may apply. Reply STOP to cancel.</div>
 <div class="msg"><strong>STOP reply:</strong> Encore Marketing System: You have been unsubscribed and will receive no more messages. Reply START to rejoin.</div>
 
 <h2>Sample Messages</h2>
-<div class="msg">[T mart] Points added! You now have 3 of 5 visits. 2 more visits for a $5 coupon. Reply STOP to opt out.</div>
-<div class="msg">[T mart] You earned a $5 coupon! Code CPN-123456. Show this text at checkout. Reply STOP to opt out.</div>
-<div class="msg">[T mart] 20% off everything this weekend! Stop by and save. Reply STOP to opt out.</div>
-<p>Promotional messages are sent only to people who checked the optional promotional box. Messages are sent only to people who opted in, and any number that replies STOP is removed from sending right away.</p>
+<div class="msg">Encore Marketing System: We received your consultation request, [Name]. We will contact you soon. Reply STOP to opt out.</div>
+<div class="msg">Encore Marketing System: Your pilot setup visit is set for Oct 12 at 10:00 AM. Reply STOP to opt out.</div>
+<div class="msg">Encore Marketing System: Reminder you asked us to set: supplier order due tomorrow at 9:00 AM. Reply STOP to opt out.</div>
+<p>Messages are sent only to owners who opted in, and any number that replies STOP is removed from sending right away.</p>
+
+<h2>Store customer messaging (separate programs)</h2>
+<p>Individual stores may later offer their own text programs to their customers, such as rewards updates. Those programs will have their own sign-up screen, consent wording, and registration. They are not part of this program.</p>
 
 <h2>Contact</h2>
 <p>Encore Marketing System &middot; <a href="mailto:tmartbakersfield@gmail.com">tmartbakersfield@gmail.com</a> &middot; 661-373-7950</p>
