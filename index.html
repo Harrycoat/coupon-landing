@@ -252,8 +252,15 @@
   .side-card { background: rgba(244,247,254,0.97); color: #0f1d44; border-radius: 20px; padding: 18px 16px 14px; box-shadow: 0 16px 50px rgba(0,0,0,0.35); }
   .side-card h2 { font-family: var(--sans); font-weight: 800; font-size: 20px; text-align: center; margin-bottom: 12px; }
   .help { display: grid; gap: 10px; }
-  .help-i { display: grid; grid-template-columns: 52px 1fr; gap: 12px; align-items: center; background: #fff; border-radius: 14px; padding: 12px; }
-  .help-i .ic { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .help-i { display: grid; grid-template-columns: 52px 1fr; gap: 12px; align-items: center; background: #fff; border-radius: 14px; padding: 12px; width: 100%; border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+  .help-i:hover, .help-i:focus-visible { transform: translateY(-1px); box-shadow: 0 7px 20px rgba(15,29,68,.12); }
+  .help-i::after { content: '›'; font-size: 24px; font-weight: 800; color: #7b86aa; justify-self: end; grid-column: 2; grid-row: 1; }
+  .help-i > div { padding-right: 22px; grid-column: 2; grid-row: 1; }
+  .help-detail { margin-top: 12px; background: #fff7d8; border: 1.5px solid #f3c63b; border-radius: 14px; padding: 14px 15px; color: #0f1d44; }
+  .help-detail[hidden] { display: none; }
+  .help-detail b { display: block; font-size: 16px; margin-bottom: 5px; }
+  .help-detail p { margin: 0; font-size: 13.5px; line-height: 1.55; color: #42527d; }
+  .help-i .ic { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; grid-column: 1; grid-row: 1; }
   .help-i .ic svg { width: 28px; height: 28px; }
   .help-i b { display: block; font-size: 17px; }
   .help-i p { margin: 2px 0 0; font-size: 13.5px; line-height: 1.45; color: #4a5a86; }
@@ -469,17 +476,18 @@
       <aside class="h-side" aria-label="도우미가 도와드리는 일">
         <div class="side-card">
           <h2>도우미가 도와드리는 일</h2>
-          <div class="help">
-            <div class="help-i c-red"><span class="ic r">💬</span><div><b>문자 마케팅</b><p>세일·이벤트 문자를 한국어로 말하면 고객용 영어 문구로 만들어드려요.</p></div></div>
-            <div class="help-i c-orange"><span class="ic o">⭐</span><div><b>Google 리뷰</b><p>리뷰 요청 문구, 영어 답글 초안, 리뷰 흐름을 도와드려요.</p></div></div>
-            <div class="help-i c-blue"><span class="ic b">📣</span><div><b>매장 홍보</b><p>Google·Facebook에 올릴 행사·신상품·프로모션 문구를 만들어드려요.</p></div></div>
-            <div class="help-i c-green"><span class="ic g">📅</span><div><b>예약 관리</b><p>식당·미용실 예약 확인, 리마인드, 방문 후 마케팅까지 연결해요.</p></div></div>
-            <div class="help-i c-green"><span class="ic g">📊</span><div><b>고객 방문 통계</b><p>오늘 방문, 신규 고객, 재방문 흐름을 한눈에 보여드려요.</p></div></div>
-            <div class="help-i c-blue"><span class="ic b">👥</span><div><b>고객 포인트</b><p>고객 방문 포인트와 단골 고객 현황을 확인할 수 있어요.</p></div></div>
-            <div class="help-i c-green"><span class="ic g">💵</span><div><b>매출 집계</b><p>오늘·이번 주 매출과 지출을 정리하고 변화 이유를 살펴봐요.</p></div></div>
-            <div class="help-i c-blue"><span class="ic b">🧑‍🤝‍🧑</span><div><b>고객 관리</b><p>단골을 늘리고 다시 오게 만드는 재방문 마케팅을 도와드려요.</p></div></div>
+          <div class="help" id="helpMenu">
+            <button type="button" class="help-i c-red" data-help="sms"><span class="ic r">💬</span><div><b>문자 마케팅</b><p>회원 고객에게 세일·이벤트·재방문 문자를 보내요.</p></div></button>
+            <button type="button" class="help-i c-orange" data-help="review"><span class="ic o">⭐</span><div><b>Google 리뷰</b><p>리뷰 요청과 답글로 신뢰도와 신규 고객 유입을 높여요.</p></div></button>
+            <button type="button" class="help-i c-blue" data-help="promo"><span class="ic b">📣</span><div><b>매장 홍보</b><p>Google·Facebook에 신제품·행사 소식을 홍보해요.</p></div></button>
+            <button type="button" class="help-i c-green" data-help="booking"><span class="ic g">📅</span><div><b>예약 관리</b><p>예약 링크부터 확인·확정·리마인드까지 연결해요.</p></div></button>
+            <button type="button" class="help-i c-green" data-help="visits"><span class="ic g">📊</span><div><b>고객 방문 통계</b><p>신규·재방문 고객 흐름을 확인해요.</p></div></button>
+            <button type="button" class="help-i c-blue" data-help="points"><span class="ic b">👥</span><div><b>고객 포인트</b><p>포인트 발급으로 방문 고객을 회원으로 확보해요.</p></div></button>
+            <button type="button" class="help-i c-green" data-help="sales"><span class="ic g">💵</span><div><b>매출 집계</b><p>매출과 지출을 기록하고 흐름을 정리해요.</p></div></button>
+            <button type="button" class="help-i c-blue" data-help="customers"><span class="ic b">🧑‍🤝‍🧑</span><div><b>고객 관리</b><p>회원 고객과 방문 이력을 관리해 재방문을 만들어요.</p></div></button>
           </div>
-          <p class="side-note">사장님은 한국어로 말씀하세요. Encore가 고객용 영어 문구와 운영 판단을 도와드립니다.</p>
+          <div class="help-detail" id="helpDetail" hidden aria-live="polite"></div>
+          <p class="side-note">궁금한 기능을 클릭해 보세요. Encore가 실제로 어떻게 마케팅을 돕는지 보여드립니다.</p>
         </div>
         <div class="mascot-wrap">
           <p class="bubble">사장님의 성장을 응원하는 AI 비서 도우미예요!</p>
@@ -1289,6 +1297,31 @@ var Remind = (function () {
     await wait(1300); if (userCount > 0) { draw(); return; }
     addBot(smsCard()); draw();
   })();
+})();
+</script>
+<script>
+(function () {
+  var menu = document.getElementById('helpMenu');
+  var detail = document.getElementById('helpDetail');
+  if (!menu || !detail) return;
+  var info = {
+    sms: ['문자 마케팅', '회원 고객에게 세일·이벤트·재방문 문구를 만들고, 업종에 맞는 예약·주문·상품 링크까지 연결합니다. 실제 발송은 동의한 고객에게만 진행합니다.'],
+    review: ['Google 리뷰', '방문 고객에게 리뷰를 요청하고, 들어온 리뷰의 영어 답글 초안을 만듭니다. 리뷰가 쌓이면 매장 신뢰도와 Google 검색 유입을 높이는 데 도움이 됩니다.'],
+    promo: ['매장 홍보', '신제품, 세일, 행사 소식을 한국어로 말하면 Google·Facebook에 올릴 고객용 홍보 문구를 만들어드립니다. API 연결 후에는 승인 뒤 게시까지 자동화할 수 있습니다.'],
+    booking: ['예약 관리', '식당·미용·서비스 매장은 고객용 예약 링크를 제공하고 예약 요청을 확인·확정·취소할 수 있습니다. 이후 리마인드와 방문 후 마케팅까지 연결합니다.'],
+    visits: ['고객 방문 통계', '오늘 방문 수, 신규 고객, 재방문 고객의 흐름을 확인해 어떤 마케팅이 실제 방문으로 이어지는지 살펴볼 수 있습니다.'],
+    points: ['고객 포인트', '방문 고객에게 포인트를 발급해 자연스럽게 회원을 확보하고, 누적 방문과 단골 고객을 관리해 재방문을 유도합니다.'],
+    sales: ['매출 집계', '오늘·이번 주 매출과 지출을 기록하고 정리해 매장 흐름을 쉽게 확인할 수 있게 도와드립니다.'],
+    customers: ['고객 관리', '회원 고객 목록과 방문 이력을 관리하고, 오래 오지 않은 고객이나 단골 고객을 찾아 맞춤 재방문 마케팅으로 연결합니다.']
+  };
+  menu.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-help]');
+    if (!btn) return;
+    var item = info[btn.getAttribute('data-help')];
+    if (!item) return;
+    detail.innerHTML = '<b>' + item[0] + '</b><p>' + item[1] + '</p>';
+    detail.hidden = false;
+  });
 })();
 </script>
 </body>
