@@ -3,6 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+// Suppress browser scroll restoration only when no anchor is requested.
+(function(){
+  if(location.hash)return;
+  try{history.scrollRestoration='manual';}catch(e){}
+  var interacted=false;
+  ['wheel','touchstart','pointerdown','keydown'].forEach(function(type){
+    addEventListener(type,function(){interacted=true;},{once:true,passive:true});
+  });
+  function resetTop(){
+    if(location.hash||interacted)return;
+    window.scrollTo(0,0);
+  }
+  addEventListener('pageshow',resetTop);
+  addEventListener('load',resetTop);
+  if(document.readyState==='loading')addEventListener('DOMContentLoaded',resetTop,{once:true});
+  else resetTop();
+})();
+</script>
 <title>Encore | 사장님이 기억하기 전에, AI 비서 아라가 먼저 챙깁니다</title>
 <meta name="description" content="예약, 재방문 고객, 이벤트, 리뷰, 문자 마케팅까지. 소상공인을 위한 AI 매장 운영 비서 Encore.">
 <meta property="og:title" content="사장님은 장사만 하세요 | Encore">
