@@ -3,1396 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Encore Marketing System | 사장님 대신 단골을 챙기는 AI 비서</title>
-<meta name="description" content="한국어로 말하면 영어 문자와 구글 리뷰 답글은 AI 비서가 씁니다. 나가는 건 사장님이 승인해야만 나가요. 소매점을 위한 포인트, 문자, 구글 관리 서비스.">
-<meta property="og:title" content="사장님, 장사만 하세요 | Encore Marketing System">
-<meta property="og:description" content="AI 비서 도우미가 영어 문자, 구글 답글, 매출 정리, 단골 관리를 도와드려요. 한국어로 말하면 됩니다.">
+<title>Encore | 사장님이 기억하기 전에, AI 비서 아라가 먼저 챙깁니다</title>
+<meta name="description" content="예약, 재방문 고객, 이벤트, 리뷰, 문자 마케팅까지. 소상공인을 위한 AI 매장 운영 비서 Encore.">
+<meta property="og:title" content="사장님은 장사만 하세요 | Encore">
+<meta property="og:description" content="기억하고 챙기는 일은 AI 비서 아라가 합니다.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Encore Marketing System">
 <meta property="og:url" content="https://encoremarketingsystem.com/">
 <meta property="og:image" content="https://encoremarketingsystem.com/og-image-v2.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #0f1d44; --navy-2: #1a2a5e; --gold: #ffc72c; --gold-soft: #ffd966;
-    --paper: #f7f6f1; --ink: #1b2340; --muted: #555b70; --line: #d9d6c9; --field: #ffffff;
-    --on-navy: #f4f1e6; --on-navy-muted: #b9bdd1;
-    --serif: 'Noto Serif KR', Georgia, serif; --sans: 'Noto Sans KR', system-ui, -apple-system, 'Segoe UI', sans-serif;
-    box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --paper: #12162a; --ink: #eee9da; --muted: #a8adc2; --line: #2e3558; --field: #1b2140; }
-  }
-  :root[data-theme="dark"] { --paper: #12162a; --ink: #eee9da; --muted: #a8adc2; --line: #2e3558; --field: #1b2140; }
-  *, *::before, *::after { box-sizing: inherit; }
-  html { scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
-  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; }
-  a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-  .wrap { width: min(1120px, 100% - 40px); margin: 0 auto; }
-  h1, h2, h3 { font-family: var(--serif); font-weight: 700; margin: 0; text-wrap: balance; }
-  h2 { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.3; letter-spacing: -0.01em; }
-  h3 { font-size: 19px; line-height: 1.4; }
-  p { margin: 0; text-wrap: pretty; }
-
-  /* header */
-  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--navy); color: var(--on-navy); }
-  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
-  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-weight: 700; font-size: 18px; }
-  .brand svg { width: 30px; height: 30px; flex-shrink: 0; }
-  .nav { display: flex; align-items: center; gap: 26px; font-size: 15px; }
-  .nav a { text-decoration: none; color: var(--on-navy-muted); }
-  .nav a:hover { color: var(--on-navy); }
-  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border-radius: 8px; border: none; font: 700 16px/1 var(--sans); cursor: pointer; text-decoration: none; }
-  .btn-gold { background: var(--gold); color: #1b2340; }
-  .btn-gold:hover { background: var(--gold-soft); }
-  .btn-line { background: transparent; color: var(--on-navy); border: 1.5px solid #5b648a; }
-  .btn-line:hover { border-color: var(--on-navy); }
-  .nav .btn { min-height: 44px; padding: 0 18px; font-size: 15px; color: #1b2340; }
-  @media (max-width: 760px) { .nav a:not(.btn) { display: none; } }
-
-  /* hero */
-  .hero { background: var(--navy); color: var(--on-navy); padding: 72px 0 88px; }
-  .hero .wrap { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; align-items: center; }
-  .hero h1 { font-size: clamp(32px, 4.8vw, 52px); line-height: 1.28; letter-spacing: -0.015em; }
-  .hero .lede { margin-top: 24px; font-size: 19px; color: var(--on-navy-muted); max-width: 31em; }
-  .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
-  .hero .note { margin-top: 22px; font-size: 15px; color: var(--on-navy-muted); }
-  @media (max-width: 880px) { .hero { padding: 48px 0 64px; } .hero .wrap { grid-template-columns: 1fr; gap: 44px; } }
-
-  /* conversation shown in hero */
-  .phone { background: #12172f; border: 1px solid #3a4470; border-radius: 22px; padding: 14px 14px 18px; max-width: 400px; width: 100%; justify-self: center; }
-  .phone-top { display: flex; align-items: center; gap: 10px; padding: 4px 4px 12px; border-bottom: 1px solid #2e3558; font-size: 14px; }
-  .phone-top i { width: 30px; height: 30px; border-radius: 50%; background: var(--gold); color: #1b2340; display: flex; align-items: center; justify-content: center; font: 700 14px var(--sans); font-style: normal; }
-  .phone-top small { display: block; color: var(--on-navy-muted); font-size: 12px; line-height: 1.3; }
-  .msgs { display: flex; flex-direction: column; gap: 10px; padding-top: 14px; }
-  .b { max-width: 88%; padding: 10px 14px; border-radius: 16px; font-size: 15px; line-height: 1.55; }
-  .b.me { align-self: flex-end; background: var(--gold); color: #1b2340; border-bottom-right-radius: 4px; }
-  .b.bot { align-self: flex-start; background: #232b52; color: var(--on-navy); border-bottom-left-radius: 4px; }
-  .draft { align-self: flex-start; width: 100%; background: #f4f1e6; color: #1b2340; border-radius: 14px; padding: 14px; font-size: 14.5px; }
-  .draft .sms { background: #e4dfc9; border-radius: 10px; padding: 10px 12px; line-height: 1.55; font-size: 14.5px; }
-  .draft .ko { margin-top: 10px; font-size: 13.5px; color: #4a5068; line-height: 1.5; }
-  .draft .btns { display: flex; gap: 8px; margin-top: 12px; }
-  .draft .btns span { flex: 1; text-align: center; padding: 10px 6px; border-radius: 8px; font: 700 13.5px var(--sans); border: 1.5px solid #bdb99f; }
-  .draft .btns span:first-child { background: #1b2340; color: #f4f1e6; border-color: #1b2340; }
-  .sent { align-self: flex-start; font-size: 14px; color: var(--gold-soft); padding: 2px 4px; }
-  .caption { margin-top: 12px; text-align: center; font-size: 13px; color: var(--on-navy-muted); }
-  @media (prefers-reduced-motion: no-preference) {
-    .s0, .s1, .s2, .s3, .s4 { opacity: 0; transform: translateY(8px); animation: rise 0.5s ease forwards; }
-    .s0 { animation-delay: 0.2s; } .s1 { animation-delay: 0.4s; } .s2 { animation-delay: 1.3s; } .s3 { animation-delay: 2.3s; } .s4 { animation-delay: 4.6s; }
-    @keyframes rise { to { opacity: 1; transform: none; } }
-    .draft .btns span:first-child { animation: press 0.5s ease 4.2s both; }
-    @keyframes press { 0% { transform: scale(1); } 50% { transform: scale(0.94); background: var(--gold); color: #1b2340; } 100% { transform: scale(1); } }
-  }
-
-  .stage { display: flex; align-items: flex-end; justify-content: center; }
-  .char { position: relative; width: 250px; flex: 0 0 250px; margin-right: -30px; z-index: 1; }
-  .char svg { display: block; width: 100%; height: auto; }
-  .hello { position: relative; margin: 0 0 14px 10px; max-width: 190px; background: #f4f1e6; color: #1b2340; border-radius: 16px 16px 16px 4px; padding: 12px 16px; font-size: 15px; line-height: 1.5; }
-  .hello::after { content: ''; position: absolute; left: 22px; bottom: -10px; border-style: solid; border-width: 10px 8px 0 8px; border-color: #f4f1e6 transparent transparent transparent; }
-  .tag { position: absolute; left: 18px; bottom: 14px; background: var(--gold); color: #1b2340; font: 700 14px/1 var(--sans); padding: 8px 14px; border-radius: 999px; }
-  .stage .phone { flex: 0 0 350px; max-width: 350px; width: 350px; z-index: 2; }
-  .mini { width: 34px; height: 34px; border-radius: 50%; background: #2b3563; flex-shrink: 0; }
-  @media (max-width: 880px) {
-    .stage { flex-direction: column; align-items: center; }
-    .char { margin: 0 0 -30px; width: 210px; flex: 0 0 auto; }
-    .hello { margin-left: 0; }
-    .tag { bottom: 44px; }
-    .stage .phone { flex: 0 0 auto; width: 100%; max-width: 380px; }
-  }
-
-  .live { flex: 0 0 380px; width: 380px; max-width: 100%; height: 560px; display: flex; flex-direction: column; background: #dfe3ee; color: #1b2340; border-radius: 20px; overflow: hidden; z-index: 2; border: 1px solid #3a4470; }
-  .live-top { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f4f1e6; border-bottom: 1px solid #cfcbb8; }
-  .live .av { width: 38px; height: 38px; border-radius: 14px; background: #2b3563; overflow: hidden; flex-shrink: 0; }
-  .live .av svg { display: block; width: 100%; height: 100%; }
-  .live-top b { font-size: 15px; }
-  .aitag { font-size: 11px; font-weight: 700; background: var(--gold); color: #1b2340; padding: 2px 8px; border-radius: 99px; margin-left: 6px; vertical-align: 2px; }
-  .live-top small { display: block; font-size: 12px; color: #4a5068; line-height: 1.3; }
-  .live-msgs { flex: 1; min-height: 0; overflow-y: auto; padding: 12px 12px 6px; display: flex; flex-direction: column; gap: 3px; }
-  .lday { align-self: center; background: rgba(27,35,64,0.14); color: #4a5068; font-size: 12px; padding: 3px 14px; border-radius: 999px; margin: 4px 0 8px; }
-  .lrow { display: flex; gap: 8px; align-items: flex-start; }
-  .lrow.me { justify-content: flex-end; align-items: flex-end; gap: 6px; }
-  .lcol { min-width: 0; flex: 1; display: flex; flex-direction: column; }
-  .lwho { font-size: 12.5px; color: #4a5068; margin: 0 0 4px 2px; }
-  .lline { display: flex; align-items: flex-end; gap: 6px; }
-  .lts { font-size: 11px; color: #4a5068; white-space: nowrap; flex-shrink: 0; }
-  .lspacer { width: 38px; flex-shrink: 0; }
-  .lbub { max-width: 80%; padding: 10px 14px; border-radius: 16px; font-size: 14.5px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; word-break: keep-all; }
-  .lbub.bot { background: #fff; border: 1px solid #cfd3e0; }
-  .lbub.bot.first { border-top-left-radius: 4px; }
-  .lbub.me { background: var(--gold); color: #1b2340; border-top-right-radius: 4px; }
-  .lbub.card { white-space: normal; max-width: 100%; flex: 0 1 auto; }
-  .lbub.card p { margin: 0 0 8px; }
-  .lsms { background: #e9e6d8; border-radius: 12px; padding: 10px 12px; font-size: 14px; line-height: 1.5; }
-  .lgloss { margin: 8px 0 0; font-size: 12.5px; color: #4a5068; }
-  .lrv { margin: 0 0 8px; font-size: 13.5px; background: #f1f2f7; border-radius: 10px; padding: 8px 10px; }
-  .lbtns { display: flex; gap: 8px; margin-top: 10px; }
-  .lbtns button { flex: 1; min-height: 44px; border-radius: 10px; font: 700 14px var(--sans); cursor: pointer; border: 1.5px solid #bdb99f; background: transparent; color: #1b2340; }
-  .lbtns button:first-child { background: #1b2340; border-color: #1b2340; color: #f4f1e6; }
-  .ltyping { display: inline-flex; gap: 5px; padding: 14px 16px; }
-  .ltyping i { width: 7px; height: 7px; border-radius: 50%; background: #6b7189; opacity: 0.4; animation: lblink 1.1s infinite; }
-  .ltyping i:nth-child(2) { animation-delay: 0.18s; } .ltyping i:nth-child(3) { animation-delay: 0.36s; }
-  @keyframes lblink { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
-  .live-chips { display: flex; gap: 8px; overflow-x: auto; padding: 6px 12px 8px; scrollbar-width: none; }
-  .live-chips::-webkit-scrollbar { display: none; }
-  .live-chips button { flex: 0 0 auto; white-space: nowrap; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1.5px solid #bdc2d4; background: #fff; color: #1b2340; font: 500 14px var(--sans); cursor: pointer; }
-  .live-bar { display: flex; gap: 8px; padding: 8px 12px 10px; background: #f4f1e6; border-top: 1px solid #cfcbb8; }
-  .live-bar input { flex: 1; min-width: 0; min-height: 48px; border-radius: 24px; border: 1.5px solid #bdb99f; background: #fff; color: #1b2340; padding: 0 18px; font: 400 16px var(--sans); }
-  .live-bar button { width: 48px; min-height: 48px; border: none; border-radius: 50%; background: var(--gold); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
-  .live-note { margin: 0; padding: 0 14px 10px; background: #f4f1e6; font-size: 12px; color: #4a5068; line-height: 1.4; }
-  .live-bar .mic { background: #fff; border: 1.5px solid #bdb99f; }
-  .live-bar .mic.on { background: #d92d20; border-color: #d92d20; animation: micpulse 1.2s infinite; }
-  .live-bar .mic.on svg { stroke: #fff; }
-  @keyframes micpulse { 0% { box-shadow: 0 0 0 0 rgba(217,45,32,0.5); } 100% { box-shadow: 0 0 0 12px rgba(217,45,32,0); } }
-  @media (prefers-reduced-motion: reduce) { .live-bar .mic.on { animation: none; } }
-  .lrow.grp { margin-top: 8px; }
-  .lmeta { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
-  .lread { font-size: 11px; color: #4a5068; white-space: nowrap; }
-  .pop { animation: lpop 0.18s ease-out; }
-  @keyframes lpop { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .pop { animation: none; } }
-  .msgwrap { position: relative; flex: 1; min-height: 0; display: flex; }
-  .msgwrap .live-msgs { flex: 1; min-width: 0; }
-  .down { position: absolute; right: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #bdc2d4; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.18); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; z-index: 3; }
-  .down[hidden] { display: none; }
-  .live-bar .send.off { position: absolute; width: 1px; height: 1px; min-height: 0; opacity: 0; pointer-events: none; overflow: hidden; }
-  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #2fa84f; margin-right: 6px; vertical-align: 1px; }
-  .back { flex-shrink: 0; width: 36px; height: 44px; display: inline-flex; align-items: center; justify-content: center; margin-left: -8px; color: #1b2340; font-size: 30px; line-height: 1; text-decoration: none; }
-  .lrem { display: flex; gap: 10px; align-items: center; justify-content: space-between; margin: 6px 0; }
-  .lrem small { color: #5a6590; }
-  .lrem button { flex-shrink: 0; min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #bdb99f; background: transparent; color: #1b2340; font: 700 13px var(--sans); cursor: pointer; }
-  .postimg { display: block; width: 100%; height: auto; border-radius: 12px; margin: 6px 0 10px; }
-  .lbtns a.dl { flex: 1 1 auto; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #bdb99f; color: #1b2340; background: transparent; font: 700 14px var(--sans); text-decoration: none; text-align: center; }
-  .hero2 .lbtns a.dl { border-color: #bcd0f7; color: #1c46c9; background: #fff; }
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  @media (max-width: 880px) { .live { flex: 0 0 auto; width: 100%; max-width: 400px; height: 520px; } }
-
-
-  :root { --st-ok: #1d6b34; --st-soon: #5c6178; --st-after: #8a6a00; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --st-ok: #7fd196; --st-soon: #b6bbd0; --st-after: #e4c65a; } }
-  :root[data-theme="dark"] { --st-ok: #7fd196; --st-soon: #b6bbd0; --st-after: #e4c65a; }
-  .cases { margin-top: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .case { background: var(--field); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
-  .case-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .case-n { width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: var(--on-navy); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
-  .st { font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 99px; border: 1.5px solid currentColor; line-height: 1.3; }
-  .st.ok { color: var(--st-ok); } .st.soon { color: var(--st-soon); } .st.after { color: var(--st-after); }
-  .case h3 { font-size: 19px; line-height: 1.35; }
-  .case .ask { align-self: flex-start; background: var(--navy); color: var(--on-navy); border-radius: 14px 14px 14px 4px; padding: 8px 14px; font-size: 15px; }
-  .case p { color: var(--muted); font-size: 16px; }
-  .promise { margin-top: 28px; padding: 22px 24px; border-radius: 16px; border: 1.5px solid var(--gold); }
-  .promise h3 { font-size: 19px; }
-  .promise ul { margin: 10px 0 0; padding-left: 20px; color: var(--muted); }
-  .promise li { margin-top: 6px; }
-  .fine { margin-top: 18px; font-size: 14px; color: var(--muted); }
-  @media (max-width: 800px) { .cases { grid-template-columns: 1fr; } }
-
-
-  /* ===== v2 첫 화면 ===== */
-  .hero2 { position: relative; overflow: hidden; color: var(--on-navy); padding: 56px 0 80px;
-    background: radial-gradient(circle at 16% 20%, rgba(255,176,70,0.20) 0, transparent 13%), radial-gradient(circle at 27% 10%, rgba(255,196,110,0.16) 0, transparent 9%), radial-gradient(circle at 6% 68%, rgba(255,150,50,0.12) 0, transparent 15%), radial-gradient(circle at 72% 40%, rgba(60,110,255,0.20) 0, transparent 36%), linear-gradient(180deg, #0a1533 0%, #111f4a 100%); }
-  .hero2 .wrap2 { width: min(1360px, 100% - 40px); margin: 0 auto; display: grid; gap: 26px 36px; align-items: start; grid-template-columns: minmax(0, 1fr) 440px 300px; grid-template-areas: "intro chat side" "tiles chat side" "banner chat side"; grid-template-rows: auto auto 1fr; }
-  .h-intro { grid-area: intro; } .h-tiles { grid-area: tiles; } .h-banner { grid-area: banner; align-self: end; } .h-chat { grid-area: chat; } .h-side { grid-area: side; }
-  .pill { display: inline-block; padding: 8px 16px; border: 1.5px solid rgba(120,180,255,0.55); border-radius: 999px; color: #9bc8ff; font-weight: 700; font-size: 15px; background: rgba(40,80,170,0.20); }
-  .hero2 h1 { margin-top: 22px; font-family: var(--sans); font-weight: 800; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.24; letter-spacing: -0.03em; color: #fff; }
-  .hero2 h1 em { white-space: nowrap; }
-  .trio3 { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 6px; font-size: 21px; font-weight: 700; color: #e7ecff; line-height: 1.4; }
-  .trio3 li::before { content: '✓'; color: var(--gold); margin-right: 10px; }
-  .trio3 b { color: var(--gold); }
-  .hero2 h1 em { font-style: normal; color: var(--gold); }
-  .hero2 .lede { margin-top: 22px; font-size: 18px; color: #c5cdea; max-width: 30em; }
-  .hero2 .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .hero2 .note { margin-top: 16px; font-size: 15px; color: #aab4d8; }
-  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .tile { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13); border-radius: 14px; padding: 14px 8px; text-align: center; }
-  .tile svg { width: 40px; height: 40px; }
-  .tile b { display: block; margin-top: 6px; font-size: 16px; color: #fff; }
-  .tile span { display: block; margin-top: 2px; font-size: 13px; color: #aab4d8; line-height: 1.45; }
-  .banner { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13); border-radius: 14px; padding: 16px 18px; }
-  .banner > div { display: flex; align-items: center; gap: 12px; font-size: 16px; line-height: 1.45; color: #e7ecff; }
-  .banner svg { width: 44px; height: 44px; flex-shrink: 0; }
-  .banner b { color: var(--gold); }
-  .hero2 .live { flex: none; width: 100%; max-width: 440px; height: 640px; margin: 0 auto; border: none; border-radius: 22px; background: #eaf0fc; box-shadow: 0 24px 70px rgba(0,0,0,0.5); color: #0f1d44; }
-  .hero2 .live-top { background: linear-gradient(135deg, #2f6bf0, #1c46c9); color: #fff; border-bottom: none; padding: 14px 16px; gap: 12px; }
-  .hero2 .live-top b { font-size: 21px; color: #fff; }
-  .hero2 .live-top small { color: #d7e4ff; font-size: 13.5px; }
-  .hero2 .live .aitag { background: var(--gold); color: #0f1d44; font-size: 12px; padding: 3px 10px; margin-left: 8px; }
-  .hero2 .live .av { width: 60px; height: 60px; border-radius: 50%; border: 3px solid #fff; background: #fff; overflow: hidden; flex-shrink: 0; }
-  .hero2 .live .av img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hero2 .live .lrow .av { width: 40px; height: 40px; border-width: 2px; }
-  .hero2 .live .lspacer, .hero2 .live .uspacer { width: 40px; flex-shrink: 0; }
-  .uav { width: 40px; height: 40px; flex-shrink: 0; } .uav svg { width: 100%; height: 100%; display: block; }
-  .hero2 .live-msgs { background: #eaf0fc; }
-  .hero2 .lday { background: rgba(15,29,68,0.08); color: #46507a; }
-  .hero2 .lwho, .hero2 .lts, .hero2 .lread { color: #5a6590; }
-  .hero2 .lbub { font-size: 15.5px; }
-  .hero2 .lbub.bot { background: #fff; border-color: #d3def5; }
-  .hero2 .lbub.me { background: #cfe0fb; color: #0f1d44; }
-  .hero2 .lsms { background: linear-gradient(135deg, #fff3c2, #ffe28a); color: #0f1d44; border-radius: 14px; padding: 14px 16px; font-weight: 600; font-size: 15px; }
-  .hero2 .lgloss { color: #4a5a86; }
-  .hero2 .lrv { background: #eef3fd; }
-  .hero2 .lbtns { flex-wrap: wrap; }
-  .hero2 .lbtns button, .hero2 .lbtns button:first-child { flex: 1 1 auto; min-height: 44px; padding: 0 12px; border-radius: 999px; border: 1.5px solid #bcd0f7; background: #fff; color: #1c46c9; font-weight: 700; }
-  .hero2 .live-chips button { border-color: #c5d5f6; color: #0f1d44; background: #fff; font-weight: 600; }
-  .hero2 .live-bar { background: #fff; border-top: 1px solid #d3def5; }
-  .hero2 .live-bar input { background: #f1f5fe; border-color: #d3def5; color: #0f1d44; }
-  .hero2 .live-bar .send { background: #2563eb; } .hero2 .live-bar .send svg { stroke: #fff; }
-  .hero2 .live-bar .mic { background: #f1f5fe; border-color: #c5d5f6; }
-  .hero2 .live-bar .mic.on { background: #d92d20; border-color: #d92d20; }
-  .hero2 .live-note { background: #fff; color: #5a6590; }
-  .h-side { position: relative; display: flex; flex-direction: column; }
-  .side-card { background: rgba(244,247,254,0.97); color: #0f1d44; border-radius: 20px; padding: 18px 16px 14px; box-shadow: 0 16px 50px rgba(0,0,0,0.35); }
-  .side-card h2 { font-family: var(--sans); font-weight: 800; font-size: 20px; text-align: center; margin-bottom: 12px; }
-  .help { display: grid; gap: 10px; }
-  .help-i { display: grid; grid-template-columns: 52px 1fr; gap: 12px; align-items: center; background: #fff; border-radius: 14px; padding: 12px; width: 100%; border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
-  .help-i:hover, .help-i:focus-visible { transform: translateY(-1px); box-shadow: 0 7px 20px rgba(15,29,68,.12); }
-  .help-i::after { content: '›'; font-size: 24px; font-weight: 800; color: #7b86aa; justify-self: end; grid-column: 2; grid-row: 1; }
-  .help-i > div { padding-right: 22px; grid-column: 2; grid-row: 1; }
-  .help-detail { margin-top: 12px; background: #fff7d8; border: 1.5px solid #f3c63b; border-radius: 14px; padding: 14px 15px; color: #0f1d44; }
-  .help-detail[hidden] { display: none; }
-  .help-detail b { display: block; font-size: 16px; margin-bottom: 5px; }
-  .help-detail p { margin: 0; font-size: 13.5px; line-height: 1.55; color: #42527d; }
-  .help-i .ic { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; grid-column: 1; grid-row: 1; }
-  .help-i .ic svg { width: 28px; height: 28px; }
-  .help-i b { display: block; font-size: 17px; }
-  .help-i p { margin: 2px 0 0; font-size: 13.5px; line-height: 1.45; color: #4a5a86; }
-  .c-red b { color: #d6334a; } .c-blue b { color: #1d5fe0; } .c-green b { color: #14934a; } .c-orange b { color: #c26d0c; }
-  .ic.r { background: #ffe3e7; } .ic.b { background: #dfeaff; } .ic.g { background: #dff5e8; } .ic.o { background: #ffeccf; }
-  .side-note { margin: 10px 4px 0; font-size: 12.5px; color: #5a6590; text-align: center; }
-  .h-chat { position: relative; }
-  .feature-demo { position:absolute; left:0; right:0; top:0; bottom:auto; min-height:0; max-height:100%; z-index:20; border-radius:22px; padding:16px; overflow:auto; background:linear-gradient(180deg,#f7f9ff,#e9f0ff); color:#0f1d44; box-shadow:0 24px 70px rgba(0,0,0,.42); }
-  .feature-demo[hidden]{display:none}
-  .fd-close{border:0;background:transparent;color:#2457c5;font:700 13px var(--sans);cursor:pointer;padding:2px 0 10px}
-  .fd-top{display:grid;grid-template-columns:86px 1fr;gap:12px;align-items:end}
-  .fd-char{width:86px;height:108px;object-fit:contain;object-position:bottom}
-  .fd-talk{position:relative;background:#fff;border:2px solid #ffc72c;border-radius:18px 18px 18px 5px;padding:13px 14px;font-weight:700;font-size:14px;line-height:1.5;box-shadow:0 8px 20px rgba(15,29,68,.1)}
-  .fd-talk:after{content:'';position:absolute;left:-9px;bottom:18px;width:16px;height:16px;background:#fff;border-left:2px solid #ffc72c;border-bottom:2px solid #ffc72c;transform:rotate(45deg)}
-  .fd-card{margin-top:12px;background:#fff;border:1px solid #d8e1f4;border-radius:15px;padding:14px;box-shadow:0 8px 24px rgba(15,29,68,.08)}
-  .fd-tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#e7efff;color:#2758c7;font-size:11px;font-weight:800;margin-bottom:8px}
-  .fd-card h3{font-family:var(--sans);font-size:17px;margin:0 0 9px}
-  .fd-demo{background:#f7f8fc;border-radius:11px;padding:11px;font-size:13px;line-height:1.5}
-  .fd-sms{background:#fff1ad}
-  .fd-stars{color:#e5a000;font-size:18px;letter-spacing:2px}
-  .fd-reply{margin-top:8px;background:#e9f2ff;border-radius:9px;padding:9px}
-  .fd-rows{display:grid;gap:7px}
-  .fd-row{display:flex;justify-content:space-between;gap:8px;background:#f7f8fc;border-radius:9px;padding:9px 10px;font-size:12px}
-  .fd-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-  .fd-metric{background:#f7f8fc;border-radius:10px;padding:10px 6px;text-align:center}
-  .fd-metric b{display:block;font-size:19px;color:#1d5fe0}
-  .fd-metric span{font-size:10.5px;color:#6b7697}
-  .fd-chart{height:125px;display:flex;align-items:flex-end;gap:8px;border-bottom:1px solid #dfe5f2;padding:10px 4px 0;margin-top:8px}
-  .fd-col{flex:1;text-align:center;font-size:10px;color:#6b7697}
-  .fd-bar{max-width:30px;width:100%;margin:0 auto 5px;background:linear-gradient(180deg,#5b87ef,#234fbd);border-radius:6px 6px 2px 2px}
-  .fd-note{margin-top:8px;text-align:center;color:#7180a6;font-size:10.5px}
-  @media(max-width:560px){.fd-top{grid-template-columns:66px 1fr}.fd-char{width:66px;height:88px}.fd-talk{font-size:13px}}
-  .mascot-wrap { position: relative; margin-top: 10px; height: 240px; }
-  .mascot { position: absolute; right: -34px; bottom: -84px; width: 230px; height: auto; }
-  .bubble { position: absolute; left: 0; top: 4px; max-width: 170px; margin: 0; background: #fff; color: #0f1d44; border: 2px solid var(--gold); border-radius: 20px; padding: 12px 14px; font-weight: 700; font-size: 14.5px; line-height: 1.45; }
-  @media (max-width: 1179px) {
-    .hero2 .wrap2 { grid-template-columns: minmax(0, 1fr) 440px; grid-template-areas: "intro chat" "tiles chat" "banner chat" "side side"; }
-    .help { grid-template-columns: repeat(4, 1fr); } .mascot-wrap { height: 200px; }
-  }
-  @media (max-width: 899px) {
-    .hero2 { padding: 40px 0 64px; }
-    .hero2 .wrap2 { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "chat" "tiles" "side" "banner"; }
-    .hero2 .live { height: 600px; } .tiles { grid-template-columns: repeat(2, 1fr); } .help { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 560px) { .help { grid-template-columns: 1fr; } .banner { grid-template-columns: 1fr; } .mascot { right: -22px; width: 190px; bottom: -70px; } .mascot-wrap { height: 190px; } }
-
-  /* sections */
-  section { padding: 88px 0; }
-  .lede-2 { margin-top: 16px; color: var(--muted); max-width: 36em; }
-  .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 44px; border-top: 1px solid var(--line); }
-  .trio > div { padding: 28px 28px 0 0; }
-  .trio > div + div { padding-left: 28px; border-left: 1px solid var(--line); }
-  .trio p { margin-top: 10px; color: var(--muted); }
-  @media (max-width: 800px) { .trio { grid-template-columns: 1fr; } .trio > div, .trio > div + div { padding: 24px 0; border-left: none; border-top: 1px solid var(--line); } .trio > div:first-child { border-top: none; } }
-
-  .how { background: var(--navy); color: var(--on-navy); }
-  .how .lede-2 { color: var(--on-navy-muted); }
-  .steps { list-style: none; counter-reset: s; padding: 0; margin: 44px 0 0; display: grid; gap: 0; }
-  .steps li { counter-increment: s; display: grid; grid-template-columns: 56px 1fr; gap: 8px 20px; padding: 28px 0; border-top: 1px solid #3a4470; }
-  .steps li::before { content: counter(s); grid-row: span 2; font: 700 32px/1 var(--serif); color: var(--gold-soft); }
-  .steps h3 { color: var(--on-navy); }
-  .steps p { color: var(--on-navy-muted); max-width: 40em; }
-  .say { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-  .say span { background: #232b52; border: 1px solid #3a4470; border-radius: 999px; padding: 6px 14px; font-size: 14.5px; color: var(--on-navy); }
-
-  .feat { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; }
-  .feat > div { padding: 24px 0; border-top: 1px solid var(--line); }
-  .feat p { margin-top: 6px; color: var(--muted); }
-  @media (max-width: 800px) { .feat { grid-template-columns: 1fr; } }
-
-  .price-wrap { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .plan { padding: 32px 32px 36px 0; }
-  .plan + .plan { padding-left: 32px; padding-right: 0; border-left: 1px solid var(--line); }
-  .plan .amt { font: 700 clamp(40px, 6vw, 56px)/1.1 var(--serif); margin-top: 14px; }
-  .plan .amt small { font: 400 16px var(--sans); color: var(--muted); margin-left: 6px; }
-  .plan ul { list-style: none; padding: 0; margin: 22px 0 0; }
-  .plan li { padding: 9px 0; border-bottom: 1px solid var(--line); }
-  .plan li:last-child { border-bottom: none; }
-  .terms { margin-top: 8px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15.5px; display: grid; gap: 6px; }
-  @media (max-width: 700px) { .price-wrap { grid-template-columns: 1fr; } .plan, .plan + .plan { padding: 28px 0; border-left: none; } .plan + .plan { border-top: 1px solid var(--line); } }
-
-  .faq { margin-top: 36px; border-top: 1px solid var(--line); max-width: 820px; }
-  details { border-bottom: 1px solid var(--line); }
-  summary { cursor: pointer; padding: 20px 36px 20px 0; font: 700 18px/1.5 var(--serif); list-style: none; position: relative; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: '+'; position: absolute; right: 4px; top: 16px; font: 400 26px/1 var(--sans); color: var(--muted); }
-  details[open] summary::after { content: '−'; }
-  details p { padding: 0 0 22px; color: var(--muted); max-width: 42em; }
-
-  .apply { background: var(--navy); color: var(--on-navy); }
-  .apply .grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: start; }
-  .apply .lede-2 { color: var(--on-navy-muted); }
-  @media (max-width: 880px) { .apply .grid { grid-template-columns: 1fr; gap: 32px; } }
-  form { display: grid; gap: 18px; }
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 560px) { .two { grid-template-columns: 1fr; } }
-  label { display: block; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-  label .opt { font-weight: 400; color: var(--on-navy-muted); }
-  input[type=text], input[type=tel], input[type=email], select, textarea { width: 100%; min-height: 50px; padding: 11px 14px; border-radius: 8px; border: 1.5px solid #4a5480; background: #12172f; color: var(--on-navy); font: 400 16px var(--sans); }
-  textarea { min-height: 110px; resize: vertical; }
-  select option { background: #12172f; color: #f4f1e6; }
-  input::placeholder, textarea::placeholder { color: #8a90ad; }
-  .agree { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: var(--on-navy-muted); }
-  .agree a { color: var(--gold-soft); }
-  .agree input { width: 24px; height: 24px; flex-shrink: 0; margin-top: 3px; accent-color: var(--gold); }
-  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-  .err { color: #ffb4a0; font-size: 15px; min-height: 1.4em; }
-  .ok { border: 1.5px solid var(--gold); border-radius: 10px; padding: 28px; }
-  .ok h3 { color: var(--gold-soft); }
-  .testmode { margin-top: 14px; font-size: 14px; color: var(--on-navy-muted); }
-  .fine { font-size: 14px; color: var(--on-navy-muted); }
-
-  footer { padding: 40px 0 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
-  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; }
-  footer p + p { margin-top: 4px; }
-  [hidden] { display: none !important; }
-
-  /* 사진 첨부 */
-  .live-bar .att { background: #fff; border: 1.5px solid #bdb99f; }
-  .live-bar .att[hidden] { display: none; }
-  .hero2 .live-bar .att { background: #f1f5fe; border-color: #c5d5f6; }
-  .limgprev { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #f4f1e6; border-top: 1px solid #cfcbb8; font-size: 13px; line-height: 1.4; color: #4a5068; flex-shrink: 0; }
-  .limgprev[hidden] { display: none; }
-  .hero2 .limgprev { background: #fff; border-top: 1px solid #d3def5; }
-  .limgprev img { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
-  .limgprev span { flex: 1; min-width: 0; }
-  .limgprev button { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #bdb99f; background: #fff; color: #1b2340; font-size: 16px; cursor: pointer; }
-  .lbub.me .uimg { display: block; width: 100%; max-width: 220px; height: auto; border-radius: 10px; margin: 0 0 6px; }
+:root{--ink:#11234c;--pink:#ff3f7f;--pink2:#ff6d9c;--blue:#4d7dff;--teal:#17b7b2;--gold:#ffb21a;--muted:#69748d;--line:#ece8ef;--soft:#fff6f9;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Noto Sans KR",system-ui,sans-serif;color:var(--ink);background:#fff;word-break:keep-all;line-height:1.55}a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 40px));margin:auto}.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(235,231,239,.9)}.topin{min-height:72px;display:flex;align-items:center;gap:28px}.brand{display:flex;align-items:center;gap:10px;font-size:25px;font-weight:900;letter-spacing:-1.2px}.logoheart{font-size:30px;line-height:1;color:var(--pink)}.brand small{display:block;font-size:9px;font-weight:600;color:#8d94a4;letter-spacing:0}.nav{margin-left:auto;display:flex;align-items:center;gap:25px;font-size:14px;font-weight:700}.nav a:not(.btn){color:#47536c}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 26px;border-radius:999px;font-size:16px;font-weight:900;border:0;cursor:pointer}.primary{background:linear-gradient(135deg,var(--pink),#ff2e6f);color:#fff;box-shadow:0 14px 34px rgba(255,63,127,.22)}.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.hero{overflow:hidden;background:radial-gradient(circle at 72% 17%,#ffe9f0 0,#fff7f4 38%,#fff 73%)}.hero-in{min-height:625px;display:grid;grid-template-columns:1.03fr .97fr;gap:28px;align-items:center;padding:48px 0 26px}.hero-copy{padding-bottom:20px}.eyebrow{font-weight:900;color:var(--pink);margin-bottom:12px}.hero h1{font-size:clamp(43px,5.8vw,72px);line-height:1.12;letter-spacing:-3.4px;margin:0}.hero h1 em{font-style:normal;color:var(--pink)}.hero .lead{font-size:20px;color:#58627a;margin:22px 0 0;max-width:590px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:29px}.checks{display:flex;gap:16px;flex-wrap:wrap;margin-top:21px;color:#6f7890;font-size:13px}.checks span:before{content:"●";color:var(--pink);font-size:9px;margin-right:7px}
+.visual{position:relative;min-height:525px}.ara{position:absolute;left:2%;bottom:-4px;width:61%;max-width:400px;filter:drop-shadow(0 25px 32px rgba(48,35,63,.15))}.ara img{display:block;width:100%}.bubble{position:absolute;left:5%;top:2%;background:#fff;border:1px solid #f2e8ed;border-radius:28px 28px 28px 8px;padding:16px 20px;max-width:230px;font-size:15px;font-weight:900;box-shadow:0 16px 35px rgba(33,39,67,.10)}.tasks{position:absolute;right:0;top:8%;width:53%;display:grid;gap:9px}.task{display:grid;grid-template-columns:44px 1fr 18px;gap:11px;align-items:center;background:rgba(255,255,255,.98);border:1px solid #f0e9ef;border-radius:16px;padding:12px 13px;box-shadow:0 12px 28px rgba(32,37,64,.08)}.ic{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;font-size:21px}.p{background:#ffe7ef}.b{background:#eaf0ff}.o{background:#fff0dd}.y{background:#fff6d8}.task b{font-size:13px}.task small{display:block;font-size:11px;color:#7b8499}.task i{font-style:normal;color:#c0c4cf}
+.industry{border-block:1px solid #f2eef3;background:#fff}.industry-in{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}.industry-in strong{font-size:12px;color:#9399a7}.industry-list{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;color:#7d8597;font-weight:700}
+.section{padding:82px 0}.soft{background:linear-gradient(180deg,#fff9fb,#fff)}.kicker{font-weight:900;color:var(--pink);margin-bottom:7px}.section h2{font-size:clamp(31px,4vw,48px);line-height:1.22;letter-spacing:-2px;margin:0}.sub{color:var(--muted);margin-top:10px}.feature-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:30px}.feature{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 15px;min-height:185px}.feature .ic{margin-bottom:14px}.feature h3{margin:0 0 8px;font-size:17px}.feature p{margin:0;color:var(--muted);font-size:13px}
+.flow{display:grid;grid-template-columns:.85fr 1.15fr;gap:38px;align-items:center;background:linear-gradient(135deg,#f6fbff,#fff2f7);border:1px solid #edf0f5;border-radius:28px;padding:38px}.steps{display:flex;align-items:center;justify-content:space-between;gap:8px}.step{text-align:center;min-width:72px}.step i{display:grid;place-items:center;width:64px;height:64px;margin:auto;background:#fff;border-radius:19px;font-size:27px;font-style:normal;box-shadow:0 8px 18px rgba(35,40,69,.06)}.step b{display:block;font-size:13px;margin-top:6px}.arr{color:#c8cbd4;font-size:22px}
+.morning{display:grid;grid-template-columns:.8fr 1.2fr;gap:34px;align-items:center}.briefcards{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.brief{background:#fff;border:1px solid var(--line);border-radius:17px;padding:17px 12px;min-height:160px;box-shadow:0 12px 28px rgba(28,35,66,.05)}.brief span{display:block;color:#707b90;font-size:11px}.brief b{display:block;font-size:23px;margin-top:5px}.brief.hot b{color:var(--pink)}
+.demo{display:grid;grid-template-columns:.7fr 1.3fr;gap:36px;align-items:center}.screen{background:#f7f9fd;border:1px solid #e3e7ef;border-radius:24px;padding:14px;box-shadow:0 24px 60px rgba(31,35,62,.11)}.screen iframe{display:block;width:100%;height:620px;border:0;border-radius:16px;background:#071528}.callout{margin-top:20px;padding:18px;background:#fff5f8;border:1px solid #ffe0e9;border-radius:17px;font-weight:800}
+.cta{background:linear-gradient(135deg,#142a5a,#24376c);color:#fff;border-radius:28px;padding:40px;display:flex;align-items:center;justify-content:space-between;gap:24px}.cta h2{font-size:clamp(29px,4vw,45px);margin:0;line-height:1.2}.cta em{font-style:normal;color:#ff7aaa}
+.formwrap{background:#fff8fb}.formbox{max-width:850px;margin:26px auto 0;background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 18px 50px rgba(31,35,62,.07)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.wide{grid-column:1/-1}.formbox label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}.formbox input,.formbox select,.formbox textarea{width:100%;border:1px solid #dfe3eb;background:#fbfcff;border-radius:12px;padding:13px 14px;font:inherit;color:var(--ink)}.formbox textarea{min-height:90px;resize:vertical}.agree{display:flex!important;gap:9px;align-items:flex-start;font-weight:500!important;color:#70788b}.agree input{width:auto;margin-top:4px}.status{min-height:22px;margin-top:10px;color:#56627a;font-size:13px}.done{padding:20px;background:#effcf7;border:1px solid #bfead7;border-radius:14px}.footer{border-top:1px solid var(--line);padding:32px 0 44px;color:#7b8293;font-size:12px}.footerin{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:950px){.nav a:not(.btn){display:none}.hero-in,.flow,.morning,.demo{grid-template-columns:1fr}.visual{min-height:510px}.feature-grid{grid-template-columns:repeat(3,1fr)}.briefcards{grid-template-columns:repeat(2,1fr)}.screen iframe{height:690px}.arr{display:none}.steps{flex-wrap:wrap;justify-content:center}.demo-copy{order:0}.screen{order:1}}
+@media(max-width:580px){.wrap{width:min(100% - 24px,1180px)}.topin{min-height:62px}.brand{font-size:21px}.nav{gap:8px}.nav .btn{min-height:42px;padding:0 14px;font-size:12px}.hero-in{display:block;padding-top:32px}.hero h1{font-size:43px;letter-spacing:-2.3px}.hero .lead{font-size:17px}.visual{min-height:505px;margin-top:18px}.ara{width:70%;left:-10%}.bubble{top:0;left:0;font-size:12px;max-width:170px;padding:12px 14px}.tasks{width:64%;right:-2%;top:12%}.task{grid-template-columns:34px 1fr;padding:9px;gap:7px}.task .ic{width:34px;height:34px;font-size:17px}.task i{display:none}.task b{font-size:11px}.task small{font-size:9px}.industry-in{padding:14px 0}.industry-list{gap:11px;font-size:12px}.section{padding:58px 0}.feature-grid{grid-template-columns:1fr}.flow{padding:23px}.briefcards{grid-template-columns:1fr 1fr}.brief{min-height:140px}.screen iframe{height:620px}.cta{display:block;padding:27px}.cta .btn{width:100%;margin-top:20px}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.formbox{padding:20px}}
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><g id="aide-art">
-<circle cx="160" cy="176" r="150" fill="#262f55"/>
-<path d="M30.1 251.0 A150 150 0 0 1 108.7 35.0" fill="none" stroke="#c9a227" stroke-width="5" stroke-linecap="round"/>
-<polygon points="120.0,30.9 108.0,44.9 101.9,28.0" fill="#c9a227"/>
-<path d="M98 200 C92 118 128 82 160 82 C194 82 230 118 222 200 C224 226 216 246 202 252 L118 252 C104 246 96 226 98 200Z" fill="#2c2433"/>
-<path d="M146 236 L146 270 C146 284 174 284 174 270 L174 236Z" fill="#e6b890"/>
-<path d="M44 372 C44 304 86 272 160 272 C234 272 276 304 276 372Z" fill="#f4f1e6"/>
-<path d="M130 272 L160 332 L190 272 C180 276 168 280 160 280 C152 280 140 276 130 272Z" fill="#1b2340"/>
-<path d="M130 272 L116 300 L146 322Z" fill="#e4dfc9"/>
-<path d="M190 272 L204 300 L174 322Z" fill="#e4dfc9"/>
-<circle cx="214" cy="306" r="7" fill="none" stroke="#c9a227" stroke-width="3"/>
-<polygon points="214,296 221,303 207,303" fill="#c9a227"/>
-<ellipse cx="160" cy="186" rx="54" ry="62" fill="#f4d0ae"/>
-<ellipse cx="106" cy="194" rx="8" ry="13" fill="#f0c6a2"/>
-<ellipse cx="214" cy="194" rx="8" ry="13" fill="#f0c6a2"/>
-<path d="M104 176 C106 128 134 104 164 104 C196 104 216 130 216 176 C204 146 184 132 156 134 C132 136 114 152 104 176Z" fill="#2c2433"/>
-<path d="M118 150 C130 128 150 120 170 122" fill="none" stroke="#4a3d52" stroke-width="3" stroke-linecap="round"/>
-<path d="M126 176 Q140 169 152 175" fill="none" stroke="#2c2433" stroke-width="3.2" stroke-linecap="round"/>
-<path d="M168 175 Q180 169 194 176" fill="none" stroke="#2c2433" stroke-width="3.2" stroke-linecap="round"/>
-<ellipse cx="140" cy="190" rx="5.5" ry="7" fill="#2c2433"/>
-<ellipse cx="180" cy="190" rx="5.5" ry="7" fill="#2c2433"/>
-<circle cx="142" cy="187" r="1.8" fill="#fff"/><circle cx="182" cy="187" r="1.8" fill="#fff"/>
-<circle cx="124" cy="212" r="9" fill="#f3a493" opacity="0.45"/>
-<circle cx="196" cy="212" r="9" fill="#f3a493" opacity="0.45"/>
-<path d="M160 197 q-3 9 1 12" fill="none" stroke="#d7a483" stroke-width="2.4" stroke-linecap="round"/>
-<path d="M146 220 Q160 233 174 220" fill="none" stroke="#b5594c" stroke-width="3.4" stroke-linecap="round"/>
-<path d="M102 182 C98 96 222 96 218 182" fill="none" stroke="#c9a227" stroke-width="5.5" stroke-linecap="round"/>
-<rect x="92" y="178" width="17" height="36" rx="8" fill="#c9a227"/>
-<path d="M100 212 C104 246 136 250 152 238" fill="none" stroke="#c9a227" stroke-width="3.4" stroke-linecap="round"/>
-<circle cx="153" cy="238" r="5.5" fill="#c9a227"/>
-</g></defs></svg>
-
 <header class="top">
-  <div class="wrap">
-    <a class="brand" href="#top" aria-label="Encore Marketing System 처음으로">
-      <svg viewBox="0 0 60 60" aria-hidden="true"><path d="M14,34 A16,16 0 1 1 42,20" fill="none" stroke="#c9a227" stroke-width="3.4" stroke-linecap="round"/><polygon points="42,15 47.5,21.5 37,21.5" fill="#c9a227"/><circle cx="14" cy="34" r="2.2" fill="#c9a227"/></svg>
-      Encore
-    </a>
+  <div class="wrap topin">
+    <a class="brand" href="#top"><span class="logoheart">♥</span><span>Encore<small>사장님의 든든한 AI 비서</small></span></a>
     <nav class="nav" aria-label="메뉴">
-      <a href="#how">사용 방법</a>
-      <a href="#features">하는 일</a>
-      <a href="#pricing">요금</a>
-      <a href="#faq">자주 묻는 질문</a>
-      <a class="btn btn-gold" href="#apply">상담 신청</a>
+      <a href="#features">주요 기능</a><a href="#flow">고객 선순환</a><a href="#demo">실제 화면</a>
+      <a class="btn primary" href="#apply">무료로 시작하기 →</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
-  <section class="hero2" aria-labelledby="h-hero">
-    <div class="wrap2">
-      <div class="h-intro">
-        <span class="pill">소상공인 전용 AI 마케팅 비서</span>
-        <h1 id="h-hero">사장님은 <em>장사만</em> 하세요.<br>AI가 <em>마케팅</em>을<br>돕습니다.</h1>
-        <ul class="trio3">
-          <li>매출을 <b>챙기고</b></li>
-          <li>구글 별점 리뷰에 <b>답하고</b></li>
-          <li>단골을 <b>챙깁니다</b></li>
-        </ul>
-        <p class="lede">AI 시대, 이제 작은 가게에도 AI 비서가 필요합니다.<br>한국어로 말하면 고객용 영어 문자, Google 리뷰 답글, 홍보 문구를 바로 도와드립니다.</p>
-        <div class="cta">
-          <a class="btn btn-gold" href="#apply">무료 상담 신청</a>
-          <a class="btn btn-line" href="#how">어떻게 쓰는지 보기</a>
-        </div>
-        <p class="note">파일럿 매장을 모집하고 있어요. 설치는 저희가 같이 도와드립니다.</p>
-      </div>
-
-      <div class="h-tiles tiles">
-        <div class="tile"><svg viewBox="0 0 32 32" fill="none" stroke="#ff6b7f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13v6l5 1 12 6V6L10 12l-5 1z"/><path d="M10 20l1.5 6h3L13 22"/><path d="M26 11a6 6 0 0 1 0 10"/></svg><b>가게 홍보</b><span>세일 문자<br>구글 게시물 문구</span></div>
-        <div class="tile"><svg viewBox="0 0 32 32" fill="none" stroke="#6ea8ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M4 26c0-5 3.6-8 8-8s8 3 8 8"/><path d="M21 14a3.5 3.5 0 1 0 0-7"/><path d="M23 19c3 .6 5 3 5 7"/></svg><b>고객 관리</b><span>단골 포인트<br>리뷰 답글 초안</span></div>
-        <div class="tile"><svg viewBox="0 0 32 32" fill="none" stroke="#4fd18b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="16" width="5" height="10" rx="1"/><rect x="13" y="9" width="5" height="17" rx="1"/><rect x="21" y="5" width="5" height="21" rx="1"/></svg><b>매출 정리</b><span>매출·지출 기록<br>이유 후보 정리</span></div>
-        <div class="tile"><svg viewBox="0 0 32 32" fill="none" stroke="#ffb347" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 28s9-7.5 9-15a9 9 0 1 0-18 0c0 7.5 9 15 9 15z"/><path d="M16 9.5l1.7 3.4 3.8.5-2.8 2.6.7 3.7-3.4-1.8-3.4 1.8.7-3.7-2.8-2.6 3.8-.5z"/></svg><b>구글 관리</b><span>리뷰 분석<br>답글·게시물 문구</span></div>
-      </div>
-
-      <div class="h-banner banner">
-        <div><svg viewBox="0 0 48 48" fill="none" stroke="#ffc72c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20l3-10h30l3 10"/><path d="M6 20a6 6 0 0 0 12 0 6 6 0 0 0 12 0 6 6 0 0 0 12 0"/><path d="M9 26v14h30V26"/><rect x="20" y="30" width="8" height="10"/></svg><span>오늘도<br>사장님과 <b>함께합니다.</b></span></div>
-        <div><svg viewBox="0 0 48 48" fill="none" stroke="#ffc72c" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 42V30M16 42V24M26 42V32M36 42V16"/><path d="M8 20l10-6 8 5 12-10"/><path d="M32 9h6v6"/></svg><span>더 효율적인<br><b>가게 운영</b>을 시작하세요.</span></div>
-      </div>
-
-      <div class="h-chat">
-        <div class="live" role="region" aria-label="Encore 공개 데모 아라" style="overflow:hidden;background:#071528;">
-          <iframe
-            src="https://encore-1093639735550.us-west1.run.app/demo?source=encore-main"
-            title="Encore 데모 아라"
-            loading="eager"
-            allow="clipboard-write"
-            style="width:100%;height:100%;border:0;display:block;background:#071528;"
-          ></iframe>
-        </div>
-        <div class="feature-demo" id="featureDemo" hidden aria-live="polite">
-          <button type="button" class="fd-close" id="featureDemoClose">← 아라와 대화로 돌아가기</button>
-          <div class="fd-top">
-            <img class="fd-char" id="featureDemoChar" alt="Encore 도우미">
-            <div class="fd-talk" id="featureDemoTalk"></div>
-          </div>
-          <div class="fd-card" id="featureDemoCard"></div>
-        </div>
-        <div aria-hidden="true" style="display:none">
-<div class="live" role="region" aria-label="AI 비서와 직접 대화해보기">
-          <div class="live-top"><div class="av"><img src="data:image/webp;base64,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" alt=""></div><div><b>도우미</b><span class="aitag">AI 비서</span><small>우리 가게 마케팅 파트너 · 체험</small></div></div>
-          <div class="msgwrap"><div class="live-msgs" id="lmsgs" role="log" aria-live="polite"></div><button type="button" id="ldown" class="down" aria-label="맨 아래로 이동" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button></div>
-          <div class="live-chips" id="lchips"></div>
-          <div class="limgprev" id="limgprev" hidden></div>
-<form class="live-bar" id="lform" autocomplete="off">
-            <label class="sr" for="linput">비서에게 보낼 말</label>
-            <input type="text" id="linput" maxlength="300" placeholder="궁금한 내용을 입력해 주세요" autocomplete="off">
-            <button type="button" id="latt" class="att" aria-label="사진 첨부"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg></button><input type="file" id="lfile" accept="image/*" hidden>
-<button type="button" id="lmic" class="mic" aria-label="말로 입력" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></svg></button>
-            <button type="submit" class="send" aria-label="보내기"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b2340" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
-          </form>
-          <p class="live-note" id="lnote">체험용 화면이에요. 문자는 실제로 발송되지 않아요. 개인정보나 고객 전화번호는 입력하지 마세요.</p>
-        </div>
-        </div>
-      </div>
-
-      <aside class="h-side" aria-label="도우미가 도와드리는 일">
-        <div class="side-card">
-          <h2>도우미가 도와드리는 일</h2>
-          <div class="help" id="helpMenu">
-            <button type="button" class="help-i c-red" data-help="sms"><span class="ic r">💬</span><div><b>문자 마케팅</b><p>회원 고객에게 세일·이벤트·재방문 문자를 보내요.</p></div></button>
-            <button type="button" class="help-i c-orange" data-help="review"><span class="ic o">⭐</span><div><b>Google 리뷰</b><p>리뷰 요청과 답글로 신뢰도와 신규 고객 유입을 높여요.</p></div></button>
-            <button type="button" class="help-i c-blue" data-help="promo"><span class="ic b">📣</span><div><b>매장 홍보</b><p>Google·Facebook에 신제품·행사 소식을 홍보해요.</p></div></button>
-            <button type="button" class="help-i c-green" data-help="booking"><span class="ic g">📅</span><div><b>예약 관리</b><p>예약 링크부터 확인·확정·리마인드까지 연결해요.</p></div></button>
-            <button type="button" class="help-i c-green" data-help="visits"><span class="ic g">📊</span><div><b>고객 방문 통계</b><p>신규·재방문 고객 흐름을 확인해요.</p></div></button>
-            <button type="button" class="help-i c-blue" data-help="points"><span class="ic b">👥</span><div><b>고객 포인트</b><p>포인트 발급으로 방문 고객을 회원으로 확보해요.</p></div></button>
-            <button type="button" class="help-i c-green" data-help="sales"><span class="ic g">💵</span><div><b>매출 집계</b><p>매출과 지출을 기록하고 흐름을 정리해요.</p></div></button>
-            <button type="button" class="help-i c-blue" data-help="customers"><span class="ic b">🧑‍🤝‍🧑</span><div><b>고객 관리</b><p>회원 고객과 방문 이력을 관리해 재방문을 만들어요.</p></div></button>
-          </div>
-          <div class="help-detail" id="helpDetail" hidden aria-live="polite"></div>
-          <p class="side-note">궁금한 기능을 클릭해 보세요. Encore가 실제로 어떻게 마케팅을 돕는지 보여드립니다.</p>
-        </div>
-        <div class="mascot-wrap">
-          <p class="bubble">사장님의 성장을 응원하는 AI 비서 도우미예요!</p>
-          <img class="mascot" src="data:image/webp;base64,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
-          " alt="">
-        </div>
-      </aside>
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <div class="eyebrow">사장님의 하루가 더 가벼워지도록</div>
+      <h1>사장님은<br><em>장사만 하세요.</em></h1>
+      <p class="lead"><b>기억하고 챙기는 일은 AI 비서 아라가 합니다.</b><br>예약, 재방문 고객, 이벤트, 문자, 리뷰까지 아라가 매일 먼저 알려드립니다.</p>
+      <div class="actions"><a class="btn primary" href="#demo">AI 비서 아라 만나보기 →</a><a class="btn ghost" href="#flow">어떻게 돕는지 보기</a></div>
+      <div class="checks"><span>설치 없이 바로 사용</span><span>한국어로 쉽게 사용</span><span>매장에 맞춰 설정</span></div>
     </div>
-  </section>
-
-  <section id="service" aria-labelledby="h-why">
-    <div class="wrap">
-      <h2 id="h-why">영어가 어려워서 미뤄둔 일, 말로 시키면 됩니다</h2>
-      <p class="lede-2">구글에 달린 영어 리뷰, 단골에게 보내고 싶은 세일 문자, 쌓아만 둔 고객 번호. 사장님은 한국어로 시키고 확인만 하세요.</p>
-      <div class="trio">
-        <div><h3>영어를 몰라도 돼요</h3><p>고객에게 나가는 영어 문자와 답글에는 한국어 뜻이 함께 보여요. 무슨 내용이 나가는지 읽고 승인하세요.</p></div>
-        <div><h3>승인해야만 나가요</h3><p>AI는 초안만 만들어요. 문자 발송과 구글 게시는 사장님이 [승인]을 눌러야 해요.</p></div>
-        <div><h3>고객 정보는 가게 것이에요</h3><p>문자는 수신에 동의한 고객에게만 나가고, 동의한 시각과 문구를 기록해요. 다른 매장과 섞이지 않아요.</p></div>
+    <div class="visual">
+      <div class="bubble">사장님!<br>오늘도 제가 먼저 챙겨드릴게요. 💕</div>
+      <div class="ara"><img src="data:image/webp;base64,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
+          " alt="Encore AI 비서 아라"></div>
+      <div class="tasks">
+        <div class="task"><span class="ic p">📅</span><div><b>오늘 예약 고객</b><small>4명이 있어요.</small></div><i>›</i></div>
+        <div class="task"><span class="ic b">👥</span><div><b>재방문 시기 고객</b><small>8명이 있어요.</small></div><i>›</i></div>
+        <div class="task"><span class="ic o">🎁</span><div><b>다가오는 이벤트</b><small>어머니날 10일 전</small></div><i>›</i></div>
+        <div class="task"><span class="ic y">⭐</span><div><b>리뷰 요청 대상</b><small>5명이 있어요.</small></div><i>›</i></div>
+        <div class="task"><span class="ic b">💬</span><div><b>오늘 보낼 문자</b><small>초안을 준비해드릴게요.</small></div><i>›</i></div>
       </div>
-    </div>
-  </section>
-
-  <section class="how" id="how" aria-labelledby="h-how">
-    <div class="wrap">
-      <h2 id="h-how">계산대에서는 번호만, 나머지는 말로</h2>
-      <p class="lede-2">손님 데이터는 매장 태블릿에서 받고, 일은 폰에서 비서에게 시켜요.</p>
-      <ol class="steps">
-        <li>
-          <h3>계산대에서 전화번호만 받아요</h3>
-          <p>손님이 태블릿에 번호를 입력하면 포인트가 쌓여요. 가입할 때 문자 수신 동의를 함께 받아서 기록해둬요. 쓰시던 POS는 바꾸지 않아도 돼요.</p>
-        </li>
-        <li>
-          <h3>비서에게 말로 시켜요</h3>
-          <p>카톡처럼 한국어로 말하면 돼요. 정해진 문장이 아니어도 알아들어요.</p>
-          <div class="say"><span>안 온 단골 몇 명이야?</span><span>새 리뷰 답글 써줘</span><span>오늘 수익 1240 지출 380</span><span>이번 달 수익이 왜 적어?</span></div>
-        </li>
-        <li>
-          <h3>확인하고 승인해요</h3>
-          <p>초안 카드를 읽고 [승인]을 누르면 문자가 나가고, 구글 프로필을 연결했다면 답글도 올라가요. 고치고 싶으면 "더 정중하게"처럼 말로 바꾸세요.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section id="features" aria-labelledby="h-feat">
-    <div class="wrap">
-      <h2 id="h-feat">구글 하나만 연결해도, 비서가 이만큼 해요</h2>
-      <p class="lede-2">사장님은 한국어로 말하고, 확인하고 [승인]만 누르세요. 나머지는 비서가 준비해요.</p>
-      <div class="cases">
-        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">1</span><span class="st ok">지금 가능</span><span class="st soon">자동 게시는 준비 중</span></div><h3>구글 리뷰를 읽고, 답까지</h3><div class="ask">“새 리뷰 분석해줘”</div><p>칭찬과 불만을 모아서 이번 주에 고칠 일을 알려드려요. 좋은 리뷰도 나쁜 리뷰도 모두 정중한 영어 답글 초안과 한국어 뜻을 만들어요. 사장님이 읽고 올리세요.</p></article>
-        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">2</span><span class="st ok">문구 지금 가능</span><span class="st soon">자동 게시는 준비 중</span></div><h3>구글 게시물, 문구는 비서가</h3><div class="ask">“이번 주말 20% 세일 게시물 써줘”</div><p>영어 문구와 한국어 뜻을 만들어요. 사진은 사장님이 폰에서 고르세요. 가게 소식이 꾸준히 올라가게 도와드려요.</p></article>
-        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">3</span><span class="st ok">문구 지금 가능</span><span class="st after">문자는 승인 후</span></div><h3>구글 리뷰 부탁, 모든 손님께 똑같이</h3><div class="ask">“단골들께 리뷰 부탁해줘”</div><p>계산대 QR 문구, 영수증 문구, 문자 초안을 만들어요. 문자는 동의한 모든 손님께 같은 링크로 가요. 별점을 보고 거르지 않고, 리뷰 대가로 쿠폰을 주지 않아요.</p></article>
-        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">4</span><span class="st soon">준비 중</span></div><h3>온라인 예약 접수</h3><div class="ask">“예약 링크 만들어줘”</div><p>예약 링크를 구글 프로필과 문자에 달아두고, 예약이 들어오면 한국어로 알려드려요. 미용실, 서비스업 매장에 특히 잘 맞아요.</p></article>
-        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">5</span><span class="st after">승인 후</span></div><h3>문자 보내기</h3><div class="ask">“20% 세일 문자 보내”</div><p>영어 문자와 한국어 뜻, 몇 명에게 나가는지 보여드려요. 사장님이 [승인]해야 나가고, 수신에 동의한 고객에게만 가요. 수신거부 안내는 자동으로 붙어요.</p></article>
-        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">6</span><span class="st ok">지금 가능</span></div><h3>매출·지출 정리</h3><div class="ask">“오늘 수익 1240 지출 380”</div><p>숫자를 기록하고, 이번 달이 지난달보다 적은 이유 후보를 정리해요. 세금 신고용이 아니라 마케팅 판단용이에요.</p></article>
-        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">7</span><span class="st ok">지금 가능</span></div><h3>마케팅 상담</h3><div class="ask">“비 오는 주말에 손님 부르는 방법?”</div><p>우리 가게의 업종, 영업시간, 말투를 반영한 아이디어를 드려요. 해보고 결과를 말씀해주시면 다음 제안에 반영해요. 세금, 법률, 의료는 전문가에게 확인하도록 안내해요.</p></article>
-        <article class="case"><div class="case-top"><span class="case-n" aria-hidden="true">8</span><span class="st ok">포인트 지금 가능</span><span class="st after">문자는 승인 후</span></div><h3>단골 포인트와 쿠폰</h3><div class="ask">계산대에서 번호만 입력</div><p>방문마다 포인트가 쌓이고, 목표에 닿으면 쿠폰이 나가요. 회원코드는 문자로 가서 손님이 앱을 설치할 필요가 없어요.</p></article>
-      </div>
-      <div class="promise">
-        <h3>리뷰는 정직하게 쌓여야 오래 가요</h3>
-        <ul>
-          <li>리뷰 부탁은 모든 손님께 똑같이 보내요. 별점을 보고 거르지 않아요.</li>
-          <li>리뷰를 쓰면 쿠폰을 주는 일은 없어요. (구글이 허용하지 않아요)</li>
-          <li>별점이나 순위가 오른다고 약속하지 않아요. 리뷰 수와 답글 속도를 챙겨드려요.</li>
-        </ul>
-      </div>
-      <p class="fine">화면과 예시는 이해를 돕기 위한 거예요. 구글 자동 게시, 예약 접수, 문자 발송은 승인과 준비가 끝나는 대로 파일럿 매장부터 순서대로 열려요.</p>
-    </div>
-  </section>
-
-  <section id="pricing" aria-labelledby="h-price" style="padding-top:0">
-    <div class="wrap">
-      <h2 id="h-price">요금</h2>
-      <p class="lede-2">매장 한 곳 기준 월 요금이에요.</p>
-      <div class="price-wrap">
-        <div class="plan">
-          <h3>Starter</h3>
-          <div class="amt">$49<small>/ 매장 · 월</small></div>
-          <ul><li>포인트와 쿠폰 자동화</li><li>이메일 알림</li><li>QR코드 디자인 제작</li><li>기본 브랜드 적용</li></ul>
-        </div>
-        <div class="plan">
-          <h3>Growth</h3>
-          <div class="amt">$89<small>/ 매장 · 월</small></div>
-          <ul><li>Starter의 모든 기능</li><li>문자 알림</li><li>브랜드 완전 맞춤</li><li>월간 리포트</li><li>AI 비서 대화</li></ul>
-        </div>
-      </div>
-      <div class="terms">
-        <p>설치비 $149 (1회)</p>
-        <p>매장이 3곳 이상이면 2번째 매장부터 15% 할인돼요.</p>
-        <p>문자는 월 기본 발송량이 포함되고, 초과분은 건당 요금이 붙어요.</p>
-        <p>파일럿 매장 조건은 상담할 때 안내해드려요.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" aria-labelledby="h-faq" style="padding-top:0">
-    <div class="wrap">
-      <h2 id="h-faq">자주 묻는 질문</h2>
-      <div class="faq">
-        <details><summary>영어를 전혀 몰라도 쓸 수 있나요?</summary><p>네. 사장님은 한국어로 말하고, 고객에게 나가는 영어에는 한국어 뜻이 함께 보여요. 다만 중요한 내용은 읽어보고 승인하세요.</p></details>
-        <details><summary>문자가 마음대로 나가나요?</summary><p>아니요. 사장님이 승인해야 나가요. 문자 수신에 동의한 고객에게만, 수신거부 안내를 붙여서 보내요.</p></details>
-        <details><summary>지금 쓰는 POS를 바꿔야 하나요?</summary><p>아니요. POS와 연결하지 않고 쓰는 방식이라 어떤 POS나 금전등록기를 쓰셔도 돼요. 대신 적립할 때 직원이 확인하고 눌러요.</p></details>
-        <details><summary>구글 프로필은 어떻게 연결하나요?</summary><p>사장님이 구글 로그인 화면에서 한 번 허용하면 돼요. 비밀번호는 저희가 받지 않고, 구글 설정에서 언제든 해제할 수 있어요. 인증을 마친 프로필이 필요해요.</p></details>
-        <details><summary>갖고 있는 고객 명단을 쓸 수 있나요?</summary><p>가져올 수 있어요. 다만 문자 수신 동의 기록이 없는 고객에게는 마케팅 문자를 보낼 수 없어서, 동의를 새로 받아야 해요.</p></details>
-        <details><summary>AI가 틀린 답글을 쓰면 어떡하나요?</summary><p>그래서 승인 단계가 있어요. 낮은 별점 답글처럼 민감한 건 꼭 읽어보고 승인하세요. AI는 사장님이 말하지 않은 환불이나 할인을 약속하지 않도록 만들었어요.</p></details>
-        <details><summary>고객 개인정보는 어떻게 다루나요?</summary><p>매장별로 나눠서 보관하고, AI에게는 고객 전화번호를 보내지 않고 고객 수 같은 요약만 보내도록 설계했어요. 자세한 내용은 개인정보 처리방침에 안내합니다.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <section class="apply" id="apply" aria-labelledby="h-apply">
-    <div class="wrap grid">
-      <div>
-        <h2 id="h-apply">무료 상담 신청</h2>
-        <p class="lede-2">매장 이름과 연락처를 남겨주시면 연락드릴게요. 데모는 매장에서 직접 보여드려요.</p>
-        <p class="fine" style="margin-top:20px">문의: tmartbakersfield@gmail.com · 661-373-7950</p>
-      </div>
-      <div>
-        <form id="apply-form" novalidate>
-          <div class="hp" aria-hidden="true"><label for="website">웹사이트 (비워두세요)</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
-          <div class="two">
-            <div><label for="store">매장 이름</label><input type="text" id="store" name="store" autocomplete="organization" required></div>
-            <div><label for="owner">사장님 성함</label><input type="text" id="owner" name="owner" autocomplete="name" required></div>
-          </div>
-          <div class="two">
-            <div><label for="phone">전화번호</label><input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required></div>
-            <div><label for="email">이메일 <span class="opt">(선택)</span></label><input type="email" id="email" name="email" autocomplete="email"></div>
-          </div>
-          <div class="two">
-            <div><label for="type">업종</label>
-              <select id="type" name="type"><option>의류</option><option>뷰티서플라이</option><option>식당, 카페</option><option>마트, 잡화</option><option>기타</option></select></div>
-            <div><label for="plan">관심 있는 요금제</label>
-              <select id="plan" name="plan"><option>아직 잘 모르겠어요</option><option>Starter ($49)</option><option>Growth ($89)</option></select></div>
-          </div>
-          <div><label for="google">구글 비즈니스 프로필</label>
-            <select id="google" name="google"><option>있고 인증도 했어요</option><option>있는데 인증은 안 했어요</option><option>없어요</option><option>잘 모르겠어요</option></select></div>
-          <div><label for="message">문의 내용 <span class="opt">(선택)</span></label><textarea id="message" name="message"></textarea></div>
-          <label class="agree" for="consent"><input type="checkbox" id="consent" name="consent"><span>상담을 위해 전화, 이메일로 연락받는 데 동의합니다. 상담 목적으로만 쓰이고, 언제든 철회할 수 있어요.</span></label>
-          <label class="agree" for="sms"><input type="checkbox" id="sms" name="sms"><span><span lang="en">(Optional) I agree to receive text messages from Encore Marketing System about my consultation request and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help. Consent is not a condition of any purchase or of receiving a consultation. See our <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.</span><br><span lang="ko">(선택) 상담 요청과 서비스 안내 문자를 받겠습니다. 문자 수신은 상담이나 구매의 조건이 아니에요. 언제든 STOP을 보내면 거부할 수 있어요.</span></span></label>
-          <p class="err" id="err" role="alert"></p>
-          <button class="btn btn-gold" type="submit" id="submit">상담 신청하기</button>
-          <p class="testmode" id="testmode" hidden>테스트 모드예요. 아직 신청 내용을 저장할 주소가 연결되지 않아서, 보낸 내용은 이 화면에서만 확인돼요.</p>
-        </form>
-        <div class="ok" id="done" hidden tabindex="-1">
-          <h3>상담 신청이 접수됐어요</h3>
-          <p style="margin-top:10px;color:var(--on-navy-muted)">남겨주신 연락처로 곧 연락드릴게요.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <div>
-      <p>Encore Marketing System</p>
-      <p>tmartbakersfield@gmail.com · 661-373-7950</p>
-    </div>
-    <div>
-      <p><a href="privacy-policy.html">개인정보 처리방침 (Privacy Policy)</a> · <a href="terms.html">이용약관 (Terms)</a> · <a href="opt-in.html">문자 수신 동의 안내 (SMS Opt-In)</a></p>
-      <p lang="en">Text messages: message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help.</p>
-      <p>문자 발송, 구글 연동 같은 일부 기능은 파일럿 매장에서 순서대로 열립니다.</p>
     </div>
   </div>
+</section>
+
+<section class="industry">
+  <div class="wrap industry-in"><strong>다양한 소상공인 매장에 맞게</strong><div class="industry-list"><span>✂ 미용실</span><span>💅 네일샵</span><span>🪷 피부관리실</span><span>🏋 필라테스</span><span>☕ 카페</span><span>🍴 음식점</span><span>🏪 소매점</span></div></div>
+</section>
+
+<section class="section soft" id="features">
+  <div class="wrap">
+    <div class="kicker">AI 비서 아라의 주요 기능</div>
+    <h2>매장의 모든 일을 아라가<br>쉽고 빠르게 도와드립니다.</h2>
+    <p class="sub">사장님이 찾기 전에, 필요한 일부터 먼저 알려주는 매장 운영 비서입니다.</p>
+    <div class="feature-grid">
+      <article class="feature"><span class="ic p">📅</span><h3>예약 비서</h3><p>예약 확인, 리마인드, 전날 확인까지 챙깁니다.</p></article>
+      <article class="feature"><span class="ic b">👥</span><h3>고객 비서</h3><p>재방문할 시기가 된 고객을 자동으로 찾아냅니다.</p></article>
+      <article class="feature"><span class="ic o">🎁</span><h3>이벤트 마케팅</h3><p>기념일과 매장 이벤트 전에 홍보 타이밍을 알려줍니다.</p></article>
+      <article class="feature"><span class="ic b">💬</span><h3>문자 마케팅</h3><p>수신 동의 고객에게 보낼 맞춤 문자를 빠르게 준비합니다.</p></article>
+      <article class="feature"><span class="ic y">⭐</span><h3>리뷰 관리</h3><p>방문 후 리뷰 요청과 답글 초안을 준비합니다.</p></article>
+      <article class="feature"><span class="ic b">📊</span><h3>매출·운영 브리핑</h3><p>오늘 매장 현황과 해야 할 일을 한눈에 정리합니다.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="flow">
+  <div class="wrap flow">
+    <div><div class="kicker">AI가 만드는 단골의 흐름</div><h2>고객이 다시 오는<br><span style="color:var(--pink)">선순환</span>이 만들어집니다.</h2><p class="sub">한 번 오신 고객이 다시 찾을 수 있도록 예약부터 재방문까지 이어줍니다.</p></div>
+    <div class="steps"><div class="step"><i>📅</i><b>예약</b></div><span class="arr">→</span><div class="step"><i>👥</i><b>방문</b></div><span class="arr">→</span><div class="step"><i>⭐</i><b>리뷰</b></div><span class="arr">→</span><div class="step"><i>💬</i><b>문자</b></div><span class="arr">→</span><div class="step"><i>♥</i><b>재방문</b></div></div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="wrap morning">
+    <div><div class="kicker">아라가 아침에 먼저 알려드립니다</div><h2>“사장님,<br>오늘은 이것만 하세요.”</h2><p class="sub">예약, 고객, 이벤트, 리뷰, 문자 타이밍을 한 번에 정리해 보여드립니다.</p></div>
+    <div class="briefcards">
+      <div class="brief"><div>📅</div><span>오늘 예약 확인</span><b>4명</b></div>
+      <div class="brief"><div>👥</div><span>재방문 시기</span><b>8명</b></div>
+      <div class="brief hot"><div>🎁</div><span>어머니날</span><b>10일 전</b></div>
+      <div class="brief"><div>⭐</div><span>리뷰 요청 대상</span><b>5명</b></div>
+      <div class="brief"><div>💬</div><span>오늘 문자</span><b>준비</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="demo">
+  <div class="wrap demo">
+    <div class="demo-copy"><div class="kicker">실제 화면 미리보기</div><h2>복잡하지 않습니다.<br>아라에게 말하면 됩니다.</h2><p class="sub">한국어로 편하게 이야기하면 아라가 매장 운영과 마케팅 업무를 도와드립니다.</p><div class="callout">“사장님이 기억하기 전에, 아라가 먼저 챙깁니다.”</div></div>
+    <div class="screen"><iframe src="https://encore-1093639735550.us-west1.run.app/demo?source=encore-main" title="Encore AI 비서 아라 체험" loading="lazy" allow="clipboard-write"></iframe></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap cta"><div><div class="kicker" style="color:#ff9cbc">Encore AI 비서</div><h2>사장님이 기억하기 전에,<br><em>아라가 먼저 챙깁니다.</em></h2></div><a class="btn primary" href="#apply">무료 상담 신청 →</a></div>
+</section>
+
+<section class="section formwrap" id="apply">
+  <div class="wrap">
+    <div style="text-align:center"><div class="kicker">Encore 시작하기</div><h2>우리 매장에 맞는 AI 비서를 만나보세요.</h2><p class="sub">매장 이름과 연락처를 남겨주시면 데모와 도입 방법을 안내해드립니다.</p></div>
+    <div class="formbox">
+      <form id="apply-form" novalidate>
+        <input id="website" name="website" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off">
+        <div class="grid">
+          <div><label for="store">매장 이름</label><input id="store" name="store" autocomplete="organization" required></div>
+          <div><label for="owner">사장님 성함</label><input id="owner" name="owner" autocomplete="name" required></div>
+          <div><label for="phone">전화번호</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+          <div><label for="email">이메일 (선택)</label><input id="email" name="email" type="email" autocomplete="email"></div>
+          <div><label for="type">업종</label><select id="type" name="type"><option>미용실</option><option>네일샵</option><option>피부관리/스파</option><option>음식점/카페</option><option>소매점</option><option>기타</option></select></div>
+          <div><label for="plan">관심 내용</label><select id="plan" name="plan"><option>AI 비서 데모</option><option>고객 재방문 관리</option><option>예약 관리</option><option>문자/이벤트 마케팅</option><option>전체 기능</option></select></div>
+          <div class="wide"><label for="google">Google 비즈니스 프로필</label><select id="google" name="google"><option>있고 인증도 했어요</option><option>있는데 인증은 안 했어요</option><option>없어요</option><option>잘 모르겠어요</option></select></div>
+          <div class="wide"><label for="message">문의 내용 (선택)</label><textarea id="message" name="message" placeholder="예: 미용실 고객 재방문 문자를 자동으로 관리하고 싶어요."></textarea></div>
+          <label class="agree wide"><input type="checkbox" id="consent" name="consent"><span>상담을 위해 전화 또는 이메일로 연락받는 데 동의합니다.</span></label>
+          <label class="agree wide"><input type="checkbox" id="sms" name="sms"><span>(선택) 상담 요청과 서비스 안내 문자를 받겠습니다. Message frequency varies. Message and data rates may apply. Reply STOP to opt out.</span></label>
+        </div>
+        <div class="status" id="err" role="alert"></div>
+        <button class="btn primary" type="submit" id="submit">상담 신청하기 →</button>
+      </form>
+      <div class="done" id="done" hidden tabindex="-1"><b>상담 신청이 접수됐어요.</b><br>남겨주신 연락처로 안내드리겠습니다.</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footerin"><div><b>♥ Encore</b><br>사장님의 든든한 AI 비서</div><div><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms</a> · <a href="opt-in.html">SMS Opt-In</a><br>tmartbakersfield@gmail.com · 661-373-7950</div></div>
 </footer>
 
 <script>
-(function () {
-  /* 상담 신청을 받을 주소: Google Apps Script 웹 앱 주소를 여기에 붙여넣으세요. 비워두면 테스트 모드예요. */
-  var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyf1VgvEG1i5B1dd9gMMd89mSKyxJXwSMf0hMmeRsJenujeMUSCM1LCrMgNpDPpxP8M/exec';
-
-  var CONSENT_TEXT = '상담을 위해 전화, 이메일로 연락받는 데 동의합니다. 상담 목적으로만 쓰이고, 언제든 철회할 수 있어요.';
-  var SMS_TEXT = 'I agree to receive text messages from Encore Marketing System about my consultation request and service updates at the mobile number provided. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help. Consent is not a condition of any purchase or of receiving a consultation.';
-  var form = document.getElementById('apply-form'), err = document.getElementById('err'), btn = document.getElementById('submit');
-  if (!FORM_ENDPOINT) document.getElementById('testmode').hidden = false;
-
-  function val(id) { return String(document.getElementById(id).value || '').trim(); }
-  function digits(s) { return String(s).replace(/\D/g, ''); }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault(); err.textContent = '';
-    if (val('website')) return;
-    if (!val('store')) { err.textContent = '매장 이름을 입력해주세요.'; document.getElementById('store').focus(); return; }
-    if (!val('owner')) { err.textContent = '성함을 입력해주세요.'; document.getElementById('owner').focus(); return; }
-    if (digits(val('phone')).length < 10) { err.textContent = '전화번호를 10자리 이상 입력해주세요.'; document.getElementById('phone').focus(); return; }
-    if (val('email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'))) { err.textContent = '이메일 형식을 확인해주세요.'; document.getElementById('email').focus(); return; }
-    if (!document.getElementById('consent').checked) { err.textContent = '연락 동의에 체크해주세요.'; document.getElementById('consent').focus(); return; }
-
-    var payload = { store: val('store'), owner: val('owner'), phone: val('phone'), email: val('email'), type: val('type'), plan: val('plan'), google: val('google'), message: val('message'), consent: true, sms: document.getElementById('sms').checked, consentText: CONSENT_TEXT + ' | SMS consent: ' + (document.getElementById('sms').checked ? 'YES - ' + SMS_TEXT : 'NO'), page: location.href, website: '' };
-    function finish() {
-      form.hidden = true; var d = document.getElementById('done'); d.hidden = false; d.focus();
-    }
-    if (!FORM_ENDPOINT) { finish(); return; }
-    btn.disabled = true; btn.textContent = '보내는 중';
-    fetch(FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
-      .then(finish)
-      .catch(function () { btn.disabled = false; btn.textContent = '상담 신청하기'; err.textContent = '전송이 안 됐어요. 인터넷 연결을 확인하고 다시 눌러주세요.'; });
-  });
-})();
-</script>
-
-<script>
-(function () {
-  /* AI 모드: Apps Script 채팅 서버 주소를 넣으면 진짜 AI와 대화해요. 비워두면 체험 모드예요. */
-  var CHAT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzG2TKav87gBztxDFHZNjb0B0i9qVmvBXS-RUCPlD8kgxHBLFjFXeQEn0s_y6wPu9yfrQ/exec';
-
-  var SYSTEM = [
-    '당신은 Encore Marketing System 웹사이트에서 방문자와 대화하는 AI 비서 "도우미"입니다. 방문자는 영어가 서툰 한인 소매점 사장님들입니다.',
-    '한국어 존댓말로 짧고 친근하게 답하세요. 마크다운 기호는 쓰지 말고 평문으로, 6줄 이내로 쓰세요. 당신이 AI라는 사실을 숨기지 마세요.',
-    '방문자가 서비스를 체험하게 도와주세요. 세일 문자 영어 초안, 구글 리뷰 영어 답글 초안(한국어 뜻 함께), 서비스 설명이 가능합니다. 예시 매장 이름은 Sample Store입니다.',
-    '서비스 사실: 요금은 매장 한 곳 기준 월 Starter $49(포인트와 쿠폰 자동화, 이메일 알림, QR코드 제작), Growth $89(Starter 전체, 문자 알림, 브랜드 맞춤, 월간 리포트, AI 비서 대화). 설치비 $149(1회). 3곳 이상이면 2번째 매장부터 15% 할인. 문자는 월 기본 발송량 포함, 초과분은 건당 요금. POS를 바꿀 필요가 없고 적립은 직원이 확인하고 눌러요. 문자와 구글 게시는 사장님이 승인해야만 나가요. 문자는 수신에 동의한 고객에게만 나가요. 일부 기능(문자 발송, 구글 연동)은 파일럿 매장에서 순서대로 열려요.',
-    '위 사실에 없는 내용(계약 조건, 할인, 출시일, 기능)은 지어내지 말고 "상담에서 안내드릴게요"라고 하세요.',
-    '개인정보나 고객 전화번호를 입력하지 말라고 안내하세요. 세금, 법률, 의료 조언은 하지 마세요. 서비스와 무관한 긴 작업(코딩, 에세이 등)은 정중히 사양하고 매장 마케팅 이야기로 돌아오세요.',
-    '기능 상태: 지금 가능한 것은 한국어로 시키면 영어 문자 초안, 구글 리뷰 영어 답글 초안, 리뷰 분석 요약, 구글 게시물 문구 초안, 구글 리뷰 부탁 문구, 매출과 지출 기록, 마케팅 아이디어예요. 구글 프로필 자동 게시와 자동 답글은 구글 승인이 필요해 준비 중이에요. 온라인 예약 접수는 준비 중이에요. 문자 발송은 통신사 등록 승인 후에 열려요.',
-    '리뷰 원칙: 리뷰 부탁은 모든 손님께 똑같이 보내요. 별점을 보고 거르지 않고, 리뷰 대가로 쿠폰이나 선물을 주지 않아요. 좋은 리뷰만 받게 해달라는 요청은 정중히 사양하고 위 방법을 안내하세요. 별점이나 순위가 오른다는 결과는 절대 약속하지 마세요.',
-    '일정 알림: 사장님이 "매달 1일에 월세 알려줘"처럼 말하면 날짜와 시간은 코드가 계산해서 알림 카드를 만들어요. 알림 만들기는 직접 답하지 말고 그 방식으로 안내하세요. 지금 체험 화면에서는 이 화면이 열려 있는 동안만 알려드리고, 폰 푸시 알림은 다음 단계예요.',
-    '구글 게시물: 사장님이 직접 올려요. 글과 이미지는 코드가 사장님이 말한 할인율과 날짜만으로 정확하게 만들어요. 숫자나 날짜를 지어내지 마세요. 구글 연결이 열리면 바로 올리기 버튼이 생겨요. 없는 상품이나 가게를 AI로 그린 사진을 올리라고 권하지 마세요.',
-    '관심을 보이면 아래 "무료 상담 신청"에서 매장 이름과 연락처를 남겨달라고 안내하세요.'
-  ].join('\n');
-
-  var $ = function (id) { return document.getElementById(id); };
-  var box = $('lmsgs'), chipsEl = $('lchips'), form = $('lform'), input = $('linput');
-  var msgs = [], busy = false, userCount = 0, aiFails = 0, sampleFn = null;
-  var sid = Math.random().toString(36).slice(2) + Date.now().toString(36);
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var FACE = '<img src="data:image/webp;base64,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" alt="">';
-  var USER = '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#2563eb"/><circle cx="20" cy="15" r="6" fill="#fff"/><path d="M8 33c1-7 6-10 12-10s11 3 12 10" fill="#fff"/></svg>';
-
-  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
-  function fmt(ms) { var d = new Date(ms), h = d.getHours(), m = d.getMinutes(), ap = h < 12 ? '오전' : '오후'; h = h % 12; if (h === 0) h = 12; return ap + ' ' + h + ':' + (m < 10 ? '0' : '') + m; }
-  function dayLabel(ms) { var d = new Date(ms); return d.getFullYear() + '년 ' + (d.getMonth() + 1) + '월 ' + d.getDate() + '일 ' + ['일', '월', '화', '수', '목', '금', '토'][d.getDay()] + '요일'; }
-
-  var downBtn = $('ldown');
-  function updateDown() { if (!downBtn) return; downBtn.hidden = (box.scrollHeight - box.scrollTop - box.clientHeight) <= 160; }
-  function scrollDown() { if (box.scrollTo) box.scrollTo({ top: box.scrollHeight, behavior: reduce ? 'auto' : 'smooth' }); else box.scrollTop = box.scrollHeight; }
-  function draw(typing) {
-    var nearBottom = (box.scrollHeight - box.scrollTop - box.clientHeight) < 160;
-    var h = '', prev = null, prevDay = '', lastMe = -1;
-    msgs.forEach(function (m, i) { if (m.role === 'me') lastMe = i; });
-    msgs.forEach(function (m, i) {
-      var day = dayLabel(m.t);
-      if (day !== prevDay) { h += '<div class="lday">' + esc(day) + '</div>'; prevDay = day; prev = null; }
-      var nx = msgs[i + 1], showTs = !(nx && nx.role === m.role && fmt(nx.t) === fmt(m.t)), pop = m.fresh ? ' pop' : '';
-      m.fresh = false;
-      if (m.role === 'me') {
-        var read = (i === lastMe && (typing || (nx && nx.role !== 'me'))) ? '<span class="lread">읽음</span>' : '';
-        h += '<div class="lrow me' + (prev !== 'me' ? ' grp' : '') + pop + '"><span class="lmeta">' + read + (showTs ? '<span class="lts">' + fmt(m.t) + '</span>' : '') + '</span><div class="lbub me">' + (m.img ? '<img class="uimg" src="' + m.img + '" alt="보낸 사진">' : '') + esc(m.text) + '</div>' + (prev !== 'me' ? '<div class="uav">' + USER + '</div>' : '<div class="uspacer"></div>') + '</div>';
-        prev = 'me'; return;
-      }
-      var first = prev !== 'bot';
-      h += '<div class="lrow' + (first ? ' grp' : '') + pop + '">' + (first ? '<div class="av">' + FACE + '</div>' : '<div class="lspacer"></div>') + '<div class="lcol">' + (first ? '<div class="lwho">도우미</div>' : '') +
-        '<div class="lline">' + (m.html ? '<div class="lbub bot card' + (first ? ' first' : '') + '">' + m.html + '</div>' : '<div class="lbub bot' + (first ? ' first' : '') + '">' + esc(m.text) + '</div>') + (showTs ? '<span class="lts">' + fmt(m.t) + '</span>' : '') + '</div></div></div>';
-      prev = 'bot';
-    });
-    if (typing) h += '<div class="lrow' + (prev !== 'bot' ? ' grp' : '') + '">' + (prev !== 'bot' ? '<div class="av">' + FACE + '</div>' : '<div class="lspacer"></div>') + '<div class="lcol"><div class="lline"><div class="lbub bot first ltyping"><span class="sr">도우미가 입력하고 있어요</span><i></i><i></i><i></i></div></div></div></div>';
-    box.innerHTML = h;
-    var last = msgs[msgs.length - 1];
-    if (nearBottom || typing || (last && last.role === 'me')) box.scrollTop = box.scrollHeight;
-    updateDown();
-  }
-  function addMe(t) { msgs.push({ role: 'me', text: t, t: Date.now(), fresh: true }); }
-  function addBot(o) { msgs.push({ role: 'bot', text: o.text || '', html: o.html || '', plain: o.plain || o.text || '', t: Date.now(), fresh: true }); }
-  function wait(ms) { return new Promise(function (r) { setTimeout(r, reduce ? 0 : ms); }); }
-
-  /* ----- 체험 모드 답변 ----- */
-  function smsCard() {
-    return { plain: '(세일 문자 영어 초안 카드를 보여줌: [Sample Store] 20% off everything this weekend! Stop by and save.)', html:
-      '<p>세일 문자 초안을 영어로 써봤어요. 확인하고 승인하세요.</p><div class="lsms">[Sample Store] 20% off everything this weekend! Stop by and save.<br>Reply STOP to opt out.</div>' +
-      '<p class="lgloss">한국어 뜻: 이번 주말 전 품목 20% 할인 안내. 문자 수신에 동의한 고객 54명에게 나가요. (예시 숫자)</p><div class="lbtns"><button type="button" data-demo="copy">복사하기</button><button type="button" data-demo="approve">승인하고 발송</button><button type="button" data-demo="edit">수정</button></div>' };
-  }
-  function reviewCard() {
-    return { plain: '(영어 리뷰 답글 초안 카드를 보여줌)', html:
-      '<p>새 리뷰가 달렸다고 가정해볼게요. (예시)</p><div class="lrv">★☆☆☆☆ "Came in for a shirt and they didn\'t have my size. Wasted trip."</div>' +
-      '<div class="lsms">We are sorry about the wasted trip. Please call us before you visit and we will check your size for you. Thank you for the feedback. - Sample Store</div>' +
-      '<p class="lgloss">한국어 뜻: 헛걸음을 사과하고, 방문 전 전화하면 사이즈를 확인해준다는 안내예요. 낮은 별점 답글은 읽어보고 승인하세요.</p><div class="lbtns"><button type="button" data-demo="copy">복사하기</button><button type="button" data-demo="approve">승인하고 게시</button><button type="button" data-demo="edit">수정</button></div>' };
-  }
-  function postCard() {
-    return { plain: '(구글 게시물 영어 초안 카드를 보여줌: Weekend sale at Sample Store! 20% off everything this Saturday and Sunday.)', html:
-      '<p>구글 게시물 초안을 영어로 써봤어요. 사진은 사장님이 골라서 올려주세요.</p><div class="lsms">Weekend sale at Sample Store! 20% off everything this Saturday and Sunday. Stop by and say hello.</div>' +
-      '<p class="lgloss">한국어 뜻: 이번 주말 토요일, 일요일 전 품목 20% 할인. 편하게 들러주세요. (사진은 직접 선택)</p><div class="lbtns"><button type="button" data-demo="copy">복사하기</button><button type="button" data-demo="approve">승인하고 게시</button><button type="button" data-demo="edit">수정</button></div>' };
-  }
-  function askCard() {
-    return { plain: '(구글 리뷰 부탁 문자 영어 초안 카드를 보여줌: 동의한 모든 손님께 같은 문자)', html:
-      '<p>리뷰 부탁 문자 초안이에요. 수신에 동의한 모든 손님께 똑같이 나가요.</p><div class="lsms">[Sample Store] Thank you for visiting! If you have a minute, we would appreciate a Google review: [review link]<br>Reply STOP to opt out.</div>' +
-      '<p class="lgloss">한국어 뜻: 방문 감사 인사와 구글 리뷰 부탁이에요. 별점을 보고 고르지 않고, 리뷰 대가로 쿠폰을 주지 않아요. (링크는 가게 설정의 구글 리뷰 주소가 들어가요)</p><div class="lbtns"><button type="button" data-demo="copy">복사하기</button><button type="button" data-demo="approve">승인하고 발송</button><button type="button" data-demo="edit">수정</button></div>' };
-  }
-  function scripted(t) {
-    if (/요금|가격|얼마|비용|플랜|월/.test(t)) return { text: '요금은 매장 한 곳 기준 월 요금이에요.\n· Starter $49: 포인트와 쿠폰 자동화, 이메일 알림\n· Growth $89: Starter 전체와 문자 알림, 월간 리포트, AI 비서 대화\n설치비는 $149(1회)이고, 매장이 3곳 이상이면 2번째 매장부터 15% 할인돼요. 자세한 조건은 상담에서 안내해드려요.' };
-    if (/(리뷰|후기).*(부탁|요청)|(부탁|요청).*(리뷰|후기)/.test(t)) return askCard();
-    if (/분석/.test(t) && /(리뷰|후기|평)/.test(t)) return { text: '(예시) 최근 리뷰 20건을 읽어봤어요.\n칭찬: 가격, 친절, 다양한 상품\n불만: 사이즈 부족, 계산 대기, 일부 제품 품질\n이번 주 할 일: ① 인기 사이즈 재고 확인 ② 낮은 별점 리뷰에 정중한 답글 ③ 계산대 대기 줄이기\n답글 초안을 만들어 드릴까요?' };
-    if (/게시물|포스트|사진/.test(t)) return postCard();
-    if (/예약/.test(t)) return { text: '예약 접수는 준비 중이에요. 예약 링크를 구글 프로필과 문자에 달아두고, 예약이 들어오면 한국어로 알려드리는 방식으로 만들고 있어요. 미용실이나 서비스업 매장에 특히 잘 맞아요. 관심 있으시면 아래에서 상담을 신청해주세요.' };
-    if (/마케팅|아이디어|조언|손님.*(부르|늘)/.test(t)) return { text: '가게 업종과 영업시간을 알려주시면 맞춰서 드려요. 예를 들면 비 오는 주말에는 "영업 중입니다" 게시물과 실내 상품 소식을 올리거나, 한 달 안 온 단골께 안부 문자를 보내는 방법이 있어요. 해보시고 결과를 말씀해주시면 다음 제안에 반영해요.' };
-    if (/리뷰|후기|답글/.test(t)) return reviewCard();
-    if (/세일|할인|프로모션|문자/.test(t)) return smsCard();
-    if (/단골|고객|안 온|휴면/.test(t)) return { text: '(예시) 60일 넘게 안 온 단골이 31명이에요. 그중 문자 수신에 동의한 분은 24명이라 이분들께만 재방문 문자를 보낼 수 있어요. 문자 초안을 만들어 드릴까요?' };
-    if (/수익|매출|지출/.test(t)) return { text: '"오늘 수익 1240 지출 380"처럼 말하면 기록하고, 이번 달이 지난달보다 적은 이유 후보도 정리해드려요. 세금 신고용이 아니라 마케팅 판단용이에요.' };
-    if (/상담|신청|연락|시작|써보/.test(t)) return { text: '좋아요! 아래 신청 칸으로 안내할게요. 매장 이름과 연락처만 남겨주세요.', go: true };
-    if (/^\s*(안녕|하이|hi|hello)/i.test(t)) return { text: '안녕하세요! 저는 도우미예요. 세일 문자나 리뷰 답글을 직접 시켜보세요.' };
-    return { text: '체험 화면이라 정해진 몇 가지만 알아들어요. 세일 문자, 리뷰 답글, 요금, 단골 관리를 물어보세요. 자유로운 대화는 상담 때 직접 보여드려요.' };
-  }
-
-  /* ----- AI 모드 ----- */
-  function turns() {
-    var out = [];
-    msgs.slice(-10).forEach(function (m) {
-      var role = m.role === 'me' ? 'user' : 'assistant', c = m.role === 'me' ? (m.img ? '[사진 첨부] ' : '') + m.text : (m.plain || m.text);
-      if (!c) return;
-      if (out.length && out[out.length - 1].role === role) out[out.length - 1].content += '\n' + c; else out.push({ role: role, content: c });
-    });
-    while (out.length && out[0].role !== 'user') out.shift();
-    return out;
-  }
-  function clean(t) { return String(t || '').replace(/\*\*/g, '').replace(/^#+\s*/gm, '').replace(/`/g, '').trim(); }
-  async function askAI(img) {
-    var t = turns(); if (!t.length) throw new Error('empty');
-    if (img && !CHAT_ENDPOINT) throw new Error('no-ai');
-    if (img && img.b64) { var lt = t[t.length - 1]; if (lt && lt.role === 'user') lt.content = [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: img.b64 } }, { type: 'text', text: lt.content }]; }
-    if (CHAT_ENDPOINT) {
-      var ctl = new AbortController(), to = setTimeout(function () { ctl.abort(); }, img ? 45000 : 30000);
-      try {
-        var r = await fetch(CHAT_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ sid: sid, messages: t }), signal: ctl.signal });
-        var j = await r.json();
-        if (j && j.ok && j.text) return clean(j.text);
-        var e = new Error(j && j.error || 'fail'); e.code = j && j.error; throw e;
-      } finally { clearTimeout(to); }
-    }
-    if (sampleFn) {
-      var inp = [{ role: 'user', content: SYSTEM + '\n\n[대화 시작]' }].concat(t);
-      var res = await sampleFn(inp, { cache: false, modelTier: 'quick' });
-      return clean(res.text);
-    }
-    throw new Error('no-ai');
-  }
-  function aiAvailable() { return !!(CHAT_ENDPOINT || sampleFn) && aiFails < 3; }
-
-  async function typeOut(reply) {
-    if (!reply.text || reply.html || reduce) { addBot(reply); draw(); return; }
-    var full = reply.text, m = { role: 'bot', text: '', html: '', plain: full, t: Date.now(), fresh: true };
-    msgs.push(m);
-    var step = Math.max(1, Math.ceil(full.length / 90));
-    for (var i = 0; i < full.length; i += step) { m.text = full.slice(0, i + step); draw(); await wait(22); }
-    m.text = full; draw();
-  }
-  /* ===== 일정 알림 만들기 (체험: 이 화면이 열려 있는 동안만 알려드려요) ===== */
-/* 한국어 알림 해석기: 말을 받아서 {제목, 시각, 반복}을 계산해요. AI가 아니라 코드가 날짜를 계산해요. */
-var Remind = (function () {
-  var DOW = { '일': 0, '월': 1, '화': 2, '수': 3, '목': 4, '금': 5, '토': 6 };
-  var DOWN = ['일', '월', '화', '수', '목', '금', '토'];
-  function pad(n) { return n < 10 ? '0' + n : '' + n; }
-  function atTime(d, h, mi) { var x = new Date(d.getTime()); x.setHours(h, mi, 0, 0); return x; }
-  function daysInMonth(y, m) { return new Date(y, m + 1, 0).getDate(); }
-  function clampDay(y, m, d) { return Math.min(d, daysInMonth(y, m)); }
-  function fmtTime(h, mi) { var ap = h < 12 ? '오전' : '오후', hh = h % 12; if (hh === 0) hh = 12; return ap + ' ' + hh + ':' + pad(mi); }
-  function fmtDate(d) { return (d.getMonth() + 1) + '월 ' + d.getDate() + '일 ' + DOWN[d.getDay()] + '요일'; }
-  function fmtWhen(d) { return fmtDate(d) + ' ' + fmtTime(d.getHours(), d.getMinutes()); }
-
-  function parse(text, now) {
-    now = now || new Date();
-    var t = String(text || ''), rest = t, m, out = { ok: false, title: '', repeat: 'none', rep: {}, hasTime: false, hasDate: false, rel: null };
-    function take(re) { var r = rest.match(re); if (r) rest = rest.replace(r[0], ' '); return r; }
-
-    // 1) 몇 초/분/시간/일 뒤
-    if ((m = take(/(\d+)\s*(초|분|시간|일|주)\s*(뒤|후)/))) {
-      var n = parseInt(m[1], 10), ms = { '초': 1e3, '분': 6e4, '시간': 36e5, '일': 864e5, '주': 6048e5 }[m[2]];
-      out.rel = new Date(now.getTime() + n * ms); out.relText = n + m[2] + ' 뒤'; out.hasDate = out.hasTime = true;
-    }
-    // 2) 시각 (아침/오전/오후/저녁/밤/새벽/점심 + N시 M분 / 반)
-    var period = null, hour = null, minute = 0;
-    if ((m = take(/(새벽|아침|오전|점심|낮|오후|저녁|밤)?\s*(\d{1,2})\s*시\s*(?:(\d{1,2})\s*분|(반))?/))) {
-      period = m[1] || null; hour = parseInt(m[2], 10); minute = m[4] ? 30 : (m[3] ? parseInt(m[3], 10) : 0);
-      if (hour <= 12) {
-        if (period === '오후' || period === '저녁' || period === '밤' || period === '낮') { if (hour < 12) hour += 12; if (period === '밤' && hour === 12) hour = 0; }
-        else if (period === '점심') { if (hour < 11) hour += 12; }
-        else if ((period === '오전' || period === '아침' || period === '새벽') && hour === 12) hour = 0;
-      }
-      if (hour > 23 || minute > 59) { out.error = '시간이 올바르지 않아요.'; return out; }
-      out.hasTime = true;
-    } else if ((m = take(/(새벽|아침|점심|저녁|밤)(?!\s*\d)/))) {
-      period = m[1]; hour = { '새벽': 6, '아침': 9, '점심': 12, '저녁': 19, '밤': 21 }[period]; minute = 0; out.hasTime = true;
-    } else if ((m = take(/(\d{1,2}):(\d{2})/))) { hour = parseInt(m[1], 10); minute = parseInt(m[2], 10); out.hasTime = true; }
-
-    // 3) 반복
-    var base = null;
-    if (take(/매일|날마다|하루\s*한\s*번/)) out.repeat = 'daily';
-    else if ((m = take(/(?:매주|주마다)\s*([일월화수목금토])요일?/)) || (m = take(/([일월화수목금토])요일마다/))) { out.repeat = 'weekly'; out.rep.dow = DOW[m[1]]; }
-    else if ((m = take(/(?:매달|매월|달마다)\s*(\d{1,2})\s*일/))) { out.repeat = 'monthly'; out.rep.dom = parseInt(m[1], 10); }
-    else if (take(/(?:매달|매월)\s*말일|매월\s*마지막\s*날/)) { out.repeat = 'monthly'; out.rep.dom = 31; }
-    else if ((m = take(/매년\s*(\d{1,2})\s*월\s*(\d{1,2})\s*일/))) { out.repeat = 'yearly'; out.rep.month = parseInt(m[1], 10) - 1; out.rep.dom = parseInt(m[2], 10); }
-
-    // 4) 날짜 (반복이 아닐 때)
-    if (out.repeat === 'none' && !out.rel) {
-      if ((m = take(/(다음\s*주|이번\s*주|담주)\s*([일월화수목금토])요일/))) {
-        var target = DOW[m[2]], d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate()), cur = d0.getDay();
-        var mondayOffset = (cur + 6) % 7; // 이번 주 월요일까지의 거리
-        var weekStart = new Date(d0.getTime() - mondayOffset * 864e5);
-        if (/다음|담주/.test(m[1])) weekStart = new Date(weekStart.getTime() + 7 * 864e5);
-        var tOff = (target + 6) % 7; base = new Date(weekStart.getTime() + tOff * 864e5); out.hasDate = true;
-      } else if ((m = take(/(다음\s*달|내달)\s*(\d{1,2})\s*일/))) {
-        var y = now.getFullYear(), mo = now.getMonth() + 1; if (mo > 11) { mo = 0; y++; }
-        base = new Date(y, mo, clampDay(y, mo, parseInt(m[2], 10))); out.hasDate = true;
-      } else if ((m = take(/(\d{1,2})\s*월\s*(\d{1,2})\s*일/))) {
-        var mo2 = parseInt(m[1], 10) - 1, dd = parseInt(m[2], 10), y2 = now.getFullYear();
-        base = new Date(y2, mo2, clampDay(y2, mo2, dd)); out.hasDate = true; out.yearGuess = true;
-      } else if (take(/모레|이틀\s*뒤/)) { base = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2); out.hasDate = true; }
-      else if (take(/내일/)) { base = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); out.hasDate = true; }
-      else if (take(/오늘/)) { base = new Date(now.getFullYear(), now.getMonth(), now.getDate()); out.hasDate = true; }
-      else if ((m = take(/([일월화수목금토])요일/))) {
-        var tg = DOW[m[1]], add = (tg - now.getDay() + 7) % 7; base = new Date(now.getFullYear(), now.getMonth(), now.getDate() + add); out.hasDate = true; out.weekdayOnly = true;
-      } else if ((m = take(/(\d{1,2})\s*일(?!\s*(뒤|후))/))) {
-        var dm = parseInt(m[1], 10), y3 = now.getFullYear(), mo3 = now.getMonth();
-        base = new Date(y3, mo3, clampDay(y3, mo3, dm)); out.hasDate = true; out.dayOnly = true; out.dom = dm;
-      }
-    }
-
-    // 5) 제목
-    var title = rest.replace(/알려\s*주세요|알려\s*줘요?|알려\s*드려|알림(?:\s*(?:만들어|추가|등록))?\s*(?:줘요?|해\s*줘요?|해주세요|주세요)?|알림|리마인드(?:\s*해?\s*줘)?|기억해\s*줘?|잊지\s*않게\s*해?\s*줘?|해\s*줘요?|바꿔\s*줘요?|변경\s*해\s*줘요?|수정\s*해\s*줘요?|말고|좀|까지|마다|에는|에서|으로|에게|한테|이랑|랑/g, ' ')
-      .replace(/[,.!?~]/g, ' ')
-      .replace(/(^|\s)(에서|에게|에는|에|으로|로|까지|부터)(?=\s|$)/g, ' ').replace(/\s+/g, ' ').trim()
-      .replace(/(을|를|이|가|은|는|에|도|만|랑)$/, '').trim();
-    out.title = title || '일정';
-
-    // 6) 시각 계산
-    if (out.rel) { out.when = out.rel; out.ok = true; out.hasTime = true; out.hasDate = true; return finish(out, now); }
-    if (hour === null) { hour = 9; minute = 0; out.defaultTime = true; }
-    out.hour = hour; out.minute = minute;
-    var when = null;
-    if (out.repeat !== 'none') {
-      when = nextRepeat(out, now, true); out.hasDate = true;
-    } else if (base) {
-      when = atTime(base, hour, minute);
-    } else if (out.hasTime) {
-      when = atTime(now, hour, minute); if (when.getTime() <= now.getTime()) when = new Date(when.getTime() + 864e5); out.rolled = true;
-    }
-    if (when && out.dayOnly && when.getTime() <= now.getTime()) { var y4 = now.getFullYear(), mo4 = now.getMonth() + 1; if (mo4 > 11) { mo4 = 0; y4++; } when = atTime(new Date(y4, mo4, clampDay(y4, mo4, out.dom)), hour, minute); }
-    if (when && out.weekdayOnly && when.getTime() <= now.getTime()) when = new Date(when.getTime() + 7 * 864e5);
-    if (when && out.yearGuess && when.getTime() <= now.getTime()) when = atTime(new Date(base.getFullYear() + 1, base.getMonth(), clampDay(base.getFullYear() + 1, base.getMonth(), base.getDate())), hour, minute);
-    if (!when) { return out; }
-    out.when = when; out.ok = true;
-    if (out.repeat === 'none' && when.getTime() <= now.getTime()) { out.ok = false; out.error = '이미 지난 시간이에요. 다시 말씀해주세요.'; }
-    return finish(out, now);
-  }
-
-  function nextRepeat(r, now, inclusiveToday) {
-    var h = r.hour, mi = r.minute, d = new Date(now.getTime()), cand;
-    if (r.repeat === 'daily') { cand = atTime(d, h, mi); if (cand.getTime() <= now.getTime()) cand = new Date(cand.getTime() + 864e5); return cand; }
-    if (r.repeat === 'weekly') { var add = (r.rep.dow - d.getDay() + 7) % 7; cand = atTime(new Date(d.getFullYear(), d.getMonth(), d.getDate() + add), h, mi); if (cand.getTime() <= now.getTime()) cand = new Date(cand.getTime() + 7 * 864e5); return cand; }
-    if (r.repeat === 'monthly') {
-      var y = d.getFullYear(), mo = d.getMonth(); cand = atTime(new Date(y, mo, clampDay(y, mo, r.rep.dom)), h, mi);
-      if (cand.getTime() <= now.getTime()) { mo++; if (mo > 11) { mo = 0; y++; } cand = atTime(new Date(y, mo, clampDay(y, mo, r.rep.dom)), h, mi); }
-      return cand;
-    }
-    if (r.repeat === 'yearly') {
-      var y1 = d.getFullYear(); cand = atTime(new Date(y1, r.rep.month, clampDay(y1, r.rep.month, r.rep.dom)), h, mi);
-      if (cand.getTime() <= now.getTime()) cand = atTime(new Date(y1 + 1, r.rep.month, clampDay(y1 + 1, r.rep.month, r.rep.dom)), h, mi);
-      return cand;
-    }
-    return null;
-  }
-
-  function describe(r) {
-    var tm = r.rel ? '' : fmtTime(r.hour, r.minute);
-    if (r.repeat === 'daily') return '매일 ' + tm;
-    if (r.repeat === 'weekly') return '매주 ' + DOWN[r.rep.dow] + '요일 ' + tm;
-    if (r.repeat === 'monthly') return (r.rep.dom >= 31 ? '매달 말일 ' : '매달 ' + r.rep.dom + '일 ') + tm;
-    if (r.repeat === 'yearly') return '매년 ' + (r.rep.month + 1) + '월 ' + r.rep.dom + '일 ' + tm;
-    return '한 번';
-  }
-  function finish(out, now) { out.desc = describe(out); out.whenText = fmtWhen(out.when); return out; }
-
-  // 알림이 울린 뒤 다음 시각 계산 (반복이면 다음, 아니면 null)
-  function after(rem, now) { if (rem.repeat === 'none') return null; return nextRepeat({ repeat: rem.repeat, rep: rem.rep, hour: rem.hour, minute: rem.minute }, now || new Date()); }
-  // 알림 만들기 말인지 판단: '내일 날씨 알려줘' 같은 정보 요청과 구분해요
-  function intent(t, p) {
-    if (!p) return false;
-    var sched = p.hasTime || p.repeat !== 'none';
-    if (/알림|리마인드|기억해/.test(t) && (p.hasTime || p.hasDate || p.repeat !== 'none')) return true;
-    if (/알려\s*(줘|주세요|줘요|드)/.test(t) && sched) return true;
-    return false;
-  }
-  function wantsCreate(t) { return /알림\s*(만들|추가|등록|설정)|리마인드/.test(t); }
-  return { parse: parse, after: after, intent: intent, wantsCreate: wantsCreate, fmtWhen: fmtWhen, fmtTime: fmtTime, describe: describe };
-})();
-
-  var REM = [], remSeq = 1, pendingRem = null, remTimer = null;
-  function remFrom(title, p) { return { title: title, when: p.when.getTime(), repeat: p.repeat, rep: p.rep, hour: p.hour, minute: p.minute, desc: p.desc, relText: p.relText || '' }; }
-  function remConfirm(r) {
-    var when = Remind.fmtWhen(new Date(r.when));
-    return { plain: '(알림 확인 카드: ' + r.title + ', ' + r.desc + ', 다음 ' + when + ')', html:
-      '<p>알림을 만들까요?</p><div class="lsms"><b>' + esc(r.title) + '</b><br>' + esc(r.relText || r.desc) + '<br>다음 알림: ' + esc(r.relText ? r.relText + ' (' + when + ')' : when) + '</div>' +
-      '<p class="lgloss">체험 화면이에요. 이 화면을 열어둔 동안만 알려드려요. 실제 서비스에서는 폰 알림으로 와요. 새로고침하면 사라져요.</p><div class="lbtns"><button type="button" data-rem="add">알림 추가</button><button type="button" data-rem="edit">수정</button></div>' };
-  }
-  function remList() {
-    if (!REM.length) return { text: '아직 만든 알림이 없어요. "매달 1일에 월세 알려줘"처럼 말씀해보세요.' };
-    var rows = REM.map(function (r) { return '<div class="lrem"><span><b>' + esc(r.title) + '</b> · ' + esc(r.desc) + '<br><small>다음: ' + esc(Remind.fmtWhen(new Date(r.when))) + '</small></span><button type="button" data-rem-del="' + r.id + '">삭제</button></div>'; }).join('');
-    return { plain: '(내 알림 목록 카드: ' + REM.length + '개)', html: '<p>만들어둔 알림이에요.</p><div class="lsms">' + rows + '</div>' };
-  }
-  function remindReply(t) {
-    var now = new Date();
-    if (/내\s*알림|알림\s*(목록|보기|리스트)|일정\s*(목록|보기)/.test(t)) return remList();
-    if (pendingRem && !pendingRem.needWhen && /바꿔|변경|수정|말고/.test(t)) {
-      var pe = Remind.parse(t, now);
-      if (pe.error) return { text: pe.error };
-      if (pe.hasTime && pe.repeat === 'none' && !pe.hasDate) {
-        if (pendingRem.repeat === 'none') {
-          var d = new Date(pendingRem.when); d.setHours(pe.hour, pe.minute, 0, 0);
-          if (d.getTime() <= now.getTime()) return { text: '이미 지난 시간이에요. 다시 말씀해주세요.' };
-          pendingRem.when = d.getTime(); pendingRem.relText = '';
-        } else {
-          pendingRem.hour = pe.hour; pendingRem.minute = pe.minute;
-          pendingRem.when = Remind.after(pendingRem, now).getTime(); pendingRem.desc = Remind.describe(pendingRem);
-        }
-        pendingRem.hour = pe.hour; pendingRem.minute = pe.minute;
-        return remConfirm(pendingRem);
-      }
-      if (pe.ok) { pendingRem = remFrom(pe.title === '일정' ? pendingRem.title : pe.title, pe); return remConfirm(pendingRem); }
-      return { text: '바꿀 시간이나 날짜를 말씀해주세요. 예) 오후 3시로 바꿔줘, 매주 금요일로 바꿔줘' };
-    }
-    var p = Remind.parse(t, now);
-    if (pendingRem && pendingRem.needWhen) {
-      if (p.error) return { text: p.error };
-      if (p.ok) { pendingRem = remFrom(p.title !== '일정' ? p.title : (pendingRem.title || '일정'), p); return remConfirm(pendingRem); }
-      pendingRem = null;
-    }
-    if (Remind.intent(t, p)) {
-      if (p.error) return { text: p.error };
-      if (p.ok) { pendingRem = remFrom(p.title, p); return remConfirm(pendingRem); }
-    }
-    if (Remind.wantsCreate(t)) {
-      pendingRem = { needWhen: true, title: p.title === '일정' ? '' : p.title };
-      return { text: '알림을 만들어 드릴게요. 무엇을, 언제 알려드릴까요?\n예) 매달 1일 오전 9시에 월세 알려줘\n예) 다음 주 화요일 아침에 거래처 주문 알려줘' };
-    }
-    return null;
-  }
-  function remCheck() {
-    var now = Date.now(), fired = false;
-    REM.slice().forEach(function (r) {
-      if (r.when <= now) {
-        fired = true;
-        addBot({ text: '⏰ 알림이에요: ' + r.title + (r.desc && r.desc !== '한 번' ? ' (' + r.desc + ')' : '') });
-        try { if (typeof Notification !== 'undefined' && Notification.permission === 'granted') new Notification('도우미 알림', { body: r.title }); } catch (e) {}
-        var nx = Remind.after(r, new Date());
-        if (nx) r.when = nx.getTime(); else REM.splice(REM.indexOf(r), 1);
-      }
-    });
-    if (fired) draw();
-  }
-  box.addEventListener('click', function (e) {
-    var del = e.target.closest('[data-rem-del]');
-    if (del) { var id = parseInt(del.getAttribute('data-rem-del'), 10); REM = REM.filter(function (r) { return r.id !== id; }); addBot({ text: '삭제했어요.' }); draw(); return; }
-    var b = e.target.closest('[data-rem]'); if (!b) return;
-    var k = b.getAttribute('data-rem');
-    if (k === 'add') {
-      if (!pendingRem || pendingRem.needWhen) { addBot({ text: '만들던 알림이 없어요. 다시 말씀해주세요.' }); draw(); return; }
-      var r = pendingRem; r.id = remSeq++; REM.push(r); pendingRem = null;
-      if (!remTimer) remTimer = setInterval(remCheck, 4000);
-      var when = Remind.fmtWhen(new Date(r.when)), can = typeof Notification !== 'undefined' && Notification.permission === 'default';
-      var msg = '추가했어요. ' + (r.relText ? r.relText : when) + '에 알려드릴게요.' + (r.desc !== '한 번' ? ' (' + r.desc + ')' : '');
-      addBot(can ? { plain: msg, html: '<p>' + esc(msg) + '</p><div class="lbtns"><button type="button" data-rem="perm">폰 알림도 받기</button></div>' } : { text: msg });
-      draw(); return;
-    }
-    if (k === 'edit') { addBot({ text: '바꿀 내용을 말씀해주세요. 예) 오후 3시로 바꿔줘, 매주 금요일로 바꿔줘' }); draw(); return; }
-    if (k === 'perm') {
-      if (typeof Notification === 'undefined') { addBot({ text: '이 브라우저에서는 폰 알림을 쓸 수 없어요. 화면 안에서만 알려드릴게요.' }); draw(); return; }
-      Notification.requestPermission().then(function (pm) { addBot({ text: pm === 'granted' ? '좋아요. 이 화면이 열려 있는 동안 폰 알림도 띄울게요.' : '알림이 허용되지 않았어요. 화면 안에서만 알려드릴게요.' }); draw(); });
-    }
-  });
-
-  /* ===== 구글 게시물 만들기 (사장님이 직접 올리는 방식: 글 + 템플릿 이미지) ===== */
-  var pendingPost = null, postCount = 0;
-  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], WD = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  var STORE_NAME = 'Sample Store';
-  function pType(t) {
-    if (/세일|할인|행사|프로모션|특가/.test(t)) return 'sale';
-    if (/신상|신제품|새\s*상품|입고|신규\s*상품/.test(t)) return 'new';
-    if (/휴무|쉬는|쉽니다|문\s*닫|임시\s*휴업|휴업/.test(t)) return 'closed';
-    if (/감사|고마/.test(t)) return 'thanks';
-    return null;
-  }
-  function pPct(t, loose) { var m = t.match(/(\d{1,2})\s*(%|퍼센트|프로)/); if (m) return parseInt(m[1], 10); if (loose) { var n = t.match(/^\s*(\d{1,2})\s*$/); if (n) return parseInt(n[1], 10); } return null; }
-  function pPeriod(t) {
-    var m;
-    if ((m = t.match(/(\d{1,2})\s*월\s*(\d{1,2})\s*일\s*(?:부터|~|-)\s*(\d{1,2})\s*월\s*(\d{1,2})\s*일/))) { var a = MON[parseInt(m[1], 10) - 1] + ' ' + parseInt(m[2], 10), b = MON[parseInt(m[3], 10) - 1] + ' ' + parseInt(m[4], 10); return { text: 'from ' + a + ' to ' + b, big: (a + ' – ' + b).toUpperCase() }; }
-    if ((m = t.match(/(\d{1,2})\s*월\s*(\d{1,2})\s*일\s*(?:부터|~|-)\s*(\d{1,2})\s*일/))) { var mo = MON[parseInt(m[1], 10) - 1]; return { text: 'from ' + mo + ' ' + parseInt(m[2], 10) + ' to ' + parseInt(m[3], 10), big: (mo + ' ' + parseInt(m[2], 10) + '–' + parseInt(m[3], 10)).toUpperCase() }; }
-    if ((m = t.match(/(\d{1,2})\s*월\s*(\d{1,2})\s*일/))) { var d1 = MON[parseInt(m[1], 10) - 1] + ' ' + parseInt(m[2], 10); return { text: 'on ' + d1, big: ('ON ' + d1).toUpperCase() }; }
-    if (/이번\s*주말/.test(t)) return { text: 'this weekend', big: 'THIS WEEKEND' };
-    if (/오늘/.test(t)) return { text: 'today only', big: 'TODAY ONLY' };
-    if (/이번\s*주/.test(t)) return { text: 'this week', big: 'THIS WEEK' };
-    return null;
-  }
-  function pDate(t) {
-    var p = Remind.parse(t, new Date());
-    if (!p || !p.when || !(p.hasDate || p.weekdayOnly)) return null;
-    var d = p.when; return { text: WD[d.getDay()] + ', ' + MON[d.getMonth()] + ' ' + d.getDate(), ko: (d.getMonth() + 1) + '월 ' + d.getDate() + '일' };
-  }
-  function drawPostImage(type, o) {
-    try {
-      var c = document.createElement('canvas'); c.width = 1200; c.height = 900;
-      var g = c.getContext && c.getContext('2d'); if (!g) return '';
-      var pal = { sale: ['#ffc72c', '#ff9f1c', '#0f1d44'], 'new': ['#2f6bf0', '#1c46c9', '#ffffff'], closed: ['#2b3563', '#0f1d44', '#ffffff'], thanks: ['#ff8a5b', '#e8505b', '#ffffff'] }[type];
-      var grad = g.createLinearGradient(0, 0, 1200, 900); grad.addColorStop(0, pal[0]); grad.addColorStop(1, pal[1]); g.fillStyle = grad; g.fillRect(0, 0, 1200, 900);
-      g.globalAlpha = 0.12; g.fillStyle = '#ffffff'; g.beginPath(); g.arc(1050, 150, 260, 0, Math.PI * 2); g.fill(); g.beginPath(); g.arc(120, 800, 200, 0, Math.PI * 2); g.fill(); g.globalAlpha = 1;
-      g.fillStyle = pal[2]; g.textAlign = 'center'; g.textBaseline = 'alphabetic';
-      var FONT = '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
-      function put(text, y, size, weight, maxW) { var s = size; g.font = weight + ' ' + s + 'px ' + FONT; while (g.measureText(text).width > maxW && s > 24) { s -= 4; g.font = weight + ' ' + s + 'px ' + FONT; } g.fillText(text, 600, y); }
-      put(String(o.store || '').toUpperCase(), 130, 54, '700', 1000);
-      put(o.big, 470, 230, '800', 1040);
-      put(o.sub, 600, 84, '700', 1000);
-      put(o.foot, 780, 48, '600', 1000);
-      return c.toDataURL('image/png');
-    } catch (e) { return ''; }
-  }
-  function buildPost(pp) {
-    var s = STORE_NAME, textEn, gloss, big, sub, foot, file;
-    if (pp.type === 'sale') {
-      textEn = s + ': ' + pp.pct + '% off everything ' + pp.period.text + '! Stop by and save.';
-      gloss = pp.pct + '% 전 품목 할인 소식이에요. (기간은 사장님이 말씀하신 대로 넣었어요)'; big = pp.pct + '% OFF'; sub = pp.period.big; foot = 'Stop by and save!'; file = 'sale-post.png';
-    } else if (pp.type === 'new') {
-      textEn = 'New arrivals just landed at ' + s + '! Stop by and take a look.'; gloss = '신상품이 들어왔다는 소식이에요.'; big = 'NEW ARRIVALS'; sub = 'JUST LANDED'; foot = 'Stop by and take a look!'; file = 'new-arrivals-post.png';
-    } else if (pp.type === 'closed') {
-      textEn = s + ' will be closed on ' + pp.date.text + '. Thank you for your understanding.'; gloss = pp.date.ko + ' 휴무 안내예요. (다시 여는 날짜가 있으면 글을 복사해서 직접 덧붙이세요)'; big = 'CLOSED'; sub = pp.date.text.toUpperCase(); foot = 'Thank you for your understanding'; file = 'closed-post.png';
-    } else {
-      textEn = 'Thank you for supporting ' + s + '! We appreciate every one of you.'; gloss = '손님께 드리는 감사 인사예요.'; big = 'THANK YOU'; sub = 'WE APPRECIATE YOU'; foot = 'See you soon!'; file = 'thank-you-post.png';
-    }
-    var img = drawPostImage(pp.type, { store: s, big: big, sub: sub, foot: foot });
-    var dl = img ? '<a class="dl" href="' + img + '" download="' + file + '">이미지 저장</a>' : '';
-    return { plain: '(구글 게시물 초안 카드: ' + textEn + ')', html:
-      '<p>게시물 초안이에요. 확인하고 구글에 올려주세요.</p>' + (img ? '<img class="postimg" src="' + img + '" alt="게시물 이미지 미리보기">' : '') +
-      '<div class="lsms">' + esc(textEn) + '</div><p class="lgloss">한국어 뜻: ' + esc(gloss) + '</p>' +
-      '<div class="lbtns"><button type="button" data-demo="copy">글 복사</button>' + dl + '<a class="dl" href="https://business.google.com/" target="_blank" rel="noopener">구글에서 올리기</a><button type="button" data-post="done">올렸어요</button></div>' +
-      '<p class="lgloss">할인율과 날짜는 말씀하신 대로만 넣었어요. 사진은 사장님이 직접 찍은 걸 써도 돼요. 구글 연결이 열리면 여기에 [구글에 바로 올리기]가 생겨요.</p>' };
-  }
-  function askPostType() {
-    return { plain: '(게시물 종류를 묻는 카드)', html: '<p>어떤 게시물을 만들까요?</p><div class="lbtns"><button type="button" data-post-type="세일 게시물 만들어줘">세일</button><button type="button" data-post-type="신상품 게시물 만들어줘">신상품</button><button type="button" data-post-type="휴무 안내 게시물 만들어줘">휴무 안내</button><button type="button" data-post-type="감사 인사 게시물 만들어줘">감사 인사</button></div>' };
-  }
-  function postNext(pp) {
-    if (pp.type === 'sale') {
-      if (pp.pct == null) { pp.asked = 'pct'; pendingPost = pp; return { text: '몇 % 할인인가요? 숫자는 사장님이 알려주신 대로만 넣어요.\n예) 20%' }; }
-      if (!pp.period) { pp.asked = 'period'; pendingPost = pp; return { text: '언제 하나요?\n예) 이번 주말, 오늘, 10월 10일부터 12일까지' }; }
-    }
-    if (pp.type === 'closed' && !pp.date) { pp.asked = 'date'; pendingPost = pp; return { text: '언제 쉬시나요?\n예) 내일, 10월 10일, 다음 주 월요일' }; }
-    pendingPost = null; return buildPost(pp);
-  }
-  function fillPost(pp, t) {
-    if (pp.type === 'sale') { if (pp.pct == null) pp.pct = pPct(t, pp.asked === 'pct'); if (!pp.period) pp.period = pPeriod(t); }
-    if (pp.type === 'closed' && !pp.date) pp.date = pDate(t);
-  }
-  function postReply(t) {
-    if (pendingPost) {
-      var pp = pendingPost;
-      if (pp.need === 'type') { var ty = pType(t); if (!ty) { pendingPost = null; return null; } pp = { type: ty }; fillPost(pp, t); return postNext(pp); }
-      var before = JSON.stringify([pp.pct, pp.period, pp.date]); fillPost(pp, t);
-      if (JSON.stringify([pp.pct, pp.period, pp.date]) === before) {
-        if (t.length <= 12 && !/\?|얼마|뭐|어떻게/.test(t) && !pp.tries) { pp.tries = 1; return postNext(pp); }
-        pendingPost = null; return null;
-      }
-      return postNext(pp);
-    }
-    if (!/게시물|포스트|구글\s*소식|가게\s*소식/.test(t)) return null;
-    if (/올리는\s*(법|방법)|어떻게\s*올/.test(t)) return { text: '구글 지도 앱이나 business.google.com에서 내 가게를 열고 "업데이트 추가"를 눌러 사진과 글을 붙여넣으세요. [글 복사], [이미지 저장] 버튼으로 준비한 걸 쓰시면 돼요.' };
-    var type = pType(t);
-    if (!type) { pendingPost = { need: 'type' }; return askPostType(); }
-    var q = { type: type }; fillPost(q, t); return postNext(q);
-  }
-  document.getElementById('lmsgs').addEventListener('click', function (e) {
-    var tb = e.target.closest('[data-post-type]');
-    if (tb) { handle(tb.getAttribute('data-post-type')); return; }
-    var d = e.target.closest('[data-post="done"]');
-    if (d) { postCount++; addBot({ text: '기록했어요. 이번에 올린 게시물이 ' + postCount + '개예요. (체험 화면이라 새로고침하면 사라져요)' }); draw(); }
-  });
-
-  async function handle(text, img) {
-    text = String(text || '').trim(); if ((!text && !img) || busy) return;
-    if (img && !text) text = '이 사진 보고 도와주세요.';
-    if (userCount >= 20) { addMe(text); addBot({ text: '체험 대화를 충분히 해보셨어요. 더 보고 싶으시면 아래에서 상담을 신청해주세요. 매장에서 직접 보여드릴게요.' }); draw(); return; }
-    busy = true; userCount++; addMe(text); if (img) msgs[msgs.length - 1].img = img.url; input.value = ''; syncBar(); draw(true);
-    var rr = img ? null : (pendingPost ? postReply(text) : (remindReply(text) || postReply(text)));
-    if (rr) { await wait(700); await typeOut(rr); busy = false; return; }
-    var reply = null;
-    try {
-      if (aiAvailable()) { var tx = await askAI(img); reply = { text: tx }; }
-    } catch (e) {
-      if (e && e.code === 'limit') reply = { text: '오늘 체험 횟수를 다 썼어요. 아래에서 상담을 신청해주시면 매장에서 직접 보여드릴게요.' };
-      else if (e && e.code === 'img_limit') reply = { text: '사진은 잠시 후에 다시 보내주세요. 체험 화면이라 사진 횟수를 제한하고 있어요. 글로 물어보셔도 돼요.' };
-      else { if (!img) aiFails++; reply = null; }
-    }
-    if (!reply) { await wait(700); reply = img ? { text: '지금은 사진을 볼 수 없어요. 잠시 후 다시 보내주시거나, 내용을 글로 적어주세요.' } : scripted(text); }
-    await typeOut(reply); busy = false;
-    if (reply.go) setTimeout(function () { var a = $('apply'); if (a) { a.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); var f = $('store'); if (f) setTimeout(function () { f.focus({ preventScroll: true }); }, 500); } }, 900);
-  }
-
-  var CHIPS = ['세일 문자 써줘', '알림 만들기', '구글 게시물 써줘', '영어 리뷰에 답글 써줘', '리뷰 분석해줘', '리뷰 부탁 문자', '매출 요약', '내 알림 보기', '요금이 얼마예요?', '상담 신청할래요'];
-  chipsEl.innerHTML = CHIPS.map(function (c) { return '<button type="button" data-q="' + esc(c) + '">' + esc(c) + '</button>'; }).join('');
-  chipsEl.addEventListener('click', function (e) { var b = e.target.closest('[data-q]'); if (!b) return; var q = b.getAttribute('data-q'); if (q === '알림 만들기') q = '내일 아침 9시에 거래처 주문 알려줘'; handle(q); });
-    var pendingImg = null, attBtn = $('latt'), fileEl = $('lfile'), prevEl = $('limgprev');
-  function showPrev() {
-    if (!prevEl) return;
-    if (!pendingImg) { prevEl.hidden = true; prevEl.innerHTML = ''; return; }
-    prevEl.hidden = false;
-    prevEl.innerHTML = '<img src="' + pendingImg.url + '" alt="보낼 사진"><span>사진이 준비됐어요. 원하는 걸 적고 보내세요. (예: 이 리뷰에 답글 써줘)</span><button type="button" id="limgx" aria-label="사진 빼기">✕</button>';
-  }
-  /* 사진을 보내기 전에 크기를 줄여요 (긴 쪽 1280px, JPEG) */
-  function shrink(file) {
-    return new Promise(function (ok, no) {
-      var r = new FileReader(); r.onerror = no;
-      r.onload = function () {
-        var im = new Image(); im.onerror = no;
-        im.onload = function () {
-          var w = im.naturalWidth, h = im.naturalHeight, s = Math.min(1, 1280 / Math.max(w, h));
-          var c = document.createElement('canvas'); c.width = Math.max(1, Math.round(w * s)); c.height = Math.max(1, Math.round(h * s));
-          var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.drawImage(im, 0, 0, c.width, c.height);
-          var url = c.toDataURL('image/jpeg', 0.8); ok({ url: url, b64: url.split(',')[1] });
-        };
-        im.src = r.result;
-      };
-      r.readAsDataURL(file);
-    });
-  }
-  if (attBtn && fileEl) {
-    if (!CHAT_ENDPOINT) attBtn.hidden = true;
-    attBtn.addEventListener('click', function () { if (!busy) fileEl.click(); });
-    fileEl.addEventListener('change', async function () {
-      var f = fileEl.files && fileEl.files[0]; fileEl.value = ''; if (!f) return;
-      if (!/^image\//.test(f.type || '')) { addBot({ text: '사진 파일만 올릴 수 있어요.' }); draw(); return; }
-      if (f.size > 15 * 1024 * 1024) { addBot({ text: '사진이 너무 커요. 15MB 이하 사진으로 올려주세요.' }); draw(); return; }
-      try { pendingImg = await shrink(f); showPrev(); syncBar(); input.focus(); }
-      catch (err) { addBot({ text: '사진을 열지 못했어요. 다른 사진으로 해보세요.' }); draw(); }
-    });
-  }
-  if (prevEl) prevEl.addEventListener('click', function (e) { if (e.target.closest('#limgx')) { pendingImg = null; showPrev(); syncBar(); } });
-  form.addEventListener('submit', function (e) { e.preventDefault(); if (busy) return; var im = pendingImg; pendingImg = null; showPrev(); handle(input.value, im); });
-  box.addEventListener('click', function (e) {
-    var b = e.target.closest('[data-demo]'); if (!b) return;
-    var k = b.getAttribute('data-demo');
-    if (k === 'copy') {
-      var card = b.closest('.lbub'), el = card && card.querySelector('.lsms'), txt = el ? (el.innerText || el.textContent) : '';
-      var ok = function () { addBot({ text: '복사했어요. 문자 앱이나 구글에 붙여넣어 사용하세요.' }); draw(); };
-      var fail = function () { addBot({ text: '복사하지 못했어요. 글자를 길게 눌러서 직접 복사해주세요.' }); draw(); };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, fail); else fail();
-      return;
-    }
-    addBot({ text: k === 'approve' ? '체험 화면이라 실제로 발송되지는 않아요. 서비스를 쓰시면 이 버튼으로 동의한 고객에게만 문자가 나가요.' : '실제로는 "30%로 바꿔줘", "더 정중하게"처럼 말로 고칠 수 있어요. 한번 입력해보세요.' });
-    draw();
-  });
-
-  var sendBtn = form.querySelector('button[type="submit"]'), micEl0 = $('lmic');
-  function syncBar() {
-    var has = input.value.trim().length > 0 || !!pendingImg, micOff = !micEl0 || micEl0.getAttribute('data-off') === '1', listening = !!(micEl0 && micEl0.classList.contains('on'));
-    if (micEl0) micEl0.hidden = micOff || (has && !listening);
-    var showSend = micOff || (has && !listening);
-    sendBtn.classList.toggle('off', !showSend);
-    sendBtn.tabIndex = showSend ? 0 : -1;
-  }
-  input.addEventListener('input', syncBar);
-  box.addEventListener('scroll', updateDown);
-  if (downBtn) downBtn.addEventListener('click', scrollDown);
-  syncBar();
-
-  /* 말로 입력하기 (브라우저의 음성 인식 기능을 써요. 지원하지 않으면 버튼이 숨겨져요) */
-  (function () {
-    var micBtn = $('lmic'), SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!micBtn) return;
-    if (!SR) { micBtn.setAttribute('data-off', '1'); micBtn.hidden = true; syncBar(); return; }
-    var rec = null, listening = false, finalText = '', startedAt = 0;
-    function setMic(on) { listening = on; micBtn.classList.toggle('on', on); micBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); input.placeholder = on ? '듣고 있어요… 말씀하세요' : '비서에게 말해보세요'; syncBar(); }
-    function tell(msg) { addBot({ text: msg }); draw(); }
-    micBtn.addEventListener('click', function () {
-      if (listening && rec) { rec.stop(); return; }
-      if (busy) return;
-      try {
-        rec = new SR(); rec.lang = 'ko-KR'; rec.interimResults = true; rec.continuous = false; rec.maxAlternatives = 1;
-        finalText = ''; startedAt = Date.now();
-        rec.onstart = function () { setMic(true); };
-        rec.onresult = function (e) {
-          var interim = '';
-          for (var i = e.resultIndex; i < e.results.length; i++) {
-            var tr = e.results[i][0].transcript;
-            if (e.results[i].isFinal) finalText = (finalText + ' ' + tr).trim(); else interim += tr;
-          }
-          input.value = (finalText + ' ' + interim).trim(); syncBar();
-        };
-        rec.onerror = function (e) {
-          setMic(false);
-          if (e.error === 'not-allowed' || e.error === 'service-not-allowed') tell('마이크 사용이 허용되지 않았어요. 주소창 왼쪽 자물쇠에서 마이크를 허용하거나, 글자로 입력해주세요.');
-          else if (e.error === 'no-speech') tell('소리가 잘 안 들렸어요. 마이크 버튼을 다시 눌러서 말씀해주세요.');
-          else if (e.error !== 'aborted') tell('음성 입력을 쓸 수 없어요. 글자로 입력해주세요.');
-        };
-        rec.onend = function () { setMic(false); var v = (input.value || '').trim(); if (v) handle(v); };
-        rec.start();
-      } catch (err) { setMic(false); tell('음성 입력을 시작하지 못했어요. 글자로 입력해주세요.'); }
-    });
-  })();
-
-  /* 구글 Claude 화면에서 열었을 때만 쓰이는 미리보기용 AI (공개 사이트에서는 없어요) */
-  try {
-    if (!CHAT_ENDPOINT && window.claude && window.claude.use) {
-      window.claude.use('sample').then(function (f) { if (f) { sampleFn = f; $('lnote').textContent = '미리보기: 진짜 AI와 대화 중이에요. 문자는 실제로 발송되지 않아요. 개인정보는 입력하지 마세요.'; } }, function () {});
-    }
-  } catch (e) {}
-  if (CHAT_ENDPOINT) $('lnote').textContent = 'AI와 대화 중이에요. 문자는 실제로 발송되지 않아요. 개인정보나 고객 전화번호는 입력하지 마세요. 사진에 손님 얼굴, 이름, 전화번호가 보이지 않게 해주세요.';
-
-  /* 첫 장면: 한 번만 자동으로 보여줘요 */
-  (async function intro() {
-    addBot({ text: '안녕하세요 사장님! 👋\n저는 도우미예요. 가게 홍보, 고객 관리, 매출 정리까지 도와드려요.\n한국어로 시키시면 영어 문자와 답글을 써드려요. 무엇을 도와드릴까요?' }); draw();
-    await wait(1400); if (userCount > 0) return;
-    addMe('이번 주말 전 품목 20% 세일 문자 써줘'); draw(true);
-    await wait(1300); if (userCount > 0) { draw(); return; }
-    addBot(smsCard()); draw();
-  })();
-})();
-</script>
-<script>
-(function () {
-  var menu = document.getElementById('helpMenu');
-  var detail = document.getElementById('helpDetail');
-  if (!menu || !detail) return;
-  var info = {
-    sms: ['문자 마케팅', '회원 고객에게 세일·이벤트·재방문 문구를 만들고, 업종에 맞는 예약·주문·상품 링크까지 연결합니다. 실제 발송은 동의한 고객에게만 진행합니다.'],
-    review: ['Google 리뷰', '방문 고객에게 리뷰를 요청하고, 들어온 리뷰의 영어 답글 초안을 만듭니다. 리뷰가 쌓이면 매장 신뢰도와 Google 검색 유입을 높이는 데 도움이 됩니다.'],
-    promo: ['매장 홍보', '신제품, 세일, 행사 소식을 한국어로 말하면 Google·Facebook에 올릴 고객용 홍보 문구를 만들어드립니다. API 연결 후에는 승인 뒤 게시까지 자동화할 수 있습니다.'],
-    booking: ['예약 관리', '식당·미용·서비스 매장은 고객용 예약 링크를 제공하고 예약 요청을 확인·확정·취소할 수 있습니다. 이후 리마인드와 방문 후 마케팅까지 연결합니다.'],
-    visits: ['고객 방문 통계', '오늘 방문 수, 신규 고객, 재방문 고객의 흐름을 확인해 어떤 마케팅이 실제 방문으로 이어지는지 살펴볼 수 있습니다.'],
-    points: ['고객 포인트', '방문 고객에게 포인트를 발급해 자연스럽게 회원을 확보하고, 누적 방문과 단골 고객을 관리해 재방문을 유도합니다.'],
-    sales: ['매출 집계', '오늘·이번 주 매출과 지출을 기록하고 정리해 매장 흐름을 쉽게 확인할 수 있게 도와드립니다.'],
-    customers: ['고객 관리', '회원 고객 목록과 방문 이력을 관리하고, 오래 오지 않은 고객이나 단골 고객을 찾아 맞춤 재방문 마케팅으로 연결합니다.']
-  };
-  menu.addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-help]');
-    if (!btn) return;
-    var item = info[btn.getAttribute('data-help')];
-    if (!item) return;
-    detail.innerHTML = '<b>' + item[0] + '</b><p>' + item[1] + '</p>';
-    detail.hidden = false;
-  });
-})();
-</script>
-<script>
-/* Encore feature demo bridge */
 (function(){
-  var menu=document.getElementById('helpMenu'), demo=document.getElementById('featureDemo'),
-      talk=document.getElementById('featureDemoTalk'), card=document.getElementById('featureDemoCard'),
-      close=document.getElementById('featureDemoClose'), img=document.getElementById('featureDemoChar'),
-      mascot=document.querySelector('.mascot'), detail=document.getElementById('helpDetail');
-  if(!menu||!demo||!talk||!card||!close)return;
-  if(mascot&&img)img.src=mascot.src;
-  var x={
-    sms:["세일·이벤트 문자를 회원 고객에게 보내 재방문을 만들어요. 예약이나 주문 업종은 링크도 함께 연결할 수 있어요.",
-      '<span class="fd-tag">문자 마케팅 · 예시</span><h3>주말 세일 안내</h3><div class="fd-demo fd-sms">Hi! This weekend only, enjoy 20% off selected items.<br><b>Book / Order →</b></div><div class="fd-note">실제 발송은 수신 동의 회원에게만 진행</div>'],
-    review:["방문 고객에게 리뷰를 부탁하고, 들어온 영어 리뷰에는 사장님이 확인할 답글 초안을 만들어드려요.",
-      '<span class="fd-tag">Google 리뷰 · 예시</span><div class="fd-demo"><div class="fd-stars">★★★★★</div><b>Great service and friendly staff!</b><div class="fd-reply"><b>아라 답글 초안</b><br>Thank you for your kind words! We look forward to seeing you again.</div></div>'],
-    promo:["신제품·행사 내용을 한국어로 말씀하면 Google·Facebook에 올릴 고객용 홍보 문구를 준비해드려요.",
-      '<span class="fd-tag">매장 홍보 · 예시</span><h3>Google · Facebook 게시물</h3><div class="fd-demo"><b>✨ New arrivals are here!</b><br>Stop by this week to see our newest products and special offers.<br><br><b>사장님 확인 → 게시</b></div>'],
-    booking:["고객에게 예약 링크를 보내고, 들어온 요청을 확인해 확정·취소·리마인드까지 이어갈 수 있어요.",
-      '<span class="fd-tag">예약 관리 · 예시</span><h3>오늘 예약</h3><div class="fd-rows"><div class="fd-row"><span>12:30 · 2명</span><b>확정</b></div><div class="fd-row"><span>3:00 · Hair cut</span><b>대기</b></div><div class="fd-row"><span>6:30 · 4명</span><b>확정</b></div></div>'],
-    visits:["신규 고객과 재방문 고객을 나눠 보여드려요. 어떤 홍보가 실제 방문으로 이어졌는지 보기 쉬워집니다.",
-      '<span class="fd-tag">고객 방문 통계 · 예시</span><div class="fd-metrics"><div class="fd-metric"><b>24</b><span>오늘 방문</span></div><div class="fd-metric"><b>8</b><span>신규</span></div><div class="fd-metric"><b>16</b><span>재방문</span></div></div><div class="fd-chart"><div class="fd-col"><div class="fd-bar" style="height:40%"></div>월</div><div class="fd-col"><div class="fd-bar" style="height:55%"></div>화</div><div class="fd-col"><div class="fd-bar" style="height:47%"></div>수</div><div class="fd-col"><div class="fd-bar" style="height:74%"></div>목</div><div class="fd-col"><div class="fd-bar" style="height:92%"></div>금</div></div>'],
-    points:["방문할 때 포인트를 발급해 고객을 회원으로 확보하고, 방문 기록으로 단골 고객을 관리할 수 있어요.",
-      '<span class="fd-tag">고객 포인트 · 예시</span><div class="fd-metrics"><div class="fd-metric"><b>128</b><span>회원</span></div><div class="fd-metric"><b>37</b><span>신규 회원</span></div><div class="fd-metric"><b>61%</b><span>재방문</span></div></div><div class="fd-demo fd-sms" style="margin-top:9px">고객 포인트 7 · 다음 혜택까지 3포인트</div>'],
-    sales:["오늘과 이번 주 매출 흐름을 그래프로 정리해 보여드려요. 숫자를 한눈에 보고 다음 마케팅을 판단할 수 있어요.",
-      '<span class="fd-tag">매출 집계 · 예시</span><h3>이번 주 매출 흐름</h3><div class="fd-chart"><div class="fd-col"><div class="fd-bar" style="height:44%"></div>월</div><div class="fd-col"><div class="fd-bar" style="height:61%"></div>화</div><div class="fd-col"><div class="fd-bar" style="height:54%"></div>수</div><div class="fd-col"><div class="fd-bar" style="height:78%"></div>목</div><div class="fd-col"><div class="fd-bar" style="height:96%"></div>금</div></div><div class="fd-note">그래프 숫자는 기능 설명용 예시</div>'],
-    customers:["회원과 방문 이력을 정리해 단골·신규·오래 오지 않은 고객을 찾고 재방문 마케팅으로 연결해드려요.",
-      '<span class="fd-tag">고객 관리 · 예시</span><div class="fd-metrics"><div class="fd-metric"><b>32</b><span>단골</span></div><div class="fd-metric"><b>11</b><span>신규</span></div><div class="fd-metric"><b>9</b><span>30일 미방문</span></div></div><div class="fd-demo fd-sms" style="margin-top:9px"><b>재방문 대상 9명</b><br>오랜만이에요! 이번 주 특별 혜택을 확인해보세요.</div>']
-  };
-  menu.addEventListener('click',function(e){
-    var b=e.target.closest('[data-help]'); if(!b)return;
-    var v=x[b.getAttribute('data-help')]; if(!v)return;
-    if(detail)detail.hidden=true;
-    talk.textContent=v[0]; card.innerHTML=v[1]; demo.hidden=false;
-    if(innerWidth<900)document.querySelector('.h-chat').scrollIntoView({behavior:'smooth',block:'center'});
+  var FORM_ENDPOINT='https://script.google.com/macros/s/AKfycbyf1VgvEG1i5B1dd9gMMd89mSKyxJXwSMf0hMmeRsJenujeMUSCM1LCrMgNpDPpxP8M/exec';
+  var form=document.getElementById('apply-form'),err=document.getElementById('err'),btn=document.getElementById('submit');
+  function val(id){return String(document.getElementById(id).value||'').trim()}
+  function digits(s){return String(s).replace(/\D/g,'')}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();err.textContent='';
+    if(val('website'))return;
+    if(!val('store')){err.textContent='매장 이름을 입력해주세요.';return}
+    if(!val('owner')){err.textContent='성함을 입력해주세요.';return}
+    if(digits(val('phone')).length<10){err.textContent='전화번호를 10자리 이상 입력해주세요.';return}
+    if(!document.getElementById('consent').checked){err.textContent='연락 동의에 체크해주세요.';return}
+    var payload={store:val('store'),owner:val('owner'),phone:val('phone'),email:val('email'),type:val('type'),plan:val('plan'),google:val('google'),message:val('message'),consent:true,sms:document.getElementById('sms').checked,page:location.href,website:''};
+    btn.disabled=true;btn.textContent='보내는 중…';
+    fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
+      .then(function(){form.hidden=true;document.getElementById('done').hidden=false})
+      .catch(function(){btn.disabled=false;btn.textContent='상담 신청하기 →';err.textContent='전송이 안 됐어요. 다시 시도해주세요.'});
   });
-  close.addEventListener('click',function(){demo.hidden=true;});
 })();
 </script>
 </body>
