@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/ara-demo-api/chat/stream",
+      "destination": "https://demo.encoremarketingsystem.com/demo/chat/stream"
+    }
+  ]
+}
