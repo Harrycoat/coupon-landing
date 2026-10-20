@@ -48,6 +48,17 @@
 @media(max-width:580px){#features{padding-bottom:26px}#flow{padding-top:22px}.signup-chat{min-height:590px}.signup-chat iframe{height:520px}.wrap{width:min(100% - 24px,1180px)}.topin{min-height:62px}.brand{font-size:21px}.nav{gap:8px}.nav .btn{min-height:42px;padding:0 14px;font-size:12px}.hero-in{display:block;padding-top:32px}.hero h1{font-size:43px;letter-spacing:-2.3px}.hero .lead{font-size:17px}.visual{min-height:505px;margin-top:18px}.ara{width:70%;left:-10%}.bubble{top:0;left:0;font-size:12px;max-width:170px;padding:12px 14px}.tasks{width:64%;right:-2%;top:12%}.task{grid-template-columns:34px 1fr;padding:9px;gap:7px}.task .ic{width:34px;height:34px;font-size:17px}.task i{display:none}.task b{font-size:11px}.task small{font-size:9px}.industry-in{padding:14px 0}.industry-list{gap:11px;font-size:12px}.section{padding:58px 0}.feature-grid{grid-template-columns:1fr}.flow{padding:23px}.briefcards{grid-template-columns:1fr 1fr}.brief{min-height:140px}.screen iframe{height:620px}.cta{display:block;padding:27px}.cta .btn{width:100%;margin-top:20px}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.formbox{padding:20px}}
 .visual.visual-shot{min-height:525px;display:flex;align-items:center;justify-content:center;overflow:visible}.hero-shot{display:block;width:120%;max-width:none;height:auto;object-fit:contain;border-radius:12px;transform:translateX(-2%)}@media(max-width:950px){.visual.visual-shot{min-height:0}.hero-shot{width:110%;transform:none}}@media(max-width:580px){.visual.visual-shot{min-height:0;margin-top:20px}.hero-shot{width:100%;transform:none}}
 
+
+html{scroll-padding-top:90px}
+a:focus-visible{outline:3px solid #345cff;outline-offset:4px}
+.demo{grid-template-columns:1fr 1fr}.screen{width:100%;max-width:430px;justify-self:center;padding:8px;border-radius:32px;background:#10233e}
+.screen iframe{height:760px;max-height:85svh;border-radius:25px;background:#fff}
+.simple-apply{max-width:900px}.join-steps{padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+.join-steps li{padding:22px;background:#fff;border:1px solid var(--line);border-radius:18px}
+.join-steps b,.join-steps span{display:block}.join-steps span{margin-top:8px;color:var(--muted);font-size:15px}
+.status-link{color:#204da1;text-decoration:underline}.feature-link{font-size:14px}
+@media(max-width:950px){.demo{grid-template-columns:1fr}}
+@media(max-width:580px){.join-steps{grid-template-columns:1fr;gap:10px}.section{padding:40px 0}.actions{flex-direction:column}.actions .btn{width:100%;min-height:54px}.screen{max-width:100%}.screen iframe{height:740px;max-height:86svh}.sub{font-size:16px}.feature p{font-size:15px}.nav .btn{font-size:14px;min-height:44px}.hero .lead{line-height:1.8}}
 </style>
 </head>
 <body>
@@ -56,7 +67,7 @@
     <a class="brand" href="#top"><span class="logoheart">♥</span><span>Encore<small>사장님의 든든한 AI 비서</small></span></a>
     <nav class="nav" aria-label="메뉴">
       <a href="#features">주요 기능</a><a href="#flow">고객 선순환</a><a href="#demo">실제 화면</a>
-      <a class="btn primary" href="#apply">무료로 시작하기 →</a>
+      <a class="btn primary" href="#apply">매장 신청하기 →</a>
     </nav>
   </div>
 </header>
@@ -67,8 +78,8 @@
     <div class="hero-copy">
       <div class="eyebrow">사장님의 하루가 더 가벼워지도록</div>
       <h1>사장님은<br><em>장사만 하세요.</em></h1>
-      <p class="lead"><b>기억하고 챙기는 일은 AI 비서 아라가 합니다.</b><br>예약, 재방문 고객, 이벤트, 문자, 리뷰까지 아라가 매일 먼저 알려드립니다.</p>
-      <div class="actions"><a class="btn primary" href="https://demo.encoremarketingsystem.com/demo" target="_blank" rel="noopener noreferrer">아라 AI 비서와 채팅</a><a class="btn ghost" href="#flow">어떻게 돕는지 보기</a></div>
+      <p class="lead"><b>기억하고 챙기는 일은 AI 비서 아라가 합니다.</b><br>예약, 고객 관리, 이벤트, 리뷰까지.<br>아라와 이야기하며 하나씩 준비하세요.</p>
+      <div class="actions"><a class="btn primary" href="https://demo.encoremarketingsystem.com/demo" target="_blank" rel="noopener noreferrer">아라 AI 비서와 채팅</a><a class="btn ghost" href="#features">주요 기능 보기</a></div>
       <div class="checks"><span>설치 없이 바로 사용</span><span>한국어로 쉽게 사용</span><span>매장에 맞춰 설정</span></div>
     </div>
     <div class="visual visual-shot"><img class="hero-shot" src="/right_hero_crop_optimized.webp" alt="Encore AI 비서 아라와 매장 운영 알림 미리보기"></div>
@@ -83,14 +94,14 @@
   <div class="wrap">
     <div class="kicker">AI 비서 아라의 주요 기능</div>
     <h2>매장의 모든 일을 아라가<br>쉽고 빠르게 도와드립니다.</h2>
-    <p class="sub">사장님이 찾기 전에, 필요한 일부터 먼저 알려주는 매장 운영 비서입니다.</p>
+    <p class="sub">필요한 기능부터 쉽고 간단하게 사용해 보세요.</p>
     <div class="feature-grid">
-      <a class="feature" href="https://encore-1093639735550.us-west1.run.app/book?store_id=1" target="_blank" rel="noopener"><span class="ic p">📅</span><h3>예약 비서</h3><p>예약 확인, 리마인드, 전날 확인까지 챙깁니다.</p><span class="feature-link">예약 화면 열기 →</span></a>
-      <a class="feature" href="https://encore-1093639735550.us-west1.run.app/tmart" target="_blank" rel="noopener"><span class="ic b">👥</span><h3>고객 비서</h3><p>재방문할 시기가 된 고객을 자동으로 찾아냅니다.</p><span class="feature-link">고객관리 열기 →</span></a>
-      <a class="feature" href="https://encore-1093639735550.us-west1.run.app/tmart" target="_blank" rel="noopener"><span class="ic o">🎁</span><h3>이벤트 마케팅</h3><p>기념일과 매장 이벤트 전에 홍보 타이밍을 알려줍니다.</p><span class="feature-link">이벤트 열기 →</span></a>
-      <a class="feature" href="https://encore-1093639735550.us-west1.run.app/tmart" target="_blank" rel="noopener"><span class="ic b">💬</span><h3>문자 마케팅</h3><p>수신 동의 고객에게 보낼 맞춤 문자를 빠르게 준비합니다.</p><span class="feature-link">문자 기능 열기 →</span></a>
-      <a class="feature" href="https://encore-1093639735550.us-west1.run.app/tmart" target="_blank" rel="noopener"><span class="ic y">⭐</span><h3>리뷰 관리</h3><p>방문 후 리뷰 요청과 답글 초안을 준비합니다.</p><span class="feature-link">리뷰 관리 열기 →</span></a>
-      <a class="feature" href="https://encore-1093639735550.us-west1.run.app/tmart" target="_blank" rel="noopener"><span class="ic b">📊</span><h3>매출·운영 브리핑</h3><p>오늘 매장 현황과 해야 할 일을 한눈에 정리합니다.</p><span class="feature-link">운영 화면 열기 →</span></a>
+      <a class="feature" href="https://demo.encoremarketingsystem.com/demo" target="_blank" rel="noopener"><span class="ic p">📅</span><h3>예약 비서</h3><p>예약을 확인하고 전날 보낼 안내 문자를 준비합니다.</p><span class="feature-link">예약 화면 열기 →</span></a>
+      <a class="feature" href="https://demo.encoremarketingsystem.com/demo" target="_blank" rel="noopener"><span class="ic b">👥</span><h3>고객 비서</h3><p>고객 연락처와 방문 기록, 포인트를 확인합니다.</p><span class="feature-link">고객관리 열기 →</span></a>
+      <a class="feature" href="https://demo.encoremarketingsystem.com/demo" target="_blank" rel="noopener"><span class="ic o">🎁</span><h3>이벤트 마케팅</h3><p>우리 매장 행사와 홍보 포스터를 준비합니다.</p><span class="feature-link">이벤트 열기 →</span></a>
+      <a class="feature" href="https://demo.encoremarketingsystem.com/demo" target="_blank" rel="noopener"><span class="ic b">💬</span><h3>문자 마케팅</h3><p>수신 동의 고객에게 보낼 맞춤 문자를 빠르게 준비합니다.</p><span class="feature-link">문자 기능 열기 →</span></a>
+      <a class="feature" href="https://demo.encoremarketingsystem.com/demo" target="_blank" rel="noopener"><span class="ic y">⭐</span><h3>리뷰 관리</h3><p>방문 후 리뷰 요청과 답글 초안을 준비합니다.</p><span class="feature-link">리뷰 관리 열기 →</span></a>
+      <a class="feature" href="https://demo.encoremarketingsystem.com/demo" target="_blank" rel="noopener"><span class="ic b">📊</span><h3>매출·운영 브리핑</h3><p>오늘 매장 현황과 해야 할 일을 한눈에 정리합니다.</p><span class="feature-link">운영 화면 열기 →</span></a>
     </div>
   </div>
 </section>
@@ -102,60 +113,36 @@
   </div>
 </section>
 
-<section class="section soft">
-  <div class="wrap morning">
-    <div><div class="kicker">아라가 아침에 먼저 알려드립니다</div><h2>“사장님,<br>오늘은 이것만 하세요.”</h2><p class="sub">예약, 고객, 이벤트, 리뷰, 문자 타이밍을 한 번에 정리해 보여드립니다.</p></div>
-    <div class="briefcards">
-      <div class="brief"><div>📅</div><span>오늘 예약 확인</span><b>4명</b></div>
-      <div class="brief"><div>👥</div><span>재방문 시기</span><b>8명</b></div>
-      <div class="brief hot"><div>🎁</div><span>어머니날</span><b>10일 전</b></div>
-      <div class="brief"><div>⭐</div><span>리뷰 요청 대상</span><b>5명</b></div>
-      <div class="brief"><div>💬</div><span>오늘 문자</span><b>준비</b></div>
-    </div>
-  </div>
-</section>
+
 
 <section class="section" id="demo">
   <div class="wrap demo">
-    <div class="demo-copy"><div class="kicker">실제 화면 미리보기</div><h2>복잡하지 않습니다.<br>아라에게 말하면 됩니다.</h2><p class="sub">한국어로 편하게 이야기하면 아라가 매장 운영과 마케팅 업무를 도와드립니다.</p><div class="callout">“사장님이 기억하기 전에, 아라가 먼저 챙깁니다.”</div></div>
-    <div class="screen"><iframe src="/showcase.html" title="Encore 실제 매장 운영 화면" loading="lazy" allow="clipboard-write"></iframe></div>
+    <div class="demo-copy"><div class="kicker">가입 없이 바로 체험</div><h2>복잡하지 않습니다.<br>아라에게 말하면 됩니다.</h2><p class="sub">한국어로 편하게 이야기하면 아라가 매장 운영과 마케팅 업무를 도와드립니다.</p><div class="callout">“사장님이 기억하기 전에, 아라가 먼저 챙깁니다.”</div></div>
+    <div class="screen"><iframe src="https://demo.encoremarketingsystem.com/demo" title="아라 AI 비서 휴대폰 채팅 데모" loading="lazy" allow="clipboard-write"></iframe></div>
   </div>
 </section>
 
 <section class="section">
-  <div class="wrap cta"><div><div class="kicker" style="color:#ff9cbc">Encore AI 비서</div><h2>사장님이 기억하기 전에,<br><em>아라가 먼저 챙깁니다.</em></h2></div><a class="btn primary" href="#apply">무료 상담 신청 →</a></div>
+  <div class="wrap cta"><div><div class="kicker" style="color:#ff9cbc">Encore AI 비서</div><h2>사장님이 기억하기 전에,<br><em>아라가 먼저 챙깁니다.</em></h2></div><a class="btn primary" href="#apply">내 매장으로 시작하기 →</a></div>
 </section>
 
 <section class="section formwrap" id="apply">
-  <div class="wrap">
-    <div style="text-align:center"><div class="kicker">Encore 시작하기</div><h2>아라와 이야기하면서 시작하세요.</h2><p class="sub">궁금한 건 왼쪽에서 아라에게 바로 물어보고, 오른쪽에서 매장 정보를 남기면 됩니다.</p></div>
-    <div class="signup-shell">
-      <div class="signup-chat">
-        <div class="signup-chat-head"><span class="avatar">🤖</span><div><b>AI 비서 아라</b><small>가입 전에 궁금한 걸 한국어로 물어보세요.</small></div></div>
-        <iframe src="https://encore-1093639735550.us-west1.run.app/demo?source=encore-signup" title="Encore 가입 상담 AI 비서 아라" loading="lazy" allow="clipboard-write"></iframe>
-      </div>
-      <div class="formbox">
-        <form id="apply-form" novalidate>
-          <input id="website" name="website" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off">
-          <div class="grid">
-            <div><label for="store">매장 이름</label><input id="store" name="store" autocomplete="organization" required></div>
-            <div><label for="owner">사장님 성함</label><input id="owner" name="owner" autocomplete="name" required></div>
-            <div><label for="phone">전화번호</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
-            <div><label for="email">이메일 (선택)</label><input id="email" name="email" type="email" autocomplete="email"></div>
-            <div><label for="type">업종</label><select id="type" name="type"><option>미용실</option><option>네일샵</option><option>피부관리/스파</option><option>음식점/카페</option><option>소매점</option><option>기타</option></select></div>
-            <div><label for="plan">관심 내용</label><select id="plan" name="plan"><option>AI 비서 데모</option><option>고객 재방문 관리</option><option>예약 관리</option><option>문자/이벤트 마케팅</option><option>전체 기능</option></select></div>
-            <div class="wide"><label for="google">Google 비즈니스 프로필</label><select id="google" name="google"><option>있고 인증도 했어요</option><option>있는데 인증은 안 했어요</option><option>없어요</option><option>잘 모르겠어요</option></select></div>
-            <div class="wide"><label for="message">문의 내용 (선택)</label><textarea id="message" name="message" placeholder="아라와 이야기한 뒤 필요한 내용을 적어주세요."></textarea></div>
-            <label class="agree wide"><input type="checkbox" id="consent" name="consent"><span>상담을 위해 전화 또는 이메일로 연락받는 데 동의합니다.</span></label>
-            <label class="agree wide"><input type="checkbox" id="sms" name="sms"><span>(선택) 상담 요청과 서비스 안내 문자를 받겠습니다. Message frequency varies. Message and data rates may apply. Reply STOP to opt out.</span></label>
-          </div>
-          <div class="status" id="err" role="alert"></div>
-          <button class="btn primary" type="submit" id="submit">Encore 시작하기 →</button>
-        </form>
-        <div class="done" id="done" hidden tabindex="-1"><b>신청이 접수됐어요.</b><br>남겨주신 연락처로 Encore 시작 방법을 안내드리겠습니다.</div>
-      </div>
-    </div>
+ <div class="wrap simple-apply">
+  <div class="kicker">내 매장으로 시작하기</div>
+  <h2>체험해 보고, 매장을 신청하세요.</h2>
+  <p class="sub">신청한 매장을 관리자가 확인하고 승인합니다.</p>
+  <ol class="join-steps">
+   <li><b>1. 아라와 채팅</b><span>가입 없이 먼저 체험하세요.</span></li>
+   <li><b>2. 매장 신청</b><span>매장 정보와 로그인 비밀번호를 등록하세요.</span></li>
+   <li><b>3. 승인 후 로그인</b><span>신청 현황에서 승인 여부와 매장 주소를 확인하세요.</span></li>
+  </ol>
+  <div class="actions">
+   <a class="btn primary" href="https://demo.encoremarketingsystem.com/apply">매장 신청하기 →</a>
+   <a class="btn ghost" href="https://demo.encoremarketingsystem.com/demo">아라 AI 비서와 채팅</a>
   </div>
+  <p class="sub">이미 신청하셨나요? <a class="status-link" href="https://demo.encoremarketingsystem.com/apply">신청 현황 확인하기 →</a></p>
+  <p class="sub">문자 발송과 카드 결제 연결은 준비 중입니다.</p>
+ </div>
 </section>
 </main>
 
@@ -163,26 +150,6 @@
   <div class="wrap footerin"><div><b>♥ Encore</b><br>사장님의 든든한 AI 비서</div><div><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms</a> · <a href="opt-in.html">SMS Opt-In</a><br>tmartbakersfield@gmail.com · 661-373-7950</div></div>
 </footer>
 
-<script>
-(function(){
-  var FORM_ENDPOINT='https://script.google.com/macros/s/AKfycbyf1VgvEG1i5B1dd9gMMd89mSKyxJXwSMf0hMmeRsJenujeMUSCM1LCrMgNpDPpxP8M/exec';
-  var form=document.getElementById('apply-form'),err=document.getElementById('err'),btn=document.getElementById('submit');
-  function val(id){return String(document.getElementById(id).value||'').trim()}
-  function digits(s){return String(s).replace(/\D/g,'')}
-  form.addEventListener('submit',function(e){
-    e.preventDefault();err.textContent='';
-    if(val('website'))return;
-    if(!val('store')){err.textContent='매장 이름을 입력해주세요.';return}
-    if(!val('owner')){err.textContent='성함을 입력해주세요.';return}
-    if(digits(val('phone')).length<10){err.textContent='전화번호를 10자리 이상 입력해주세요.';return}
-    if(!document.getElementById('consent').checked){err.textContent='연락 동의에 체크해주세요.';return}
-    var payload={store:val('store'),owner:val('owner'),phone:val('phone'),email:val('email'),type:val('type'),plan:val('plan'),google:val('google'),message:val('message'),consent:true,sms:document.getElementById('sms').checked,page:location.href,website:''};
-    btn.disabled=true;btn.textContent='보내는 중…';
-    fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
-      .then(function(){form.hidden=true;document.getElementById('done').hidden=false})
-      .catch(function(){btn.disabled=false;btn.textContent='상담 신청하기 →';err.textContent='전송이 안 됐어요. 다시 시도해주세요.'});
-  });
-})();
-</script>
+
 </body>
 </html>
